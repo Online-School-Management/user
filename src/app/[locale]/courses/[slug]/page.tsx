@@ -39,7 +39,15 @@ export default async function CourseDetailPage({ params }: Props) {
 
   return (
     <div className="min-h-screen px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-6">
+          <Link
+            href="/courses"
+            className="inline-flex items-center text-sm font-medium text-slate-600 transition-colors hover:text-primary"
+          >
+            {t("backToClasses")}
+          </Link>
+        </div>
         <span className="text-sm font-medium text-primary">{subjectName}</span>
         <h1 className="mt-2 text-3xl font-bold text-slate-900">{course.title}</h1>
         <div className="mt-6 space-y-2 text-slate-600">

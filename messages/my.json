@@ -16,11 +16,13 @@
     "language": "ဘာသာစကား"
   },
   "Home": {
-    "ourCourses": "ကျွန်ုပ်တို့၏ သင်တန်းများ"
+    "ourCourses": "အတန်းများ"
   },
   "Courses": {
-    "ourCourses": "ကျွန်ုပ်တို့၏ သင်တန်းများ",
-    "browseDescription": "သင်တန်းများ ကြည့်ရှုပါ။"
+    "ourCourses": "အတန်းများ",
+    "browseDescription": "သင်တန်းများ ကြည့်ရှုပါ။",
+    "upcomingClasses": "အတန်းသစ်များ",
+    "inProgressClasses": "သင်ကြားဆဲ အတန်းများ"
   },
   "CourseDetail": {
     "duration": "ကြာချိန်",
@@ -29,7 +31,8 @@
     "monthlyFee": "လစဉ်ကြေး",
     "totalFee": "စုစုပေါင်းကြေး",
     "contentComingSoon": "သင်တန်းအသေးစိတ် မကြာမီ ထည့်သွင်းပါမည်။",
-    "enrollCta": "ဤသင်တန်းကို စာရင်းသွင်းမည်"
+    "enrollCta": "ဤသင်တန်းကို စာရင်းသွင်းမည်",
+    "backToClasses": "← အတန်းများသို့ ပြန်သွားမည်"
   },
   "CourseCard": {
     "viewDetails": "အသေးစိတ်ကြည့်ရန် →",

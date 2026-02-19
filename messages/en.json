@@ -16,11 +16,13 @@
     "language": "Language"
   },
   "Home": {
-    "ourCourses": "Our courses"
+    "ourCourses": "Class"
   },
   "Courses": {
-    "ourCourses": "Our courses",
-    "browseDescription": "Browse our courses."
+    "ourCourses": "Class",
+    "browseDescription": "Browse our courses.",
+    "upcomingClasses": "Upcoming classes",
+    "inProgressClasses": "Classes in progress"
   },
   "CourseDetail": {
     "duration": "Duration",
@@ -29,7 +31,8 @@
     "monthlyFee": "Monthly fee",
     "totalFee": "Total fee",
     "contentComingSoon": "Course detail content coming soon.",
-    "enrollCta": "Enroll in this course"
+    "enrollCta": "Enroll in this course",
+    "backToClasses": "← Back to classes"
   },
   "CourseCard": {
     "viewDetails": "View details →",

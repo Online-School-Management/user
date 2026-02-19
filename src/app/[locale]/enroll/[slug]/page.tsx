@@ -29,7 +29,7 @@ export default async function EnrollPage({ params }: Props) {
 
   return (
     <div className="min-h-screen px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-2xl">
+      <div className="mx-auto max-w-6xl">
         <h1 className="text-2xl font-bold text-slate-900">
           {t("inCourse")} {course.title}
         </h1>
