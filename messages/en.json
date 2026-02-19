@@ -1,0 +1,93 @@
+{
+  "Common": {
+    "siteName": "Tip-Top Education",
+    "course": "Course"
+  },
+  "Nav": {
+    "home": "Home",
+    "courses": "Courses",
+    "articles": "Articles",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "profile": "Profile",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "language": "Language"
+  },
+  "Home": {
+    "ourCourses": "Our courses"
+  },
+  "Courses": {
+    "ourCourses": "Our courses",
+    "browseDescription": "Browse our courses."
+  },
+  "CourseDetail": {
+    "duration": "Duration",
+    "month": "month",
+    "months": "months",
+    "monthlyFee": "Monthly fee",
+    "totalFee": "Total fee",
+    "contentComingSoon": "Course detail content coming soon.",
+    "enrollCta": "Enroll in this course"
+  },
+  "CourseCard": {
+    "viewDetails": "View details →",
+    "subjectFallback": "Course"
+  },
+  "CourseGrid": {
+    "empty": "No courses available at the moment."
+  },
+  "Footer": {
+    "copyright": "© {year} TipTop Education. All rights reserved."
+  },
+  "Articles": {
+    "title": "Articles",
+    "description": "Tips, guides, and updates for your learning journey. More content coming soon.",
+    "empty": "No articles yet. Check back later."
+  },
+  "Contact": {
+    "title": "Contact",
+    "description": "Have a question or want to enroll? Reach out and we'll get back to you.",
+    "placeholder": "Contact form and details will be added here."
+  },
+  "Login": {
+    "title": "Login",
+    "description": "Sign in to your account.",
+    "placeholder": "Login form coming soon."
+  },
+  "Register": {
+    "title": "Register",
+    "description": "Create an account.",
+    "placeholder": "Registration form coming soon."
+  },
+  "Profile": {
+    "title": "Profile",
+    "description": "Your profile.",
+    "placeholder": "Profile page coming soon."
+  },
+  "Enroll": {
+    "title": "Enroll",
+    "inCourse": "Enroll in this course",
+    "placeholder": "Enrollment form and payment flow will be added here.",
+    "backToCourse": "← Back to course details"
+  },
+  "Metadata": {
+    "defaultTitle": "Tip-Top Education",
+    "defaultDescription": "Learn, grow, and achieve with quality education.",
+    "coursesTitle": "Courses | Tip-Top Education",
+    "coursesDescription": "Browse our courses.",
+    "courseTitle": "Course | Tip-Top Education",
+    "articlesTitle": "Articles | Tip-Top Education",
+    "articlesDescription": "Articles and resources for students and learners.",
+    "contactTitle": "Contact | Tip-Top Education",
+    "contactDescription": "Get in touch with us.",
+    "loginTitle": "Login | Tip-Top Education",
+    "loginDescription": "Sign in to your account.",
+    "registerTitle": "Register | Tip-Top Education",
+    "registerDescription": "Create an account.",
+    "profileTitle": "Profile | Tip-Top Education",
+    "profileDescription": "Your profile.",
+    "enrollTitle": "Enroll | Tip-Top Education"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "Common": {
+    "siteName": "Tip-Top Education",
+    "course": "သင်တန်း"
+  },
+  "Nav": {
+    "home": "ပင်မစာမျက်နှာ",
+    "courses": "သင်တန်းများ",
+    "articles": "ဆောင်းပါးများ",
+    "contact": "ဆက်သွယ်ရန်",
+    "login": "အကောင့်ဝင်မည်",
+    "register": "အကောင့်ဖွင့်မည်",
+    "profile": "ကိုယ်ရေးအချက်အလက်",
+    "menuOpen": "မီနူးဖွင့်မည်",
+    "menuClose": "မီနူးပိတ်မည်",
+    "language": "ဘာသာစကား"
+  },
+  "Home": {
+    "ourCourses": "ကျွန်ုပ်တို့၏ သင်တန်းများ"
+  },
+  "Courses": {
+    "ourCourses": "ကျွန်ုပ်တို့၏ သင်တန်းများ",
+    "browseDescription": "သင်တန်းများ ကြည့်ရှုပါ။"
+  },
+  "CourseDetail": {
+    "duration": "ကြာချိန်",
+    "month": "လ",
+    "months": "လ",
+    "monthlyFee": "လစဉ်ကြေး",
+    "totalFee": "စုစုပေါင်းကြေး",
+    "contentComingSoon": "သင်တန်းအသေးစိတ် မကြာမီ ထည့်သွင်းပါမည်။",
+    "enrollCta": "ဤသင်တန်းကို စာရင်းသွင်းမည်"
+  },
+  "CourseCard": {
+    "viewDetails": "အသေးစိတ်ကြည့်ရန် →",
+    "subjectFallback": "သင်တန်း"
+  },
+  "CourseGrid": {
+    "empty": "သင်တန်းများ မရရှိနိုင်သေးပါ။"
+  },
+  "Footer": {
+    "copyright": "© {year} TipTop Education။ မူပိုင်ခွင့်အားလုံး ရယူထားပါသည်။"
+  },
+  "Articles": {
+    "title": "ဆောင်းပါးများ",
+    "description": "သင့်သင်ယူမှုအတွက် အကြံပြုချက်များ၊ လမ်းညွှန်ချက်များနှင့် နောက်ဆုံးရ သတင်းများ။ မကြာမီ ထပ်ထည့်ပါမည်။",
+    "empty": "ဆောင်းပါးများ မရှိသေးပါ။ နောက်မှ ပြန်ကြည့်ပါ။"
+  },
+  "Contact": {
+    "title": "ဆက်သွယ်ရန်",
+    "description": "မေးခွန်းရှိပါက သို့မဟုတ် စာရင်းသွင်းလိုပါက ဆက်သွယ်ပါ။ ပြန်ကြားပါမည်။",
+    "placeholder": "ဆက်သွယ်ရန် ဖောင်းနှင့် အသေးစိတ်များ ဤနေရာတွင် ထည့်သွင်းပါမည်။"
+  },
+  "Login": {
+    "title": "အကောင့်ဝင်မည်",
+    "description": "သင့်အကောင့်သို့ ဝင်ရောက်ပါ။",
+    "placeholder": "အကောင့်ဝင်ခြင်း ဖောင်း မကြာမီ ထည့်သွင်းပါမည်။"
+  },
+  "Register": {
+    "title": "အကောင့်ဖွင့်မည်",
+    "description": "အကောင့်အသစ် ဖွင့်ပါ။",
+    "placeholder": "အကောင့်ဖွင့်ခြင်း ဖောင်း မကြာမီ ထည့်သွင်းပါမည်။"
+  },
+  "Profile": {
+    "title": "ကိုယ်ရေးအချက်အလက်",
+    "description": "သင့်ကိုယ်ရေးအချက်အလက်။",
+    "placeholder": "ကိုယ်ရေးအချက်အလက် စာမျက်နှာ မကြာမီ ထည့်သွင်းပါမည်။"
+  },
+  "Enroll": {
+    "title": "စာရင်းသွင်းမည်",
+    "inCourse": "ဤသင်တန်းကို စာရင်းသွင်းမည်",
+    "placeholder": "စာရင်းသွင်းခြင်း ဖောင်းနှင့် ငွေပေးချေမှု မကြာမီ ထည့်သွင်းပါမည်။",
+    "backToCourse": "← သင်တန်းအသေးစိတ်သို့ ပြန်သွားမည်"
+  },
+  "Metadata": {
+    "defaultTitle": "Tip-Top Education",
+    "defaultDescription": "အရည်အသွေးမြင့် ပညာရေးဖြင့် သင်ယူပါ၊ ကြီးထွားပါ၊ အောင်မြင်ပါ။",
+    "coursesTitle": "သင်တန်းများ | Tip-Top Education",
+    "coursesDescription": "သင်တန်းများ ကြည့်ရှုပါ။",
+    "courseTitle": "သင်တန်း | Tip-Top Education",
+    "articlesTitle": "ဆောင်းပါးများ | Tip-Top Education",
+    "articlesDescription": "ကျောင်းသားများနှင့် သင်ယူသူများအတွက် ဆောင်းပါးများနှင့် အရင်းအမြစ်များ။",
+    "contactTitle": "ဆက်သွယ်ရန် | Tip-Top Education",
+    "contactDescription": "ကျွန်ုပ်တို့နှင့် ဆက်သွယ်ပါ။",
+    "loginTitle": "အကောင့်ဝင်မည် | Tip-Top Education",
+    "loginDescription": "သင့်အကောင့်သို့ ဝင်ရောက်ပါ။",
+    "registerTitle": "အကောင့်ဖွင့်မည် | Tip-Top Education",
+    "registerDescription": "အကောင့်အသစ် ဖွင့်ပါ။",
+    "profileTitle": "ကိုယ်ရေးအချက်အလက် | Tip-Top Education",
+    "profileDescription": "သင့်ကိုယ်ရေးအချက်အလက်။",
+    "enrollTitle": "စာရင်းသွင်းမည် | Tip-Top Education"
+  }
+}
