@@ -28,11 +28,29 @@
     "duration": "ကြာချိန်",
     "month": "လ",
     "months": "လ",
+    "hour": "နာရီ",
+    "hours": "နာရီ",
     "monthlyFee": "လစဉ်ကြေး",
     "totalFee": "စုစုပေါင်းကြေး",
     "contentComingSoon": "သင်တန်းအသေးစိတ် မကြာမီ ထည့်သွင်းပါမည်။",
     "enrollCta": "ဤသင်တန်းကို စာရင်းသွင်းမည်",
-    "backToClasses": "← အတန်းများသို့ ပြန်သွားမည်"
+    "backToClasses": "← အတန်းများသို့ ပြန်သွားမည်",
+    "classInfoTitle": "တန်းနှင့်သက်ဆိုင်သောအချက်များ",
+    "classType": "သင်တန်းအမျိုးအစား",
+    "totalHours": "စုစုပေါင်းနာရီ",
+    "startDate": "စတင်နေ့",
+    "endDate": "ပြီးဆုံးနေ့",
+    "status": "အခြေအနေ",
+    "aboutClassTitle": "သင်တန်းအကြောင်း",
+    "unknown": "-",
+    "status_upcoming": "အတန်းအသစ်",
+    "status_in_progress": "သင်ကြားနေဆဲ",
+    "status_completed": "ပြီးဆုံး",
+    "status_cancelled": "ဖျက်သိမ်းပြီး",
+    "courseType_one_on_one": "တစ်ဦးချင်း",
+    "courseType_private": "သီးသန့်",
+    "courseType_group": "အုပ်စု",
+    "courseType_teacher_training": "ဆရာလေ့ကျင့်ရေး"
   },
   "CourseCard": {
     "viewDetails": "အသေးစိတ်ကြည့်ရန် →",
@@ -42,7 +60,7 @@
     "empty": "သင်တန်းများ မရရှိနိုင်သေးပါ။"
   },
   "Footer": {
-    "copyright": "© {year} TipTop Education။ မူပိုင်ခွင့်အားလုံး ရယူထားပါသည်။"
+    "copyright": "© {year} TipTop Education"
   },
   "Articles": {
     "title": "ဆောင်းပါးများ",
