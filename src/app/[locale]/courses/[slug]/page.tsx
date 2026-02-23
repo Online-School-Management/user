@@ -33,13 +33,6 @@ export default async function CourseDetailPage({ params }: Props) {
         ? t("month")
         : t("months")
       : "";
-  const totalHoursUnit =
-    course.total_hours != null
-      ? course.total_hours === 1
-        ? t("hour")
-        : t("hours")
-      : "";
-
   const formatDate = (date: string | null) => {
     if (!date) return t("unknown");
     return new Intl.DateTimeFormat("en-US", {
@@ -76,7 +69,7 @@ export default async function CourseDetailPage({ params }: Props) {
   };
 
   return (
-    <div className="min-h-screen px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-full px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <div className="mb-6">
           <Link

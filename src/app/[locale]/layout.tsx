@@ -2,10 +2,12 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { routing } from "@/i18n/routing";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SetHtmlLang } from "@/components/SetHtmlLang";
+import { AuthCallbackHandler } from "@/components/auth/AuthCallbackHandler";
 
 type Props = {
   children: React.ReactNode;
@@ -27,6 +29,9 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <NextIntlClientProvider messages={messages}>
       <SetHtmlLang />
+      <Suspense fallback={null}>
+        <AuthCallbackHandler />
+      </Suspense>
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />

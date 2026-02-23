@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { EnrollmentForm } from "@/components/enroll/EnrollmentForm";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -28,24 +29,28 @@ export default async function EnrollPage({ params }: Props) {
   const subjectName = course.subject?.name ?? tCommon("course");
 
   return (
-    <div className="min-h-screen px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
-        <h1 className="text-2xl font-bold text-slate-900">
-          {t("inCourse")} {course.title}
-        </h1>
-        <p className="mt-2 text-slate-600">
-          {subjectName}
-          {course.monthly_fee != null &&
-            ` · MMK ${course.monthly_fee.toLocaleString()}/month`}
-        </p>
-        <div className="mt-8 rounded-xl border border-slate-200 bg-slate-50/50 p-6 text-center text-slate-600">
-          <p>{t("placeholder")}</p>
+    <div className="min-h-full px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl">
+        <div className="mb-6">
           <Link
             href={`/courses/${course.slug}`}
-            className="mt-4 inline-block text-sm font-medium text-primary hover:underline"
+            className="inline-flex items-center text-sm font-medium text-slate-600 transition-colors hover:text-primary"
           >
             {t("backToCourse")}
           </Link>
+        </div>
+
+        <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
+        <p className="mt-2 text-slate-600">
+          {t("inCourse")} {course.title}
+        </p>
+
+        <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <EnrollmentForm
+            courseId={course.id}
+            courseTitle={course.title}
+            subjectName={subjectName}
+          />
         </div>
       </div>
     </div>

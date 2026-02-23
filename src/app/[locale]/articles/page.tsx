@@ -18,7 +18,7 @@ export default async function ArticlesPage({ params }: Props) {
   const t = await getTranslations("Articles");
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-full">
       <section className="border-b border-slate-200/80 px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
