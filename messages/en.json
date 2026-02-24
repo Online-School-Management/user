@@ -61,7 +61,9 @@
     "empty": "No courses available at the moment."
   },
   "Footer": {
-    "copyright": "© {year} TipTop Education. All rights reserved."
+    "copyright": "© {year} TipTop Education. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions"
   },
   "Articles": {
     "title": "Articles",

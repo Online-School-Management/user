@@ -61,7 +61,9 @@
     "empty": "သင်တန်းများ မရရှိနိုင်သေးပါ။"
   },
   "Footer": {
-    "copyright": "© {year} TipTop Education"
+    "copyright": "© {year} TipTop Education",
+    "privacy": "ကိုယ်ရေးအချက်အလက် မူဝါဒ",
+    "terms": "စည်းကမ်းနှင့် သတ်မှတ်ချက်များ"
   },
   "Articles": {
     "title": "ဆောင်းပါးများ",
