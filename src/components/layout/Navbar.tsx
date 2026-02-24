@@ -48,6 +48,15 @@ export function Navbar() {
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
   const loginPageHref = `/login?redirect_to=${encodeURIComponent(pathname)}`;
+  const isNavActive = useCallback(
+    (href: string) => {
+      if (href === "/") {
+        return pathname === "/";
+      }
+      return pathname === href || pathname.startsWith(`${href}/`);
+    },
+    [pathname]
+  );
 
   useEffect(() => {
     let active = true;
@@ -124,7 +133,11 @@ export function Navbar() {
               <Link
                 key={href}
                 href={href}
-                className="text-sm font-medium text-slate-600 transition-colors hover:text-primary"
+                className={`text-sm font-medium transition-colors ${
+                  isNavActive(href)
+                    ? "text-primary underline decoration-2 underline-offset-8"
+                    : "text-slate-600 hover:text-primary"
+                }`}
               >
                 {t(key)}
               </Link>
@@ -152,7 +165,11 @@ export function Navbar() {
               ) : (
                 <Link
                   href={loginPageHref}
-                  className="text-sm font-medium text-slate-600 transition-colors hover:text-primary"
+                  className={`text-sm font-medium transition-colors ${
+                    isNavActive("/login")
+                      ? "text-primary underline decoration-2 underline-offset-8"
+                      : "text-slate-600 hover:text-primary"
+                  }`}
                 >
                   {t("login")}
                 </Link>
@@ -218,7 +235,11 @@ export function Navbar() {
                 <Link
                   href={href}
                   onClick={closeMenu}
-                  className="block rounded-lg px-3 py-2.5 text-base font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-primary"
+                  className={`block rounded-lg px-3 py-2.5 text-base font-medium transition-colors ${
+                    isNavActive(href)
+                      ? "bg-primary/10 text-primary underline decoration-2 underline-offset-4"
+                      : "text-slate-700 hover:bg-slate-50 hover:text-primary"
+                  }`}
                 >
                   {t(key)}
                 </Link>
@@ -251,7 +272,11 @@ export function Navbar() {
                   <Link
                     href={loginPageHref}
                     onClick={closeMenu}
-                    className="block rounded-lg px-3 py-2.5 text-base font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-primary"
+                    className={`block rounded-lg px-3 py-2.5 text-base font-medium transition-colors ${
+                      isNavActive("/login")
+                        ? "bg-primary/10 text-primary underline decoration-2 underline-offset-4"
+                        : "text-slate-700 hover:bg-slate-50 hover:text-primary"
+                    }`}
                   >
                     {t("login")}
                   </Link>
