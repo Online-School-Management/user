@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import {
   buildGoogleLoginUrl,
   clearAuthToken,
@@ -34,10 +34,20 @@ export function EnrollmentForm({ courseId, courseTitle, subjectName }: Props) {
   const t = useTranslations("Enroll");
   const tLogin = useTranslations("Login");
   const pathname = usePathname();
-  const initialToken = getAuthToken();
+  const searchParams = useSearchParams();
+  const isAuthSuccessCallback = searchParams.get("auth") === "success";
 
-  const [token, setToken] = useState<string | null>(initialToken);
-  const [authLoading, setAuthLoading] = useState<boolean>(initialToken !== null);
+  // Keep server/client initial render deterministic to avoid hydration mismatch.
+  const [token, setToken] = useState<string | null>(null);
+  const [authLoading, setAuthLoading] = useState<boolean>(true);
+  const [isAuthTransitionPending, setIsAuthTransitionPending] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    const params = new URLSearchParams(window.location.search);
+    return (
+      params.get("auth") === "success" ||
+      sessionStorage.getItem("auth_status") === "success"
+    );
+  });
   const [authMessage, setAuthMessage] = useState<string | null>(() => {
     if (typeof window === "undefined") return null;
 
@@ -81,37 +91,83 @@ export function EnrollmentForm({ courseId, courseTitle, subjectName }: Props) {
         : authMessage;
 
   useEffect(() => {
-    if (!token) {
-      return;
-    }
+    if (!isAuthTransitionPending) return;
 
-    fetchMe(token)
-      .then((user) => {
-        if (!user) return;
-        setNameEn(user.name ?? "");
-        setPhone(user.phone ?? "");
-        setTownAddress(user.address ?? "");
-        setAge(user.student?.age != null ? String(user.student.age) : "");
-        setEducation(user.student?.education ?? "");
-        setFacebookAccount(user.student?.facebook_link ?? "");
-        if (
-          user.student?.class &&
-          CLASS_OPTIONS.includes(user.student.class as (typeof CLASS_OPTIONS)[number])
-        ) {
-          setClassInterest(user.student.class);
+    // Prevent endless loading if callback/token resolution fails.
+    const timeout = window.setTimeout(() => {
+      setIsAuthTransitionPending(false);
+    }, 2500);
+
+    return () => window.clearTimeout(timeout);
+  }, [isAuthTransitionPending]);
+
+  useEffect(() => {
+    let active = true;
+
+    const syncAuthState = async () => {
+      if (!active) return;
+      setAuthLoading(true);
+
+      const storedToken = getAuthToken();
+      if (!storedToken) {
+        if (isAuthSuccessCallback || isAuthTransitionPending) {
+          // OAuth callback is still being processed; keep loading to avoid flashing login UI.
+          setAuthLoading(true);
+          return;
         }
-        if (
-          user.student?.school_type &&
-          ["international", "government", "private", "other"].includes(user.student.school_type)
-        ) {
-          setSchoolType(
-            user.student.school_type as "international" | "government" | "private" | "other"
-          );
-        }
-        if (user.student?.school_other) setSchoolOther(user.student.school_other);
-      })
-      .finally(() => setAuthLoading(false));
-  }, [token]);
+        if (!active) return;
+        setToken(null);
+        setAuthLoading(false);
+        return;
+      }
+
+      if (!active) return;
+      setToken(storedToken);
+
+      const user = await fetchMe(storedToken);
+      if (!active) return;
+
+      if (!user) {
+        clearAuthToken();
+        setToken(null);
+        setIsAuthTransitionPending(false);
+        setAuthLoading(false);
+        return;
+      }
+
+      setNameEn(user.name ?? "");
+      setPhone(user.phone ?? "");
+      setTownAddress(user.address ?? "");
+      setAge(user.student?.age != null ? String(user.student.age) : "");
+      setEducation(user.student?.education ?? "");
+      setFacebookAccount(user.student?.facebook_link ?? "");
+      if (
+        user.student?.class &&
+        CLASS_OPTIONS.includes(user.student.class as (typeof CLASS_OPTIONS)[number])
+      ) {
+        setClassInterest(user.student.class);
+      }
+      if (
+        user.student?.school_type &&
+        ["international", "government", "private", "other"].includes(user.student.school_type)
+      ) {
+        setSchoolType(
+          user.student.school_type as "international" | "government" | "private" | "other"
+        );
+      }
+      if (user.student?.school_other) setSchoolOther(user.student.school_other);
+      setIsAuthTransitionPending(false);
+      setAuthLoading(false);
+    };
+
+    syncAuthState();
+    window.addEventListener("auth-changed", syncAuthState);
+
+    return () => {
+      active = false;
+      window.removeEventListener("auth-changed", syncAuthState);
+    };
+  }, [isAuthSuccessCallback, isAuthTransitionPending]);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -169,8 +225,63 @@ export function EnrollmentForm({ courseId, courseTitle, subjectName }: Props) {
     setFieldErrors({});
   }
 
-  if (authLoading) {
-    return <p className="text-slate-600">{t("checkingAuth")}</p>;
+  if (authLoading || isAuthTransitionPending) {
+    return (
+      <div className="animate-pulse space-y-4">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-2 sm:col-span-2">
+            <div className="h-4 w-28 rounded bg-slate-200" />
+            <div className="h-10 w-full rounded-lg bg-slate-200" />
+          </div>
+          <div className="space-y-2 sm:col-span-2">
+            <div className="h-4 w-24 rounded bg-slate-200" />
+            <div className="h-10 w-full rounded-lg bg-slate-200" />
+          </div>
+
+          <div className="space-y-2 sm:col-span-2">
+            <div className="h-4 w-36 rounded bg-slate-200" />
+            <div className="h-10 w-full rounded-lg bg-slate-200" />
+          </div>
+
+          <div className="space-y-2">
+            <div className="h-4 w-16 rounded bg-slate-200" />
+            <div className="h-10 w-full rounded-lg bg-slate-200" />
+          </div>
+          <div className="space-y-2">
+            <div className="h-4 w-20 rounded bg-slate-200" />
+            <div className="h-10 w-full rounded-lg bg-slate-200" />
+          </div>
+
+          <div className="space-y-2">
+            <div className="h-4 w-14 rounded bg-slate-200" />
+            <div className="h-10 w-full rounded-lg bg-slate-200" />
+          </div>
+          <div className="space-y-2">
+            <div className="h-4 w-20 rounded bg-slate-200" />
+            <div className="h-10 w-full rounded-lg bg-slate-200" />
+          </div>
+
+          <div className="space-y-2 sm:col-span-2">
+            <div className="h-4 w-36 rounded bg-slate-200" />
+            <div className="h-10 w-full rounded-lg bg-slate-200" />
+          </div>
+
+          <div className="space-y-2">
+            <div className="h-4 w-24 rounded bg-slate-200" />
+            <div className="h-10 w-full rounded-lg bg-slate-200" />
+          </div>
+          <div className="space-y-2">
+            <div className="h-4 w-28 rounded bg-slate-200" />
+            <div className="h-10 w-full rounded-lg bg-slate-200" />
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-3 pt-1">
+          <div className="h-10 w-40 rounded-lg bg-slate-200" />
+          <div className="h-10 w-28 rounded-lg bg-slate-200" />
+        </div>
+      </div>
+    );
   }
 
   if (!token) {
