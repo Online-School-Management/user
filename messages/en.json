@@ -108,7 +108,7 @@
     "subjectName": "Subject",
     "nameEn": "Name (Fill in English)",
     "age": "Age",
-    "education": "Education (Current class)",
+    "education": "Education (Example: Grade 1, Grade 2, Grade 3 or Others...)",
     "class": "Class",
     "school": "School",
     "schoolInternational": "International",

@@ -354,170 +354,157 @@ export function EnrollmentForm({ courseId, courseTitle, subjectName }: Props) {
         </div>
       )}
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className="sm:col-span-2">
-          <span className="mb-1 block text-sm font-medium text-slate-700">{t("courseName")}</span>
-          <input
-            value={courseTitle}
-            disabled
-            className="w-full rounded-lg border border-slate-200 bg-slate-100 px-3 py-2 text-slate-700"
-          />
-        </label>
+      <div className="space-y-3">
+        <div className="rounded-xl border border-slate-200 bg-slate-50/40 p-4 shadow-sm">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <label>
+              <span className="mb-1 block text-sm font-medium text-slate-700">
+                {t("nameEn")} <span className="text-rose-500">*</span>
+              </span>
+              <input
+                value={nameEn}
+                onChange={(e) => setNameEn(e.target.value)}
+                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
+                required
+              />
+              {fieldErrors.name_en?.[0] && (
+                <span className="mt-1 block text-xs text-rose-600">{fieldErrors.name_en[0]}</span>
+              )}
+            </label>
 
-        <label className="sm:col-span-2">
-          <span className="mb-1 block text-sm font-medium text-slate-700">
-            {t("subjectName")}
-          </span>
-          <input
-            value={subjectName}
-            disabled
-            className="w-full rounded-lg border border-slate-200 bg-slate-100 px-3 py-2 text-slate-700"
-          />
-        </label>
+            <label>
+              <span className="mb-1 block text-sm font-medium text-slate-700">
+                {t("age")} <span className="text-rose-500">*</span>
+              </span>
+              <input
+                type="number"
+                min={1}
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
+                required
+              />
+              {fieldErrors.age?.[0] && (
+                <span className="mt-1 block text-xs text-rose-600">{fieldErrors.age[0]}</span>
+              )}
+            </label>
+          </div>
+        </div>
 
-        <label className="sm:col-span-2">
-          <span className="mb-1 block text-sm font-medium text-slate-700">{t("nameEn")}</span>
-          <input
-            value={nameEn}
-            onChange={(e) => setNameEn(e.target.value)}
-            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
-            required
-          />
-          {fieldErrors.name_en?.[0] && (
-            <span className="mt-1 block text-xs text-rose-600">{fieldErrors.name_en[0]}</span>
-          )}
-        </label>
-
-        <label>
-          <span className="mb-1 block text-sm font-medium text-slate-700">{t("age")}</span>
-          <input
-            type="number"
-            min={1}
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
-            required
-          />
-          {fieldErrors.age?.[0] && (
-            <span className="mt-1 block text-xs text-rose-600">{fieldErrors.age[0]}</span>
-          )}
-        </label>
-
-        <label>
-          <span className="mb-1 block text-sm font-medium text-slate-700">{t("education")}</span>
-          <input
-            value={education}
-            onChange={(e) => setEducation(e.target.value)}
-            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
-            required
-          />
-          {fieldErrors.education?.[0] && (
-            <span className="mt-1 block text-xs text-rose-600">{fieldErrors.education[0]}</span>
-          )}
-        </label>
-
-        <label>
-          <span className="mb-1 block text-sm font-medium text-slate-700">{t("class")}</span>
-          <select
-            value={classInterest}
-            onChange={(e) => setClassInterest(e.target.value)}
-            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
-            required
-          >
-            {CLASS_OPTIONS.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-          {fieldErrors.class_interest?.[0] && (
-            <span className="mt-1 block text-xs text-rose-600">
-              {fieldErrors.class_interest[0]}
-            </span>
-          )}
-        </label>
-
-        <label>
-          <span className="mb-1 block text-sm font-medium text-slate-700">{t("school")}</span>
-          <select
-            value={schoolType}
-            onChange={(e) =>
-              setSchoolType(
-                e.target.value as "international" | "government" | "private" | "other"
-              )
-            }
-            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
-            required
-          >
-            <option value="international">{t("schoolInternational")}</option>
-            <option value="government">{t("schoolGovernment")}</option>
-            <option value="private">{t("schoolPrivate")}</option>
-            <option value="other">{t("schoolOther")}</option>
-          </select>
-          {fieldErrors.school_type?.[0] && (
-            <span className="mt-1 block text-xs text-rose-600">{fieldErrors.school_type[0]}</span>
-          )}
-        </label>
-
-        {schoolType === "other" && (
-          <label className="sm:col-span-2">
+        <div className="rounded-xl border border-slate-200 bg-slate-50/40 p-4 shadow-sm">
+          <label>
             <span className="mb-1 block text-sm font-medium text-slate-700">
-              {t("schoolOtherValue")}
+              {t("education")} <span className="text-rose-500">*</span>
             </span>
             <input
-              value={schoolOther}
-              onChange={(e) => setSchoolOther(e.target.value)}
-              className="w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
+              value={education}
+              onChange={(e) => setEducation(e.target.value)}
+              className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
               required
             />
-            {fieldErrors.school_other?.[0] && (
-              <span className="mt-1 block text-xs text-rose-600">{fieldErrors.school_other[0]}</span>
+            {fieldErrors.education?.[0] && (
+              <span className="mt-1 block text-xs text-rose-600">{fieldErrors.education[0]}</span>
             )}
           </label>
+        </div>
+
+        <div className="rounded-xl border border-slate-200 bg-slate-50/40 p-4 shadow-sm">
+          <label>
+            <span className="mb-1 block text-sm font-medium text-slate-700">
+              {t("school")} <span className="text-rose-500">*</span>
+            </span>
+            <select
+              value={schoolType}
+              onChange={(e) =>
+                setSchoolType(
+                  e.target.value as "international" | "government" | "private" | "other"
+                )
+              }
+              className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
+              required
+            >
+              <option value="international">{t("schoolInternational")}</option>
+              <option value="government">{t("schoolGovernment")}</option>
+              <option value="private">{t("schoolPrivate")}</option>
+              <option value="other">{t("schoolOther")}</option>
+            </select>
+            {fieldErrors.school_type?.[0] && (
+              <span className="mt-1 block text-xs text-rose-600">{fieldErrors.school_type[0]}</span>
+            )}
+          </label>
+        </div>
+
+        {schoolType === "other" && (
+          <div className="rounded-xl border border-slate-200 bg-slate-50/40 p-4 shadow-sm">
+            <label>
+              <span className="mb-1 block text-sm font-medium text-slate-700">
+                {t("schoolOtherValue")} <span className="text-rose-500">*</span>
+              </span>
+              <input
+                value={schoolOther}
+                onChange={(e) => setSchoolOther(e.target.value)}
+                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
+                required
+              />
+              {fieldErrors.school_other?.[0] && (
+                <span className="mt-1 block text-xs text-rose-600">{fieldErrors.school_other[0]}</span>
+              )}
+            </label>
+          </div>
         )}
 
-        <label className="sm:col-span-2">
-          <span className="mb-1 block text-sm font-medium text-slate-700">
-            {t("facebookAccount")}
-          </span>
-          <input
-            value={facebookAccount}
-            onChange={(e) => setFacebookAccount(e.target.value)}
-            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
-            required
-          />
-          {fieldErrors.facebook_account?.[0] && (
-            <span className="mt-1 block text-xs text-rose-600">
-              {fieldErrors.facebook_account[0]}
+        <div className="rounded-xl border border-slate-200 bg-slate-50/40 p-4 shadow-sm">
+          <label>
+            <span className="mb-1 block text-sm font-medium text-slate-700">
+              {t("facebookAccount")} <span className="text-rose-500">*</span>
             </span>
-          )}
-        </label>
+            <input
+              value={facebookAccount}
+              onChange={(e) => setFacebookAccount(e.target.value)}
+              className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
+              required
+            />
+            {fieldErrors.facebook_account?.[0] && (
+              <span className="mt-1 block text-xs text-rose-600">
+                {fieldErrors.facebook_account[0]}
+              </span>
+            )}
+          </label>
+        </div>
 
-        <label>
-          <span className="mb-1 block text-sm font-medium text-slate-700">{t("phone")}</span>
-          <input
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
-            required
-          />
-          {fieldErrors.phone?.[0] && (
-            <span className="mt-1 block text-xs text-rose-600">{fieldErrors.phone[0]}</span>
-          )}
-        </label>
+        <div className="rounded-xl border border-slate-200 bg-slate-50/40 p-4 shadow-sm">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <label>
+              <span className="mb-1 block text-sm font-medium text-slate-700">
+                {t("phone")} <span className="text-rose-500">*</span>
+              </span>
+              <input
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
+                required
+              />
+              {fieldErrors.phone?.[0] && (
+                <span className="mt-1 block text-xs text-rose-600">{fieldErrors.phone[0]}</span>
+              )}
+            </label>
 
-        <label>
-          <span className="mb-1 block text-sm font-medium text-slate-700">{t("townAddress")}</span>
-          <input
-            value={townAddress}
-            onChange={(e) => setTownAddress(e.target.value)}
-            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
-            required
-          />
-          {fieldErrors.town_address?.[0] && (
-            <span className="mt-1 block text-xs text-rose-600">{fieldErrors.town_address[0]}</span>
-          )}
-        </label>
+            <label>
+              <span className="mb-1 block text-sm font-medium text-slate-700">
+                {t("townAddress")} <span className="text-rose-500">*</span>
+              </span>
+              <input
+                value={townAddress}
+                onChange={(e) => setTownAddress(e.target.value)}
+                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-900 outline-none ring-primary/30 focus:ring"
+                required
+              />
+              {fieldErrors.town_address?.[0] && (
+                <span className="mt-1 block text-xs text-rose-600">{fieldErrors.town_address[0]}</span>
+              )}
+            </label>
+          </div>
+        </div>
       </div>
 
       <div className="flex flex-wrap gap-3">
@@ -527,13 +514,6 @@ export function EnrollmentForm({ courseId, courseTitle, subjectName }: Props) {
           className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {submitting ? t("submitting") : t("submit")}
-        </button>
-        <button
-          type="button"
-          onClick={onLogout}
-          className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-6 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
-        >
-          {t("logout")}
         </button>
       </div>
     </form>

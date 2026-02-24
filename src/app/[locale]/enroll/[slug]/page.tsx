@@ -30,7 +30,7 @@ export default async function EnrollPage({ params }: Props) {
 
   return (
     <div className="min-h-full px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-3xl">
         <div className="mb-6">
           <Link
             href={`/courses/${course.slug}`}
@@ -47,7 +47,7 @@ export default async function EnrollPage({ params }: Props) {
           })}
         </h1>
 
-        <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div className="mt-6">
           <EnrollmentForm
             courseId={course.id}
             courseTitle={course.title}
