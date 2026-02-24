@@ -95,7 +95,7 @@
     "placeholder": "Profile page coming soon."
   },
   "Enroll": {
-    "title": "Enroll",
+    "title": "Enroll for <course>{courseName}</course>",
     "inCourse": "Enroll in this course",
     "placeholder": "Enrollment form and payment flow will be added here.",
     "backToCourse": "← Back to course details",

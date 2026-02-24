@@ -40,10 +40,12 @@ export default async function EnrollPage({ params }: Props) {
           </Link>
         </div>
 
-        <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
-        <p className="mt-2 text-slate-600">
-          {t("inCourse")} {course.title}
-        </p>
+        <h1 className="text-2xl font-medium text-slate-900">
+          {t.rich("title", {
+            courseName: course.title,
+            course: (chunks) => <span className="font-bold text-primary">{chunks}</span>,
+          })}
+        </h1>
 
         <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
           <EnrollmentForm

@@ -32,6 +32,7 @@ const CLASS_OPTIONS = [
 
 export function EnrollmentForm({ courseId, courseTitle, subjectName }: Props) {
   const t = useTranslations("Enroll");
+  const tLogin = useTranslations("Login");
   const pathname = usePathname();
   const initialToken = getAuthToken();
 
@@ -174,14 +175,47 @@ export function EnrollmentForm({ courseId, courseTitle, subjectName }: Props) {
 
   if (!token) {
     return (
-      <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+      <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
         <p className="text-slate-700">{t("needGoogleLogin")}</p>
-        <a
-          href={buildGoogleLoginUrl(pathname)}
-          className="mt-4 inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
-        >
-          {t("continueWithGoogle")}
-        </a>
+        <div className="mx-auto mt-4 w-full max-w-sm">
+          <a
+            href={buildGoogleLoginUrl(pathname)}
+            className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#DB4437] bg-[#DB4437] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#C5392D]"
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12 10.2v3.9h5.5c-.2 1.3-1.5 3.9-5.5 3.9-3.3 0-6-2.7-6-6s2.7-6 6-6c1.9 0 3.1.8 3.8 1.5l2.6-2.5C16.8 3.5 14.6 2.7 12 2.7 6.9 2.7 2.7 6.9 2.7 12s4.2 9.3 9.3 9.3c5.4 0 9-3.8 9-9.1 0-.6-.1-1.1-.2-1.6H12Z"
+              />
+            </svg>
+            {t("continueWithGoogle")}
+          </a>
+
+          <div className="my-4 flex items-center gap-3">
+            <span className="h-px flex-1 bg-slate-200" />
+            <span className="text-xs uppercase tracking-wide text-slate-400">
+              {tLogin("or")}
+            </span>
+            <span className="h-px flex-1 bg-slate-200" />
+          </div>
+
+          <button
+            type="button"
+            disabled
+            className="inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-lg border border-[#4267B2] bg-[#4267B2] px-5 py-2.5 text-sm font-medium text-white opacity-90"
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M13.5 8H16V5h-2.5C10.5 5 9 6.8 9 9.6V12H7v3h2v4h3v-4h2.4l.6-3H12V9.9c0-1 .3-1.9 1.5-1.9Z"
+              />
+            </svg>
+            {tLogin("continueWithFacebook")}
+          </button>
+          <p className="mt-2 text-center text-xs text-slate-400">
+            {tLogin("facebookComingSoon")}
+          </p>
+        </div>
       </div>
     );
   }
