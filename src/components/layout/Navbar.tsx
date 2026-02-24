@@ -19,6 +19,8 @@ const navPaths = [
   { href: "/contact", key: "contact" as const },
 ] as const;
 
+const hiddenNavPaths = new Set(["/contact"]);
+
 function MenuIcon({ open }: { open: boolean }) {
   return (
     <span className="relative flex h-5 w-6 flex-col justify-center" aria-hidden>
@@ -115,72 +117,74 @@ export function Navbar() {
           />
         </Link>
 
-        {/* Desktop nav: visible from md up */}
-        <nav
-          className="hidden items-center gap-6 md:flex md:gap-8"
-          aria-label="Main navigation"
-        >
-          {navPaths.map(({ href, key }) => (
-            <Link
-              key={href}
-              href={href}
-              className="text-sm font-medium text-slate-600 transition-colors hover:text-primary"
-            >
-              {t(key)}
-            </Link>
-          ))}
-          {!authLoading && (
-            user ? (
-              <>
-                <Link
-                  href="/profile"
-                  className="text-sm font-medium text-slate-600 transition-colors hover:text-primary"
-                >
-                  {t("profile")}
-                </Link>
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className="text-sm font-medium text-slate-600 transition-colors hover:text-primary"
-                >
-                  {t("logout")}
-                </button>
-              </>
-            ) : (
+        {/* Desktop header: left menu + right auth/language */}
+        <div className="hidden flex-1 items-center justify-between md:ml-8 md:flex">
+          <nav className="flex items-center gap-6 md:gap-8" aria-label="Main navigation">
+            {navPaths.filter(({ href }) => !hiddenNavPaths.has(href)).map(({ href, key }) => (
               <Link
-                href={loginPageHref}
+                key={href}
+                href={href}
                 className="text-sm font-medium text-slate-600 transition-colors hover:text-primary"
               >
-                {t("login")}
+                {t(key)}
               </Link>
-            )
-          )}
-          <span className="flex items-center gap-1 text-sm text-slate-400">
-            <Link
-              href={pathname}
-              locale="my"
-              className={
-                locale === "my"
-                  ? "font-semibold text-primary"
-                  : "hover:text-primary"
-              }
-            >
-              မြန်မာ
-            </Link>
-            <span aria-hidden>|</span>
-            <Link
-              href={pathname}
-              locale="en"
-              className={
-                locale === "en"
-                  ? "font-semibold text-primary"
-                  : "hover:text-primary"
-              }
-            >
-              EN
-            </Link>
-          </span>
-        </nav>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-6">
+            {!authLoading &&
+              (user ? (
+                <>
+                  <Link
+                    href="/profile"
+                    className="text-sm font-medium text-slate-600 transition-colors hover:text-primary"
+                  >
+                    {t("profile")}
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="text-sm font-medium text-slate-600 transition-colors hover:text-primary"
+                  >
+                    {t("logout")}
+                  </button>
+                </>
+              ) : (
+                <Link
+                  href={loginPageHref}
+                  className="text-sm font-medium text-slate-600 transition-colors hover:text-primary"
+                >
+                  {t("login")}
+                </Link>
+              ))}
+
+            <span className="flex items-center gap-1 text-sm text-slate-400">
+              <Link
+                href={pathname}
+                locale="my"
+                className={
+                  locale === "my"
+                    ? "font-semibold text-primary"
+                    : "hover:text-primary"
+                }
+              >
+                မြန်မာ
+              </Link>
+              <span aria-hidden>|</span>
+              <Link
+                href={pathname}
+                locale="en"
+                className={
+                  locale === "en"
+                    ? "font-semibold text-primary"
+                    : "hover:text-primary"
+                }
+              >
+                EN
+              </Link>
+            </span>
+          </div>
+        </div>
 
         {/* Mobile menu button */}
         <button
@@ -209,7 +213,7 @@ export function Navbar() {
             aria-label="Main navigation"
           >
           <ul className="flex flex-col gap-1">
-            {navPaths.map(({ href, key }) => (
+            {navPaths.filter(({ href }) => !hiddenNavPaths.has(href)).map(({ href, key }) => (
               <li key={href}>
                 <Link
                   href={href}
