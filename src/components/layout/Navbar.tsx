@@ -19,7 +19,7 @@ const navPaths = [
   { href: "/contact", key: "contact" as const },
 ] as const;
 
-const hiddenNavPaths = new Set(["/contact"]);
+const hiddenNavPaths = new Set(["/contact", "/courses"]);
 
 function MenuIcon({ open }: { open: boolean }) {
   return (
