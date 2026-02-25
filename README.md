@@ -31,10 +31,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## SEO & social sharing
 
-The app sets Open Graph and Twitter Card metadata so links show rich previews on Telegram, Facebook, LinkedIn, etc.
+The app sets Open Graph and Twitter Card metadata so link previews (image + title + description) work on Telegram, Facebook, Viber, LinkedIn, etc.
 
-- **Base URL:** Set `NEXT_PUBLIC_APP_URL` in `.env` to your production URL (e.g. `https://tiptopeducation.net`). See `.env.example`.
-- **Default preview image:** Add an image at `public/og-default.png` (recommended 1200×630 px). It is used when a page does not define its own image (e.g. course detail uses the course image when available).
+- **Base URL:** Set `NEXT_PUBLIC_APP_URL` in `.env` to your **production** URL (e.g. `https://tiptopeducation.net`). Preview image and URLs must be absolute; if this is wrong or unset, previews can be empty or broken.
+- **Default preview image:** A dynamic image is served at `/og` (see `src/app/og/route.tsx`). No static file is required. Course and other pages can override with their own image via the SEO helper.
+- **Refreshing cached previews:** After deploy, use [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) or share the link again; some platforms cache the first fetch.
 
 ## Deploy on Vercel
 
