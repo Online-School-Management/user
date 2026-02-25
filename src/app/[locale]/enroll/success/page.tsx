@@ -2,13 +2,18 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { setRequestLocale } from "next-intl/server";
 import { EnrollSuccessContent } from "@/components/enroll/EnrollSuccessContent";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE_NAME } from "@/constants";
 
 type Props = { params: Promise<{ locale: string }> };
 
-export const metadata: Metadata = {
-  title: "Enrollment Submitted | Tip-Top Education",
-  description: "Enrollment request submitted successfully.",
-};
+const title = `Enrollment Submitted | ${SITE_NAME}`;
+const description = "Enrollment request submitted successfully.";
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(title, description, locale, "enroll/success");
+}
 
 function EnrollSuccessFallback() {
   return (

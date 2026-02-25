@@ -3,16 +3,14 @@ import { CourseGrid } from "@/components/courses/CourseGrid";
 import { UpcomingIcon, InProgressIcon } from "@/components/icons/SectionIcons";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
-  return {
-    title: t("coursesTitle"),
-    description: t("coursesDescription"),
-  };
+  return buildPageMetadata(t("coursesTitle"), t("coursesDescription"), locale, "courses");
 }
 
 export default async function CoursesPage({ params }: Props) {

@@ -29,6 +29,13 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## SEO & social sharing
+
+The app sets Open Graph and Twitter Card metadata so links show rich previews on Telegram, Facebook, LinkedIn, etc.
+
+- **Base URL:** Set `NEXT_PUBLIC_APP_URL` in `.env` to your production URL (e.g. `https://tiptopeducation.net`). See `.env.example`.
+- **Default preview image:** Add an image at `public/og-default.png` (recommended 1200×630 px). It is used when a page does not define its own image (e.g. course detail uses the course image when available).
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.

@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { API_ENDPOINTS } from "@/constants";
+import { buildPageMetadata } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 
 type Props = {
@@ -12,10 +13,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
-  return {
-    title: t("loginTitle"),
-    description: t("loginDescription"),
-  };
+  return buildPageMetadata(t("loginTitle"), t("loginDescription"), locale, "login");
 }
 
 export default async function LoginPage({ params, searchParams }: Props) {

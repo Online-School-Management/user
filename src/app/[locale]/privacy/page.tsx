@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | Tip-Top Education",
-  description: "Privacy policy for Tip-Top Education.",
-};
+const title = "Privacy Policy | Tip-Top Education";
+const description = "Privacy policy for Tip-Top Education.";
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(title, description, locale, "privacy");
+}
 
 export default async function PrivacyPage({ params }: Props) {
   const { locale } = await params;

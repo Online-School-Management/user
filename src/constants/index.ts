@@ -4,6 +4,13 @@
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
+/** Base URL for the user site (SEO, Open Graph, canonical). */
+export const APP_BASE_URL =
+  process.env.NEXT_PUBLIC_APP_URL ?? "https://tiptopeducation.net";
+
+export const SITE_NAME = "Tip-Top Education";
+export const DEFAULT_OG_IMAGE_PATH = "/og-default.png";
+
 export const API_ENDPOINTS = {
   frontend: {
     courses: `${API_BASE_URL}/api/v1/frontend/courses`,

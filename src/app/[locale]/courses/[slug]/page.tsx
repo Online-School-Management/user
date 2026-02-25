@@ -6,6 +6,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { CourseEnrollCta } from "@/components/courses/CourseEnrollCta";
 import { formatScheduleSummary } from "@/utils/courseFormat";
+import { buildPageMetadata } from "@/lib/seo";
+import { APP_BASE_URL, DEFAULT_OG_IMAGE_PATH, SITE_NAME } from "@/constants";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -14,10 +16,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const course = await getCourseBySlug(slug);
   const t = await getTranslations({ locale, namespace: "Metadata" });
   if (!course) return { title: t("courseTitle") };
-  return {
-    title: `${course.title} | Tip-Top Education`,
-    description: course.subject?.name ?? undefined,
-  };
+  const title = `${course.title} | ${SITE_NAME}`;
+  const description = course.description
+    ? course.description.replace(/<[^>]*>/g, "").slice(0, 160)
+    : course.subject?.name ?? undefined;
+  const image = course.image_url ?? `${APP_BASE_URL}${DEFAULT_OG_IMAGE_PATH}`;
+  return buildPageMetadata(title, description ?? undefined, locale, `courses/${slug}`, {
+    image,
+    imageAlt: course.title,
+  });
 }
 
 export default async function CourseDetailPage({ params }: Props) {
