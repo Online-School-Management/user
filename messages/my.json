@@ -33,6 +33,7 @@
     "hours": "နာရီ",
     "monthlyFee": "လစဉ်ကြေး",
     "totalFee": "စုစုပေါင်းကြေး",
+    "free": "အခမဲ့",
     "contentComingSoon": "သင်တန်းအသေးစိတ် မကြာမီ ထည့်သွင်းပါမည်။",
     "enrollCta": "ဤသင်တန်းကို စာရင်းသွင်းမည်",
     "enrollCtaLoading": "ဆောင်နေသည်...",
@@ -57,7 +58,16 @@
   },
   "CourseCard": {
     "viewDetails": "အသေးစိတ်ကြည့်ရန် →",
-    "subjectFallback": "သင်တန်း"
+    "subjectFallback": "သင်တန်း",
+    "free": "အခမဲ့",
+    "duration": "ကြာချိန်",
+    "fee": "သင်တန်း ကြေး",
+    "startDate": "စတင်ရက်",
+    "month": "လ",
+    "months": "လ",
+    "day": "ရက်",
+    "days": "ရက်",
+    "perMonth": "/ လစဉ်"
   },
   "CourseGrid": {
     "empty": "သင်တန်းများ မရရှိနိုင်သေးပါ။"

@@ -33,6 +33,7 @@
     "hours": "hours",
     "monthlyFee": "Monthly fee",
     "totalFee": "Total fee",
+    "free": "Free",
     "contentComingSoon": "Course detail content coming soon.",
     "enrollCta": "Enroll in this course",
     "enrollCtaLoading": "Loading...",
@@ -57,7 +58,16 @@
   },
   "CourseCard": {
     "viewDetails": "View details →",
-    "subjectFallback": "Course"
+    "subjectFallback": "Course",
+    "free": "Free",
+    "duration": "Duration",
+    "fee": "Fee",
+    "startDate": "Start Date",
+    "month": "month",
+    "months": "months",
+    "day": "day",
+    "days": "days",
+    "perMonth": "/ per month"
   },
   "CourseGrid": {
     "empty": "No courses available at the moment."

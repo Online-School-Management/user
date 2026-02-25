@@ -9,6 +9,14 @@ type CourseCardProps = {
   course: Course;
 };
 
+function formatStartDate(isoDate: string): string {
+  const d = new Date(isoDate);
+  const day = d.getDate();
+  const month = d.toLocaleDateString("en-GB", { month: "short" });
+  const year = d.getFullYear();
+  return `${day}. ${month} ${year}`;
+}
+
 export function CourseCard({ course }: CourseCardProps) {
   const t = useTranslations("CourseCard");
 
@@ -41,15 +49,32 @@ export function CourseCard({ course }: CourseCardProps) {
         <h3 className="mt-2 text-lg font-semibold text-slate-900">
           {course.title}
         </h3>
-        <div className="mt-3 flex flex-1 flex-col gap-1 text-sm text-slate-600">
+        <div className="mt-3 flex flex-1 flex-col gap-1.5 text-sm text-slate-600">
           {course.duration != null && (
-            <span>
-              {course.duration} {course.duration_unit}
-              {course.duration !== 1 ? "s" : ""}
-            </span>
+            <p className="flex items-baseline gap-1">
+              <span className="min-w-[7rem] shrink-0 font-medium text-slate-700">{t("duration")}</span>
+              <span>: {course.duration} {course.duration_unit === "day" ? (course.duration === 1 ? t("day") : t("days")) : (course.duration === 1 ? t("month") : t("months"))}</span>
+            </p>
           )}
           {course.monthly_fee != null && (
-            <span>MMK {course.monthly_fee.toLocaleString()}/month</span>
+            <p className="flex items-baseline gap-1">
+              <span className="min-w-[7rem] shrink-0 font-medium text-slate-700">{t("fee")}</span>
+              <span>
+                : {course.monthly_fee === 0 ? (
+                  <span className="inline-flex rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-700">
+                    {t("free")}
+                  </span>
+                ) : (
+                  <>{course.monthly_fee.toLocaleString()} MMK {t("perMonth")}</>
+                )}
+              </span>
+            </p>
+          )}
+          {course.start_date && (
+            <p className="flex items-baseline gap-1">
+              <span className="min-w-[7rem] shrink-0 font-medium text-slate-700">{t("startDate")}</span>
+              <span>: {formatStartDate(course.start_date)}</span>
+            </p>
           )}
         </div>
         <span className="mt-4 text-sm font-medium text-primary">

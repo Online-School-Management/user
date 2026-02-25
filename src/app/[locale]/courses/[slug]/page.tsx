@@ -164,18 +164,34 @@ export default async function CourseDetailPage({ params }: Props) {
                 <div className="p-3">
                   <p className="text-xs font-medium text-slate-500">{t("monthlyFee")}</p>
                   <p className="mt-1 text-sm font-semibold text-slate-900">
-                    {course.monthly_fee != null
-                      ? `MMK ${course.monthly_fee.toLocaleString()}`
-                      : t("unknown")}
+                    {course.monthly_fee != null ? (
+                      course.monthly_fee === 0 ? (
+                        <span className="inline-flex rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-700">
+                          {t("free")}
+                        </span>
+                      ) : (
+                        `${course.monthly_fee.toLocaleString()} MMK`
+                      )
+                    ) : (
+                      t("unknown")
+                    )}
                   </p>
                 </div>
 
                 <div className="p-3">
                   <p className="text-xs font-medium text-slate-500">{t("totalFee")}</p>
                   <p className="mt-1 text-sm font-semibold text-slate-900">
-                    {course.total_fee != null
-                      ? `MMK ${course.total_fee.toLocaleString()}`
-                      : t("unknown")}
+                    {course.total_fee != null ? (
+                      course.total_fee === 0 ? (
+                        <span className="inline-flex rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-700">
+                          {t("free")}
+                        </span>
+                      ) : (
+                        `${course.total_fee.toLocaleString()} MMK`
+                      )
+                    ) : (
+                      t("unknown")
+                    )}
                   </p>
                 </div>
               </div>
