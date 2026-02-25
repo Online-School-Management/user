@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect, Suspense } from "react";
+import { useState, useCallback, useEffect, useRef, Suspense } from "react";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -25,6 +25,20 @@ const navPaths = [
 
 const hiddenNavPaths = new Set(["/contact", "/courses"]);
 
+function ChevronDown({ open }: { open: boolean }) {
+  return (
+    <svg
+      className={`h-4 w-4 shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </svg>
+  );
+}
+
 function MenuIcon({ open }: { open: boolean }) {
   return (
     <span className="relative flex h-5 w-6 flex-col justify-center" aria-hidden>
@@ -47,10 +61,31 @@ export function Navbar() {
   const locale = useLocale();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
   const [user, setUser] = useState<AuthUser | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const accountRef = useRef<HTMLDivElement>(null);
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const closeAccountMenu = useCallback(() => setAccountMenuOpen(false), []);
+
+  useEffect(() => {
+    if (!accountMenuOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (accountRef.current && !accountRef.current.contains(e.target as Node)) {
+        setAccountMenuOpen(false);
+      }
+    };
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setAccountMenuOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [accountMenuOpen]);
   const loginPageHref = `/login?redirect_to=${encodeURIComponent(pathname)}`;
   const isNavActive = useCallback(
     (href: string) => {
@@ -109,6 +144,7 @@ export function Navbar() {
     clearAuthToken();
     setUser(null);
     setMenuOpen(false);
+    setAccountMenuOpen(false);
     window.dispatchEvent(new Event("auth-changed"));
   };
 
@@ -151,21 +187,44 @@ export function Navbar() {
           <div className="flex items-center gap-6">
             {!authLoading &&
               (user ? (
-                <>
-                  <Link
-                    href="/profile"
-                    className="text-sm font-medium text-slate-600 transition-colors hover:text-primary"
-                  >
-                    {t("profile")}
-                  </Link>
+                <div className="relative" ref={accountRef}>
                   <button
                     type="button"
-                    onClick={handleLogout}
-                    className="text-sm font-medium text-slate-600 transition-colors hover:text-primary"
+                    onClick={() => setAccountMenuOpen((prev) => !prev)}
+                    className="flex items-center gap-1 rounded-md py-1.5 pr-1 text-sm font-medium text-slate-600 transition-colors hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                    aria-label={t("profile")}
+                    aria-expanded={accountMenuOpen}
+                    aria-haspopup="true"
                   >
-                    {t("logout")}
+                    <span className="max-w-[8rem] truncate">{user.name || t("profile")}</span>
+                    <ChevronDown open={accountMenuOpen} />
                   </button>
-                </>
+                  {accountMenuOpen && (
+                    <div
+                      className="absolute right-0 top-full z-50 mt-2 min-w-[10rem] rounded-lg border border-slate-200 bg-white py-1 shadow-lg"
+                      role="menu"
+                    >
+                      <Link
+                        href="/profile"
+                        role="menuitem"
+                        onClick={() => {
+                          closeAccountMenu();
+                        }}
+                        className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary"
+                      >
+                        {t("profile")}
+                      </Link>
+                      <button
+                        type="button"
+                        role="menuitem"
+                        onClick={handleLogout}
+                        className="block w-full px-4 py-2 text-left text-sm text-slate-700 hover:bg-slate-50 hover:text-primary"
+                      >
+                        {t("logout")}
+                      </button>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <Link
                   href={loginPageHref}
@@ -231,27 +290,49 @@ export function Navbar() {
                 </Link>
               </li>
             ))}
-            {!authLoading && (
-              user ? (
+            {!authLoading &&
+              (user ? (
                 <>
-                  <li>
-                    <Link
-                      href="/profile"
-                      onClick={closeMenu}
-                      className="block rounded-lg px-3 py-2.5 text-base font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-primary"
-                    >
-                      {t("profile")}
-                    </Link>
-                  </li>
                   <li>
                     <button
                       type="button"
-                      onClick={handleLogout}
-                      className="block w-full rounded-lg px-3 py-2.5 text-left text-base font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-primary"
+                      onClick={() => setAccountMenuOpen((prev) => !prev)}
+                      className="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2.5 text-left text-base font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-primary"
+                      aria-expanded={accountMenuOpen}
+                      aria-haspopup="true"
                     >
-                      {t("logout")}
+                      <span className="min-w-0 truncate">{user.name || t("profile")}</span>
+                      <ChevronDown open={accountMenuOpen} />
                     </button>
                   </li>
+                  {accountMenuOpen && (
+                    <>
+                      <li>
+                        <Link
+                          href="/profile"
+                          onClick={() => {
+                            closeMenu();
+                            closeAccountMenu();
+                          }}
+                          className="block rounded-lg py-2 pl-12 pr-3 text-base font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-primary"
+                        >
+                          {t("profile")}
+                        </Link>
+                      </li>
+                      <li>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            closeMenu();
+                            handleLogout();
+                          }}
+                          className="block w-full rounded-lg py-2 pl-12 pr-3 text-left text-base font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-primary"
+                        >
+                          {t("logout")}
+                        </button>
+                      </li>
+                    </>
+                  )}
                 </>
               ) : (
                 <li>
@@ -267,8 +348,7 @@ export function Navbar() {
                     {t("login")}
                   </Link>
                 </li>
-              )
-            )}
+              ))}
             <li className="mt-2 border-t border-slate-200/80 pt-3">
               <span className="mb-2 block px-3 text-xs font-medium uppercase tracking-wider text-slate-400">
                 {t("language")}
