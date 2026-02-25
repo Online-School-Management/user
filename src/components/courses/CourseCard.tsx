@@ -18,13 +18,21 @@ export function CourseCard({ course }: CourseCardProps) {
       className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md"
     >
       <div className="relative aspect-[16/9] w-full bg-slate-100">
-        <Image
-          src="/course-default.svg"
-          alt=""
-          fill
-          className="object-cover"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
+        {course.image_url ? (
+          <img
+            src={course.image_url}
+            alt={course.title}
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <Image
+            src="/course-default.svg"
+            alt={course.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        )}
       </div>
       <div className="flex flex-1 flex-col p-6">
         <span className="text-sm font-medium text-primary">

@@ -5,6 +5,8 @@ export type Course = {
   id: number;
   slug: string;
   title: string;
+  image_url?: string | null;
+  description?: string | null;
   subject: { id: number; name: string; slug: string } | null;
   duration: number | null;
   duration_unit: string;

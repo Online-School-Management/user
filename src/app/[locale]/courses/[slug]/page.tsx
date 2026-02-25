@@ -84,14 +84,22 @@ export default async function CourseDetailPage({ params }: Props) {
         <div className="grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <div className="relative mb-6 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-slate-100">
-              <Image
-                src="/course-default.svg"
-                alt={course.title}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 1024px"
-                priority
-              />
+              {course.image_url ? (
+                <img
+                  src={course.image_url}
+                  alt={course.title}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <Image
+                  src="/course-default.svg"
+                  alt={course.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  priority
+                />
+              )}
             </div>
 
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -101,7 +109,14 @@ export default async function CourseDetailPage({ params }: Props) {
               <h1 className="mt-3 text-2xl font-bold text-slate-900 sm:text-3xl">
                 {course.title}
               </h1>
-              <p className="mt-4 text-slate-600">{t("contentComingSoon")}</p>
+              {course.description ? (
+                <div
+                  className="mt-4 text-slate-600 [&_h1]:text-xl [&_h1]:font-bold [&_h1]:mb-2 [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:mb-2 [&_h3]:text-base [&_h3]:font-semibold [&_h3]:mb-2 [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-2 [&_li]:mb-1 [&_a]:text-primary [&_a]:underline [&_img]:max-w-full [&_img]:rounded"
+                  dangerouslySetInnerHTML={{ __html: course.description }}
+                />
+              ) : (
+                <p className="mt-4 text-slate-600">{t("contentComingSoon")}</p>
+              )}
             </div>
           </div>
 
