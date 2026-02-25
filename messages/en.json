@@ -54,7 +54,8 @@
     "courseType_one_on_one": "One-on-one",
     "courseType_private": "Private",
     "courseType_group": "Group",
-    "courseType_teacher_training": "Teacher training"
+    "courseType_teacher_training": "Teacher training",
+    "weeklySchedule": "Weekly schedule"
   },
   "CourseCard": {
     "viewDetails": "View details →",
@@ -67,7 +68,8 @@
     "months": "months",
     "day": "day",
     "days": "days",
-    "perMonth": "/ per month"
+    "perMonth": "/ per month",
+    "weeklySchedule": "Weekly schedule"
   },
   "CourseGrid": {
     "empty": "No courses available at the moment."

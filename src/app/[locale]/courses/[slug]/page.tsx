@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { CourseEnrollCta } from "@/components/courses/CourseEnrollCta";
+import { formatScheduleSummary } from "@/utils/courseFormat";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -149,6 +150,15 @@ export default async function CourseDetailPage({ params }: Props) {
                     {formatDate(course.start_date)}
                   </p>
                 </div>
+
+                {course.schedules && course.schedules.length > 0 && (
+                  <div className="p-3">
+                    <p className="text-xs font-medium text-slate-500">{t("weeklySchedule")}</p>
+                    <p className="mt-1 text-sm font-semibold text-slate-900">
+                      {formatScheduleSummary(course.schedules)}
+                    </p>
+                  </div>
+                )}
 
                 <div className="p-3">
                   <p className="text-xs font-medium text-slate-500">{t("status")}</p>

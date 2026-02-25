@@ -54,7 +54,8 @@
     "courseType_one_on_one": "တစ်ဦးချင်း",
     "courseType_private": "သီးသန့်",
     "courseType_group": "အုပ်စု",
-    "courseType_teacher_training": "ဆရာလေ့ကျင့်ရေး"
+    "courseType_teacher_training": "ဆရာလေ့ကျင့်ရေး",
+    "weeklySchedule": "အပတ်စဉ် အချိန်ဇယား"
   },
   "CourseCard": {
     "viewDetails": "အသေးစိတ်ကြည့်ရန် →",
@@ -67,7 +68,8 @@
     "months": "လ",
     "day": "ရက်",
     "days": "ရက်",
-    "perMonth": "/ လစဉ်"
+    "perMonth": "/ လစဉ်",
+    "weeklySchedule": "အပတ်စဉ် အချိန်"
   },
   "CourseGrid": {
     "empty": "သင်တန်းများ မရရှိနိုင်သေးပါ။"

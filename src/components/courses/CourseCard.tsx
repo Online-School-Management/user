@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Course } from "@/types/course";
+import { formatScheduleSummary } from "@/utils/courseFormat";
 
 type CourseCardProps = {
   course: Course;
@@ -74,6 +75,12 @@ export function CourseCard({ course }: CourseCardProps) {
             <p className="flex items-baseline gap-1">
               <span className="min-w-[7rem] shrink-0 font-medium text-slate-700">{t("startDate")}</span>
               <span>: {formatStartDate(course.start_date)}</span>
+            </p>
+          )}
+          {course.schedules && course.schedules.length > 0 && (
+            <p className="flex items-baseline gap-1">
+              <span className="min-w-[7rem] shrink-0 font-medium text-slate-700">{t("weeklySchedule")}</span>
+              <span>: {formatScheduleSummary(course.schedules)}</span>
             </p>
           )}
         </div>
