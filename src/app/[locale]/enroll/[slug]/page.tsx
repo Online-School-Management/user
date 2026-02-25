@@ -43,13 +43,16 @@ export default async function EnrollPage({ params }: Props) {
         <h1 className="text-2xl font-medium text-slate-900">
           {t.rich("title", {
             courseName: course.title,
-            course: (chunks) => <span className="font-bold text-primary">{chunks}</span>,
+            course: (chunks) => (
+              <span className="font-bold text-primary">{chunks}</span>
+            ),
           })}
         </h1>
 
         <div className="mt-6">
           <EnrollmentForm
             courseId={course.id}
+            courseSlug={course.slug}
             courseTitle={course.title}
             subjectName={subjectName}
           />

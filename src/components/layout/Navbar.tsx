@@ -1,9 +1,13 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, Suspense } from "react";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
+import {
+  LocaleSwitcher,
+  LocaleSwitcherFallback,
+} from "@/components/layout/LocaleSwitcher";
 import {
   clearAuthToken,
   fetchMe,
@@ -175,31 +179,13 @@ export function Navbar() {
                 </Link>
               ))}
 
-            <span className="flex items-center gap-1 text-sm text-slate-400">
-              <Link
-                href={pathname}
-                locale="my"
-                className={
-                  locale === "my"
-                    ? "font-semibold text-primary"
-                    : "hover:text-primary"
-                }
-              >
-                မြန်မာ
-              </Link>
-              <span aria-hidden>|</span>
-              <Link
-                href={pathname}
-                locale="en"
-                className={
-                  locale === "en"
-                    ? "font-semibold text-primary"
-                    : "hover:text-primary"
-                }
-              >
-                EN
-              </Link>
-            </span>
+            <Suspense
+              fallback={
+                <LocaleSwitcherFallback pathname={pathname} variant="desktop" />
+              }
+            >
+              <LocaleSwitcher pathname={pathname} variant="desktop" />
+            </Suspense>
           </div>
         </div>
 
@@ -287,32 +273,21 @@ export function Navbar() {
               <span className="mb-2 block px-3 text-xs font-medium uppercase tracking-wider text-slate-400">
                 {t("language")}
               </span>
-              <div className="flex gap-2">
-                <Link
-                  href={pathname}
-                  locale="my"
-                  onClick={closeMenu}
-                  className={`flex-1 rounded-lg px-3 py-2.5 text-center text-sm font-medium transition-colors ${
-                    locale === "my"
-                      ? "bg-primary text-white"
-                      : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                  }`}
-                >
-                  မြန်မာ
-                </Link>
-                <Link
-                  href={pathname}
-                  locale="en"
-                  onClick={closeMenu}
-                  className={`flex-1 rounded-lg px-3 py-2.5 text-center text-sm font-medium transition-colors ${
-                    locale === "en"
-                      ? "bg-primary text-white"
-                      : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                  }`}
-                >
-                  EN
-                </Link>
-              </div>
+              <Suspense
+                fallback={
+                  <LocaleSwitcherFallback
+                    pathname={pathname}
+                    variant="mobile"
+                    closeMenu={closeMenu}
+                  />
+                }
+              >
+                <LocaleSwitcher
+                  pathname={pathname}
+                  variant="mobile"
+                  closeMenu={closeMenu}
+                />
+              </Suspense>
             </li>
           </ul>
         </nav>

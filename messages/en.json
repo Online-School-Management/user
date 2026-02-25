@@ -124,7 +124,11 @@
     "submitSuccess": "Enrollment request submitted successfully.",
     "submitFailed": "Failed to submit enrollment request.",
     "pendingNotice": "Your enrollment request is pending admin approval.",
+    "pendingNoticeMm": "သင်၏ စာရင်းသွင်းတောင်းဆိုမှုကို Admin စိစစ်ဆဲဖြစ်ပါသည်။",
     "alreadyPendingNotice": "You already have a pending request for this course.",
+    "successForCourse": "Enrollment submitted for {courseName}.",
+    "successBackCourses": "Back to classes",
+    "successGoHome": "Go to home",
     "logout": "Logout",
     "loggedOut": "You have been logged out."
   },

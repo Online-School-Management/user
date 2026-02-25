@@ -13,5 +13,7 @@ export const API_ENDPOINTS = {
     authMe: `${API_BASE_URL}/api/v1/frontend/auth/me`,
     authLogout: `${API_BASE_URL}/api/v1/frontend/auth/logout`,
     enrollmentRequests: `${API_BASE_URL}/api/v1/frontend/enrollment-requests`,
+    enrollmentRequestCheck: (courseSlug: string) =>
+      `${API_BASE_URL}/api/v1/frontend/enrollment-requests/check?course_slug=${encodeURIComponent(courseSlug)}`,
   },
 } as const;

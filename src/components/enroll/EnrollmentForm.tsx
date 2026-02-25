@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import {
   buildGoogleLoginUrl,
   clearAuthToken,
@@ -17,22 +18,15 @@ import {
 
 type Props = {
   courseId: number;
+  courseSlug: string;
   courseTitle: string;
   subjectName: string;
 };
 
-const CLASS_OPTIONS = [
-  "Computer Science",
-  "Scratch",
-  "3D Modeling",
-  "Mobile App Creation",
-  "Python",
-  "Web Design",
-] as const;
-
-export function EnrollmentForm({ courseId, courseTitle, subjectName }: Props) {
+export function EnrollmentForm({ courseId, courseSlug, courseTitle, subjectName }: Props) {
   const t = useTranslations("Enroll");
   const tLogin = useTranslations("Login");
+  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const isAuthSuccessCallback = searchParams.get("auth") === "success";
@@ -68,7 +62,6 @@ export function EnrollmentForm({ courseId, courseTitle, subjectName }: Props) {
   const [nameEn, setNameEn] = useState("");
   const [age, setAge] = useState("");
   const [education, setEducation] = useState("");
-  const [classInterest, setClassInterest] = useState<string>("Computer Science");
   const [schoolType, setSchoolType] = useState<
     "international" | "government" | "private" | "other"
   >("international");
@@ -142,12 +135,6 @@ export function EnrollmentForm({ courseId, courseTitle, subjectName }: Props) {
       setEducation(user.student?.education ?? "");
       setFacebookAccount(user.student?.facebook_link ?? "");
       if (
-        user.student?.class &&
-        CLASS_OPTIONS.includes(user.student.class as (typeof CLASS_OPTIONS)[number])
-      ) {
-        setClassInterest(user.student.class);
-      }
-      if (
         user.student?.school_type &&
         ["international", "government", "private", "other"].includes(user.student.school_type)
       ) {
@@ -184,7 +171,6 @@ export function EnrollmentForm({ courseId, courseTitle, subjectName }: Props) {
       name_en: nameEn.trim(),
       age: Number(age),
       education: education.trim(),
-      class_interest: classInterest,
       school_type: schoolType,
       school_other: schoolType === "other" ? schoolOther.trim() : undefined,
       facebook_account: facebookAccount.trim(),
@@ -196,9 +182,7 @@ export function EnrollmentForm({ courseId, courseTitle, subjectName }: Props) {
     setSubmitting(false);
 
     if (result.ok) {
-      setSuccessMessage(result.message ?? t("submitSuccess"));
-      setErrorMessage(null);
-      setPendingMessage(t("pendingNotice"));
+      router.replace(`/enroll/success?course=${encodeURIComponent(courseSlug)}`);
       return;
     }
 
