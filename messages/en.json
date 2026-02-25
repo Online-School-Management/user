@@ -35,6 +35,8 @@
     "totalFee": "Total fee",
     "contentComingSoon": "Course detail content coming soon.",
     "enrollCta": "Enroll in this course",
+    "enrollCtaLoading": "Loading...",
+    "alreadyEnrolled": "Already Enrolled",
     "backToClasses": "← Back to classes",
     "classInfoTitle": "Class information",
     "classType": "Class type",

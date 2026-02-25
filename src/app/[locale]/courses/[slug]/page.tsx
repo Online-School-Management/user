@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { CourseEnrollCta } from "@/components/courses/CourseEnrollCta";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -164,14 +165,7 @@ export default async function CourseDetailPage({ params }: Props) {
                 </div>
               </div>
 
-              <div className="mt-5">
-                <Link
-                  href={`/enroll/${course.slug}`}
-                  className="inline-flex w-full items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-white transition-colors hover:opacity-90"
-                >
-                  {t("enrollCta")}
-                </Link>
-              </div>
+              <CourseEnrollCta courseSlug={course.slug} />
             </div>
           </aside>
         </div>
