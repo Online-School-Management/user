@@ -3,13 +3,21 @@ import { ArticleGrid } from "@/components/articles/ArticleGrid";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
+import { APP_BASE_URL } from "@/constants";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
-  return buildPageMetadata(t("articlesTitle"), t("articlesDescription"), locale, "articles");
+  const title = t("articlesTitle");
+  const description = t("articlesDescription");
+  const ogSubtitle = description.length > 80 ? `${description.slice(0, 77)}…` : description;
+  const ogImage = `${APP_BASE_URL}/og?title=${encodeURIComponent("Articles")}&subtitle=${encodeURIComponent(ogSubtitle)}`;
+  return buildPageMetadata(title, description, locale, "articles", {
+    image: ogImage,
+    imageAlt: "Articles | Tip-Top Education",
+  });
 }
 
 export default async function ArticlesPage({ params }: Props) {

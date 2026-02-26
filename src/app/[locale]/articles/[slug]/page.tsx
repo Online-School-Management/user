@@ -9,24 +9,57 @@ import { APP_BASE_URL, SITE_NAME } from "@/constants";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
+/** Strip HTML and normalize whitespace for use in meta description / OG. */
+function stripHtml(html: string, maxLength?: number): string {
+  const text = html
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return maxLength != null && text.length > maxLength
+    ? `${text.slice(0, maxLength).trim()}…`
+    : text;
+}
+
+/** Full description for social share: excerpt or full stripped body (no truncation). */
+function buildArticleDescription(article: {
+  excerpt?: string | null;
+  body?: string | null;
+  title: string;
+}): string {
+  const fromExcerpt = article.excerpt?.trim();
+  if (fromExcerpt) return fromExcerpt;
+  if (article.body) return stripHtml(article.body);
+  return `${article.title} - ${SITE_NAME}`;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const article = await getArticleBySlug(slug);
   const t = await getTranslations({ locale, namespace: "Metadata" });
   if (!article) return { title: t("articlesTitle") };
   const title = `${article.title} | ${SITE_NAME}`;
-  const description =
-    article.excerpt?.trim() ||
-    (article.body
-      ? article.body.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160)
-      : "") ||
-    `${article.title} - ${SITE_NAME}`;
+  const description = buildArticleDescription(article);
+
   const ogImage = article.image_url
-    ? (article.image_url.startsWith("http") ? article.image_url : `${APP_BASE_URL}${article.image_url}`)
-    : `${APP_BASE_URL}/og?title=${encodeURIComponent(article.title)}`;
+    ? (article.image_url.startsWith("http")
+        ? article.image_url
+        : `${APP_BASE_URL}${article.image_url}`)
+    : `${APP_BASE_URL}/og?title=${encodeURIComponent(article.title)}&subtitle=${encodeURIComponent(
+        stripHtml(article.excerpt || article.body || "", 120)
+      )}`;
+
+  const publishedTime =
+    article.published_at != null
+      ? new Date(article.published_at).toISOString()
+      : undefined;
+
   return buildPageMetadata(title, description, locale, `articles/${slug}`, {
     image: ogImage,
     imageAlt: article.title,
+    article: {
+      publishedTime,
+      section: article.category ?? undefined,
+    },
   });
 }
 
