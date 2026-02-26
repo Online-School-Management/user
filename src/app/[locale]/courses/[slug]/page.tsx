@@ -214,10 +214,31 @@ export default async function CourseDetailPage({ params }: Props) {
                     )}
                   </p>
                 </div>
+
+                {course.max_students != null && course.max_students > 0 && (
+                  <div className="p-3">
+                    <p className="text-xs font-medium text-slate-500">{t("maxStudents")}</p>
+                    <p className="mt-1 text-sm font-semibold text-slate-900">
+                      {t("maxStudentsOnly", { count: course.max_students })}
+                    </p>
+                  </div>
+                )}
+
+                {course.enrollment_end_date && (
+                  <div className="p-3">
+                    <p className="text-xs font-medium text-slate-500">{t("enrollmentEndDate")}</p>
+                    <p className="mt-1 text-sm font-semibold text-red-600">
+                      {formatDate(course.enrollment_end_date)}
+                    </p>
+                  </div>
+                )}
               </div>
 
               {course.status !== "completed" && (
-                <CourseEnrollCta courseSlug={course.slug} />
+                <CourseEnrollCta
+                  courseSlug={course.slug}
+                  enrollmentEndDate={course.enrollment_end_date ?? undefined}
+                />
               )}
             </div>
           </aside>

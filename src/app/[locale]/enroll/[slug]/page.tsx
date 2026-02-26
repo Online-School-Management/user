@@ -23,6 +23,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
+function isEnrollmentClosed(enrollmentEndDate: string | null | undefined): boolean {
+  if (!enrollmentEndDate) return false;
+  const today = new Date().toISOString().slice(0, 10);
+  return today > enrollmentEndDate;
+}
+
 export default async function EnrollPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
@@ -32,6 +38,7 @@ export default async function EnrollPage({ params }: Props) {
   if (!course) notFound();
 
   const subjectName = course.subject?.name ?? tCommon("course");
+  const closed = isEnrollmentClosed(course.enrollment_end_date);
 
   return (
     <div className="min-h-full px-4 py-16 sm:px-6 lg:px-8">
@@ -54,14 +61,26 @@ export default async function EnrollPage({ params }: Props) {
           })}
         </h1>
 
-        <div className="mt-6">
-          <EnrollmentForm
-            courseId={course.id}
-            courseSlug={course.slug}
-            courseTitle={course.title}
-            subjectName={subjectName}
-          />
-        </div>
+        {closed ? (
+          <div className="mt-6 rounded-xl border border-red-200 bg-red-50 p-6 shadow-sm">
+            <p className="text-red-600 font-medium">{t("enrollmentClosedMessage")}</p>
+            <Link
+              href={`/courses/${course.slug}`}
+              className="mt-4 inline-flex text-sm font-medium text-primary hover:underline"
+            >
+              {t("enrollmentClosedBack")}
+            </Link>
+          </div>
+        ) : (
+          <div className="mt-6">
+            <EnrollmentForm
+              courseId={course.id}
+              courseSlug={course.slug}
+              courseTitle={course.title}
+              subjectName={subjectName}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

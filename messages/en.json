@@ -56,7 +56,12 @@
     "courseType_private": "Private",
     "courseType_group": "Group",
     "courseType_teacher_training": "Teacher training",
-    "weeklySchedule": "Weekly schedule"
+    "weeklySchedule": "Weekly schedule",
+    "maxStudents": "Max students",
+    "maxStudentsOnly": "Only {count} students will be accepted.",
+    "enrolledCount": "Enrolled",
+    "enrollmentEndDate": "Enrollment closes",
+    "enrollmentClosed": "Enrollment has closed"
   },
   "CourseCard": {
     "viewDetails": "View details →",
@@ -114,6 +119,8 @@
     "inCourse": "Enroll in this course",
     "placeholder": "Enrollment form and payment flow will be added here.",
     "backToCourse": "← Back to course details",
+    "enrollmentClosedMessage": "Enrollment has closed for this course.",
+    "enrollmentClosedBack": "Back to course",
     "checkingAuth": "Checking login status...",
     "needGoogleLogin": "Please login with Google before submitting enrollment request.",
     "continueWithGoogle": "Login with Google",

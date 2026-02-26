@@ -28,5 +28,8 @@ export type Course = {
   status: string;
   start_date: string | null;
   end_date: string | null;
+  max_students?: number | null;
+  enrollment_end_date?: string | null;
+  enrollments_count?: number;
   schedules?: CourseSchedule[];
-};
+}

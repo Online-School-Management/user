@@ -56,7 +56,12 @@
     "courseType_private": "သီးသန့်",
     "courseType_group": "အုပ်စု",
     "courseType_teacher_training": "ဆရာလေ့ကျင့်ရေး",
-    "weeklySchedule": "အပတ်စဉ် အချိန်ဇယား"
+    "weeklySchedule": "အပတ်စဉ် အချိန်ဇယား",
+    "maxStudents": "ကျောင်းသား အများဆုံး",
+    "maxStudentsOnly": "ကျောင်းသူ/သား {count} ယောက်သာ လက်ခံမည်။",
+    "enrolledCount": "စာရင်းသွင်းပြီး",
+    "enrollmentEndDate": "စာရင်းသွင်းမှု ပိတ်မည့်ရက်",
+    "enrollmentClosed": "စာရင်းသွင်းမှု ပိတ်ပြီးပါပြီ။"
   },
   "CourseCard": {
     "viewDetails": "အသေးစိတ်ကြည့်ရန် →",
@@ -114,6 +119,8 @@
     "inCourse": "ဤသင်တန်းကို စာရင်းသွင်းမည်",
     "placeholder": "စာရင်းသွင်းခြင်း ဖောင်းနှင့် ငွေပေးချေမှု မကြာမီ ထည့်သွင်းပါမည်။",
     "backToCourse": "← သင်တန်းအသေးစိတ်သို့ ပြန်သွားမည်",
+    "enrollmentClosedMessage": "ဤသင်တန်းအတွက် စာရင်းသွင်းမှု ပိတ်ပြီးပါပြီ။",
+    "enrollmentClosedBack": "သင်တန်းသို့ ပြန်သွားမည်",
     "checkingAuth": "ဝင်ရောက်ထားမှု စစ်ဆေးနေသည်...",
     "needGoogleLogin": "အတန်းအပ်ရန် Google(Gmail) ဖြင့် အရင်ဝင်ရောက်ပါ။",
     "continueWithGoogle": "Google ဖြင့် ဝင်ရောက်မည်",
