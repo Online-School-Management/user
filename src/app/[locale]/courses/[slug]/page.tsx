@@ -216,7 +216,9 @@ export default async function CourseDetailPage({ params }: Props) {
                 </div>
               </div>
 
-              <CourseEnrollCta courseSlug={course.slug} />
+              {course.status !== "completed" && (
+                <CourseEnrollCta courseSlug={course.slug} />
+              )}
             </div>
           </aside>
         </div>

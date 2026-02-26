@@ -18,10 +18,10 @@ export async function getAllCourses(): Promise<Course[]> {
 }
 
 /**
- * Fetch courses by status: upcoming or in_progress.
+ * Fetch courses by status: upcoming, in_progress, or completed.
  */
 export async function getCoursesByStatus(
-  status: "upcoming" | "in_progress"
+  status: "upcoming" | "in_progress" | "completed"
 ): Promise<Course[]> {
   try {
     const url = `${API_ENDPOINTS.frontend.courses}?status=${status}`;

@@ -23,7 +23,8 @@
     "ourCourses": "Class",
     "browseDescription": "Browse our courses.",
     "upcomingClasses": "Upcoming classes",
-    "inProgressClasses": "Classes in progress"
+    "inProgressClasses": "Classes in progress",
+    "completedClasses": "Completed classes"
   },
   "CourseDetail": {
     "duration": "Duration",

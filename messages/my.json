@@ -23,7 +23,8 @@
     "ourCourses": "အတန်းများ",
     "browseDescription": "သင်တန်းများ ကြည့်ရှုပါ။",
     "upcomingClasses": "အတန်းသစ်များ",
-    "inProgressClasses": "သင်ကြားဆဲ အတန်းများ"
+    "inProgressClasses": "သင်ကြားဆဲ အတန်းများ",
+    "completedClasses": "ပြီးဆုံးသော အတန်းများ"
   },
   "CourseDetail": {
     "duration": "ကြာချိန်",

@@ -1,6 +1,6 @@
 import { getCoursesByStatus } from "@/services/courseService";
 import { CourseGrid } from "@/components/courses/CourseGrid";
-import { UpcomingIcon, InProgressIcon } from "@/components/icons/SectionIcons";
+import { UpcomingIcon, InProgressIcon, CompletedIcon } from "@/components/icons/SectionIcons";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
@@ -17,9 +17,10 @@ export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Courses");
-  const [upcomingCourses, inProgressCourses] = await Promise.all([
+  const [upcomingCourses, inProgressCourses, completedCourses] = await Promise.all([
     getCoursesByStatus("upcoming"),
     getCoursesByStatus("in_progress"),
+    getCoursesByStatus("completed"),
   ]);
 
   return (
@@ -41,6 +42,15 @@ export default async function HomePage({ params }: Props) {
           </h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <CourseGrid courses={inProgressCourses} />
+          </div>
+        </div>
+        <div>
+          <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-900 sm:text-xl">
+            <CompletedIcon />
+            {t("completedClasses")}
+          </h2>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <CourseGrid courses={completedCourses} />
           </div>
         </div>
       </div>
