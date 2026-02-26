@@ -40,7 +40,7 @@ export async function GET() {
               textAlign: "center",
             }}
           >
-            Learn, grow, and achieve with quality education.
+            Computer Training School
           </div>
         </div>
       ),

@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 const defaultTitle = "Tip-Top Education";
-const defaultDescription = "Learn, grow, and achieve with quality education.";
+const defaultDescription = "Computer Training School";
 
 export const metadata: Metadata = {
   metadataBase: new URL(APP_BASE_URL),

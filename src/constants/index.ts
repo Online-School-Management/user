@@ -6,7 +6,7 @@ export const API_BASE_URL =
 
 /** Base URL for the user site (SEO, Open Graph, canonical). */
 export const APP_BASE_URL =
-  process.env.NEXT_PUBLIC_APP_URL ?? "https://tiptopeducation.net";
+  process.env.NEXT_PUBLIC_APP_URL ?? "https://www.tiptopeducation.net";
 
 export const SITE_NAME = "Tip-Top Education";
 /** Default OG image: dynamic route that generates a 1200x630 preview image. */

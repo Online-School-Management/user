@@ -25,7 +25,7 @@ export default async function PrivacyPage({ params }: Props) {
               Privacy Policy for Tip-Top Education
             </h1>
             <p className="text-sm text-slate-500">Last Updated: February 23, 2026</p>
-            <p className="text-sm text-slate-600">Website: https://tiptopeducation.net</p>
+            <p className="text-sm text-slate-600">Website: https://www.tiptopeducation.net</p>
             <p className="text-sm text-slate-600">
               Contact Email: tt.tech.developer@gmail.com
             </p>
