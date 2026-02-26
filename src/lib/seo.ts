@@ -18,6 +18,13 @@ export type PageMetadataOptions = {
  * @param path - Path after locale, no leading slash (e.g. "", "courses", "courses/web-design", "enroll/success")
  * @param options - Optional image override and alt text
  */
+/** Ensure image URL is absolute for crawlers (Facebook, Telegram, etc.). */
+function toAbsoluteImageUrl(url: string): string {
+  if (url.startsWith("http://") || url.startsWith("https://")) return url;
+  const path = url.startsWith("/") ? url : `/${url}`;
+  return `${APP_BASE_URL}${path}`;
+}
+
 export function buildPageMetadata(
   title: string,
   description: string | undefined,
@@ -26,15 +33,18 @@ export function buildPageMetadata(
   options?: PageMetadataOptions
 ): Metadata {
   const url = path ? `${APP_BASE_URL}/${locale}/${path}` : `${APP_BASE_URL}/${locale}`;
-  const imageUrl = options?.image ?? `${APP_BASE_URL}${DEFAULT_OG_IMAGE_PATH}`;
+  const imageUrl = toAbsoluteImageUrl(
+    options?.image ?? DEFAULT_OG_IMAGE_PATH
+  );
   const imageAlt = options?.imageAlt ?? SITE_NAME;
+  const desc = description?.trim() || undefined;
 
   return {
     title,
-    description: description ?? undefined,
+    description: desc,
     openGraph: {
       title,
-      description: description ?? undefined,
+      description: desc,
       type: "website",
       url,
       siteName: SITE_NAME,
@@ -43,7 +53,7 @@ export function buildPageMetadata(
     twitter: {
       card: "summary_large_image",
       title,
-      description: description ?? undefined,
+      description: desc,
       images: [imageUrl],
     },
   };

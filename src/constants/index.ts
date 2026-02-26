@@ -9,8 +9,8 @@ export const APP_BASE_URL =
   process.env.NEXT_PUBLIC_APP_URL ?? "https://www.tiptopeducation.net";
 
 export const SITE_NAME = "Tip-Top Education";
-/** Default OG image: dynamic route that generates a 1200x630 preview image. */
-export const DEFAULT_OG_IMAGE_PATH = "/og";
+/** Default OG image: static file in public (e.g. 1200×630 PNG/JPEG for best compatibility; SVG may not work on all platforms). */
+export const DEFAULT_OG_IMAGE_PATH = "/course-default.svg";
 
 export const API_ENDPOINTS = {
   frontend: {

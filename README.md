@@ -33,9 +33,15 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The app sets Open Graph and Twitter Card metadata so link previews (image + title + description) work on Telegram, Facebook, Viber, LinkedIn, etc.
 
-- **Base URL:** Set `NEXT_PUBLIC_APP_URL` in `.env` to your **production** URL (e.g. `https://tiptopeducation.net`). Preview image and URLs must be absolute; if this is wrong or unset, previews can be empty or broken.
-- **Default preview image:** A dynamic image is served at `/og` (see `src/app/og/route.tsx`). No static file is required. Course and other pages can override with their own image via the SEO helper.
+- **Base URL:** Set `NEXT_PUBLIC_APP_URL` in your environment to your **production** URL (e.g. `https://www.tiptopeducation.net`). Preview image and URLs must be absolute; if this is wrong or unset, previews can be empty or broken.
+- **Default preview image:** A dynamic image is served at `/og` (see `src/app/og/route.tsx`). No static file is required.
 - **Refreshing cached previews:** After deploy, use [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) or share the link again; some platforms cache the first fetch.
+
+**Vercel: previews still not showing?**
+
+- `NEXT_PUBLIC_*` is baked in at **build time**. If you added or changed `NEXT_PUBLIC_APP_URL` in Vercel after your last deploy, the running app still has the old value. You must **trigger a new deployment** (e.g. Deployments → Redeploy, or push a new commit) after saving the env var so the new build picks it up.
+- In Vercel: Project → Settings → Environment Variables → ensure `NEXT_PUBLIC_APP_URL` is set for **Production** and matches your live site (e.g. `https://www.tiptopeducation.net`).
+- Then redeploy, wait for the build to finish, and test again with Facebook Debugger or by sharing the link in Telegram.
 
 ## Deploy on Vercel
 

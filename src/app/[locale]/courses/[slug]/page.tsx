@@ -17,11 +17,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: "Metadata" });
   if (!course) return { title: t("courseTitle") };
   const title = `${course.title} | ${SITE_NAME}`;
-  const description = course.description
-    ? course.description.replace(/<[^>]*>/g, "").slice(0, 160)
-    : course.subject?.name ?? undefined;
-  const image = course.image_url ?? `${APP_BASE_URL}${DEFAULT_OG_IMAGE_PATH}`;
-  return buildPageMetadata(title, description ?? undefined, locale, `courses/${slug}`, {
+  const rawDescription = course.description
+    ? course.description.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160)
+    : "";
+  const description =
+    rawDescription || course.subject?.name || `${course.title} - Learn at ${SITE_NAME}`;
+  const image =
+    course.image_url && course.image_url.startsWith("http")
+      ? course.image_url
+      : `${APP_BASE_URL}${DEFAULT_OG_IMAGE_PATH}`;
+  return buildPageMetadata(title, description, locale, `courses/${slug}`, {
     image,
     imageAlt: course.title,
   });
