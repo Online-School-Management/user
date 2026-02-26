@@ -26,7 +26,7 @@ export function CourseCard({ course }: CourseCardProps) {
       href={`/courses/${course.slug}`}
       className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md"
     >
-      <div className="relative aspect-[16/9] w-full bg-slate-100">
+      <div className="relative aspect-[2/1] w-full bg-slate-100">
         {course.image_url ? (
           <img
             src={course.image_url}

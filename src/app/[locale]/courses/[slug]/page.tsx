@@ -94,7 +94,7 @@ export default async function CourseDetailPage({ params }: Props) {
 
         <div className="grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-8">
-            <div className="relative mb-6 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-slate-100">
+            <div className="relative mb-6 aspect-[2/1] w-full overflow-hidden rounded-2xl bg-slate-100">
               {course.image_url ? (
                 <img
                   src={course.image_url}
