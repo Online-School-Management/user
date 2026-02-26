@@ -81,8 +81,8 @@ export default async function CourseDetailPage({ params }: Props) {
   };
 
   return (
-    <div className="min-h-full px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+    <div className="min-h-full min-w-0 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="mx-auto min-w-0 max-w-6xl">
         <div className="mb-6">
           <Link
             href="/courses"
@@ -113,16 +113,16 @@ export default async function CourseDetailPage({ params }: Props) {
               )}
             </div>
 
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
               <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                 {subjectName}
               </span>
-              <h1 className="mt-3 text-2xl font-bold text-slate-900 sm:text-3xl">
+              <h1 className="mt-3 text-xl font-bold text-slate-900 sm:text-2xl md:text-3xl">
                 {course.title}
               </h1>
               {course.description ? (
                 <div
-                  className="mt-4 text-slate-600 [&_h1]:text-xl [&_h1]:font-bold [&_h1]:mb-2 [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:mb-2 [&_h3]:text-base [&_h3]:font-semibold [&_h3]:mb-2 [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-2 [&_li]:mb-1 [&_a]:text-primary [&_a]:underline [&_img]:max-w-full [&_img]:rounded"
+                  className="mt-4 min-w-0 break-words text-slate-600 [&_h1]:text-xl [&_h1]:font-bold [&_h1]:mb-2 [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:mb-2 [&_h3]:text-base [&_h3]:font-semibold [&_h3]:mb-2 [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-2 [&_li]:mb-1 [&_a]:text-primary [&_a]:underline [&_img]:max-w-full [&_img]:rounded"
                   dangerouslySetInnerHTML={{ __html: course.description }}
                 />
               ) : (
@@ -132,7 +132,7 @@ export default async function CourseDetailPage({ params }: Props) {
           </div>
 
           <aside className="lg:col-span-4">
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm lg:sticky lg:top-20">
+            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5 lg:sticky lg:top-20">
               <h2 className="text-lg font-semibold text-slate-900">
                 {t("classInfoTitle")}
               </h2>

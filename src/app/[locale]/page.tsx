@@ -24,14 +24,14 @@ export default async function HomePage({ params }: Props) {
   ]);
 
   return (
-    <section className="px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl space-y-16">
+    <section className="min-w-0 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="mx-auto min-w-0 max-w-6xl space-y-16">
         <div>
           <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-900 sm:text-xl">
             <UpcomingIcon />
             {t("upcomingClasses")}
           </h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <CourseGrid courses={upcomingCourses} />
           </div>
         </div>
@@ -40,7 +40,7 @@ export default async function HomePage({ params }: Props) {
             <InProgressIcon />
             {t("inProgressClasses")}
           </h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <CourseGrid courses={inProgressCourses} />
           </div>
         </div>
@@ -49,7 +49,7 @@ export default async function HomePage({ params }: Props) {
             <CompletedIcon />
             {t("completedClasses")}
           </h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <CourseGrid courses={completedCourses} />
           </div>
         </div>

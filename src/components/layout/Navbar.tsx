@@ -150,7 +150,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div className="mx-auto flex h-14 min-h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-14 min-h-14 min-w-0 max-w-7xl items-center justify-between gap-2 overflow-hidden px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
           className="flex shrink-0 items-center transition-opacity hover:opacity-90"
@@ -169,19 +169,22 @@ export function Navbar() {
         {/* Desktop header: left menu + right auth/language */}
         <div className="hidden flex-1 items-center justify-between md:ml-8 md:flex">
           <nav className="flex items-center gap-6 md:gap-8" aria-label="Main navigation">
-            {navPaths.filter(({ href }) => !hiddenNavPaths.has(href)).map(({ href, key }) => (
-              <Link
-                key={href}
-                href={href}
-                className={`text-sm font-medium transition-colors ${
-                  isNavActive(href)
-                    ? "text-primary underline decoration-2 underline-offset-8"
-                    : "text-slate-600 hover:text-primary"
-                }`}
-              >
-                {t(key)}
-              </Link>
-            ))}
+            {navPaths.filter(({ href }) => !hiddenNavPaths.has(href)).map(({ href, key }) => {
+              const active = isNavActive(href);
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`inline-flex items-center border-b-2 pb-1.5 pt-1 text-sm font-medium transition-colors ${
+                    active
+                      ? "border-primary text-primary"
+                      : "border-transparent text-slate-600 hover:border-slate-300 hover:text-primary"
+                  }`}
+                >
+                  {t(key)}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-6">
@@ -228,10 +231,10 @@ export function Navbar() {
               ) : (
                 <Link
                   href={loginPageHref}
-                  className={`text-sm font-medium transition-colors ${
+                  className={`inline-flex items-center border-b-2 pb-1.5 pt-1 text-sm font-medium transition-colors ${
                     isNavActive("/login")
-                      ? "text-primary underline decoration-2 underline-offset-8"
-                      : "text-slate-600 hover:text-primary"
+                      ? "border-primary text-primary"
+                      : "border-transparent text-slate-600 hover:border-slate-300 hover:text-primary"
                   }`}
                 >
                   {t("login")}

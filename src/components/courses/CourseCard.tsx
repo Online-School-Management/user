@@ -43,24 +43,24 @@ export function CourseCard({ course }: CourseCardProps) {
           />
         )}
       </div>
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-4 sm:p-6">
         <span className="text-sm font-medium text-primary">
           {course.subject?.name ?? t("subjectFallback")}
         </span>
-        <h3 className="mt-2 text-lg font-semibold text-slate-900">
+        <h3 className="mt-2 text-base font-semibold text-slate-900 sm:text-lg">
           {course.title}
         </h3>
         <div className="mt-3 flex flex-1 flex-col gap-1.5 text-sm text-slate-600">
           {course.duration != null && (
-            <p className="flex items-baseline gap-1">
+            <p className="flex min-w-0 flex-wrap items-baseline gap-1">
               <span className="min-w-[7rem] shrink-0 font-medium text-slate-700">{t("duration")}</span>
-              <span>: {course.duration} {course.duration_unit === "day" ? (course.duration === 1 ? t("day") : t("days")) : (course.duration === 1 ? t("month") : t("months"))}</span>
+              <span className="min-w-0 break-words">: {course.duration} {course.duration_unit === "day" ? (course.duration === 1 ? t("day") : t("days")) : (course.duration === 1 ? t("month") : t("months"))}</span>
             </p>
           )}
           {course.monthly_fee != null && (
-            <p className="flex items-baseline gap-1">
+            <p className="flex min-w-0 flex-wrap items-baseline gap-1">
               <span className="min-w-[7rem] shrink-0 font-medium text-slate-700">{t("fee")}</span>
-              <span>
+              <span className="min-w-0 break-words">
                 : {course.monthly_fee === 0 ? (
                   <span className="inline-flex rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-semibold text-amber-700">
                     {t("free")}
@@ -72,15 +72,15 @@ export function CourseCard({ course }: CourseCardProps) {
             </p>
           )}
           {course.start_date && (
-            <p className="flex items-baseline gap-1">
+            <p className="flex min-w-0 flex-wrap items-baseline gap-1">
               <span className="min-w-[7rem] shrink-0 font-medium text-slate-700">{t("startDate")}</span>
-              <span>: {formatStartDate(course.start_date)}</span>
+              <span className="min-w-0 break-words">: {formatStartDate(course.start_date)}</span>
             </p>
           )}
           {course.schedules && course.schedules.length > 0 && (
-            <p className="flex items-baseline gap-1">
+            <p className="flex min-w-0 flex-wrap items-baseline gap-1">
               <span className="min-w-[7rem] shrink-0 font-medium text-slate-700">{t("weeklySchedule")}</span>
-              <span>: {formatScheduleSummary(course.schedules)}</span>
+              <span className="min-w-0 break-words">: {formatScheduleSummary(course.schedules)}</span>
             </p>
           )}
         </div>

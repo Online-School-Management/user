@@ -80,6 +80,20 @@
   "CourseGrid": {
     "empty": "No courses available at the moment."
   },
+  "ArticleCard": {
+    "readMore": "Read more →"
+  },
+  "ArticleGrid": {
+    "empty": "No articles yet. Check back later."
+  },
+  "ArticleDetail": {
+    "backToArticles": "← Back to articles",
+    "publishedOn": "Published on",
+    "copyLink": "Copy link",
+    "copied": "Copied!",
+    "shareOnFacebook": "Share on Facebook",
+    "shareOnTelegram": "Share on Telegram"
+  },
   "Footer": {
     "copyright": "© {year} TipTop Education. All rights reserved.",
     "privacy": "Privacy Policy",
@@ -87,7 +101,7 @@
   },
   "Articles": {
     "title": "Articles",
-    "description": "Tips, guides, and updates for your learning journey. More content coming soon.",
+    "description": "Knowledge and articles for kids interested in technology and for beginners.",
     "empty": "No articles yet. Check back later."
   },
   "Contact": {

@@ -41,8 +41,8 @@ export default async function EnrollPage({ params }: Props) {
   const closed = isEnrollmentClosed(course.enrollment_end_date);
 
   return (
-    <div className="min-h-full px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-3xl">
+    <div className="min-h-full min-w-0 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="mx-auto min-w-0 max-w-3xl">
         <div className="mb-6">
           <Link
             href={`/courses/${course.slug}`}
@@ -52,7 +52,7 @@ export default async function EnrollPage({ params }: Props) {
           </Link>
         </div>
 
-        <h1 className="text-2xl font-medium text-slate-900">
+        <h1 className="text-xl font-medium text-slate-900 sm:text-2xl">
           {t.rich("title", {
             courseName: course.title,
             course: (chunks) => (
