@@ -6,6 +6,8 @@ export type PageMetadataOptions = {
   image?: string;
   /** Alt text for the OG image. */
   imageAlt?: string;
+  /** Set to false to prevent search engines from indexing (e.g. for login, enroll success). */
+  noIndex?: boolean;
 };
 
 /**
@@ -38,10 +40,23 @@ export function buildPageMetadata(
   );
   const imageAlt = options?.imageAlt ?? SITE_NAME;
   const desc = description?.trim() || undefined;
+  const alternateLocaleUrls: Record<string, string> = {};
+  for (const loc of ["en", "my"]) {
+    alternateLocaleUrls[loc] = path
+      ? `${APP_BASE_URL}/${loc}/${path}`
+      : `${APP_BASE_URL}/${loc}`;
+  }
 
   return {
     title,
     description: desc,
+    alternates: {
+      canonical: url,
+      languages: alternateLocaleUrls,
+    },
+    robots: options?.noIndex
+      ? { index: false, follow: false }
+      : { index: true, follow: true },
     openGraph: {
       title,
       description: desc,

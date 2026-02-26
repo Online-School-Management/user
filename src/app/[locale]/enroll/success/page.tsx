@@ -12,7 +12,9 @@ const description = "Enrollment request submitted successfully.";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  return buildPageMetadata(title, description, locale, "enroll/success");
+  return buildPageMetadata(title, description, locale, "enroll/success", {
+    noIndex: true,
+  });
 }
 
 function EnrollSuccessFallback() {

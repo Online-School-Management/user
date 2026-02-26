@@ -13,7 +13,9 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
-  return buildPageMetadata(t("loginTitle"), t("loginDescription"), locale, "login");
+  return buildPageMetadata(t("loginTitle"), t("loginDescription"), locale, "login", {
+    noIndex: true,
+  });
 }
 
 export default async function LoginPage({ params, searchParams }: Props) {
