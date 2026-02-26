@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 import { CourseEnrollCta } from "@/components/courses/CourseEnrollCta";
 import { formatScheduleSummary } from "@/utils/courseFormat";
 import { buildPageMetadata } from "@/lib/seo";
-import { APP_BASE_URL, DEFAULT_OG_IMAGE_PATH, SITE_NAME } from "@/constants";
+import { APP_BASE_URL, SITE_NAME } from "@/constants";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -18,16 +18,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!course) return { title: t("courseTitle") };
   const title = `${course.title} | ${SITE_NAME}`;
   const rawDescription = course.description
-    ? course.description.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160)
+    ? course.description.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim()
     : "";
   const description =
     rawDescription || course.subject?.name || `${course.title} - Learn at ${SITE_NAME}`;
-  const image =
-    course.image_url && course.image_url.startsWith("http")
-      ? course.image_url
-      : `${APP_BASE_URL}${DEFAULT_OG_IMAGE_PATH}`;
+  const ogSubtitle = rawDescription.slice(0, 100) || course.subject?.name || "";
+  const ogImage = `${APP_BASE_URL}/og?title=${encodeURIComponent(course.title)}&subtitle=${encodeURIComponent(ogSubtitle)}`;
   return buildPageMetadata(title, description, locale, `courses/${slug}`, {
-    image,
+    image: ogImage,
     imageAlt: course.title,
   });
 }

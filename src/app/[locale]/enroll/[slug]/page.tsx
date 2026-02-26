@@ -5,7 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { EnrollmentForm } from "@/components/enroll/EnrollmentForm";
 import { buildPageMetadata } from "@/lib/seo";
-import { SITE_NAME } from "@/constants";
+import { APP_BASE_URL, SITE_NAME } from "@/constants";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -16,7 +16,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!course) return { title: t("enrollTitle") };
   const title = `${course.title} | ${SITE_NAME}`;
   const description = `Enroll in ${course.title}.`;
-  return buildPageMetadata(title, description, locale, `enroll/${slug}`);
+  const ogImage = `${APP_BASE_URL}/og?title=${encodeURIComponent(course.title)}&subtitle=${encodeURIComponent(`Enroll now`)}`;
+  return buildPageMetadata(title, description, locale, `enroll/${slug}`, {
+    image: ogImage,
+    imageAlt: course.title,
+  });
 }
 
 export default async function EnrollPage({ params }: Props) {

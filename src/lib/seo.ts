@@ -39,7 +39,8 @@ export function buildPageMetadata(
     options?.image ?? DEFAULT_OG_IMAGE_PATH
   );
   const imageAlt = options?.imageAlt ?? SITE_NAME;
-  const desc = description?.trim() || undefined;
+  const desc = description?.trim() || `${SITE_NAME} - Computer Training School`;
+  const ogLocale = locale === "my" ? "my_MM" : "en_US";
   const alternateLocaleUrls: Record<string, string> = {};
   for (const loc of ["en", "my"]) {
     alternateLocaleUrls[loc] = path
@@ -62,6 +63,7 @@ export function buildPageMetadata(
       description: desc,
       type: "website",
       url,
+      locale: ogLocale,
       siteName: SITE_NAME,
       images: [{ url: imageUrl, width: 1200, height: 630, alt: imageAlt }],
     },
