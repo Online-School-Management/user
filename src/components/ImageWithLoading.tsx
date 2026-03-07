@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 type ImageWithLoadingProps = {
   src: string;
@@ -21,6 +21,25 @@ export function ImageWithLoading({
 }: ImageWithLoadingProps) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+
+  // When src changes, reset state so we don't show stale image or skeleton
+  useEffect(() => {
+    setLoaded(false);
+    setError(false);
+  }, [src]);
+
+  // If the image is already complete (e.g. from cache), show it immediately.
+  // This fixes images stuck in skeleton on hard refresh when onLoad never fires.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img) return;
+    if (img.complete && img.naturalWidth > 0) {
+      setLoaded(true);
+    } else if (img.complete && img.naturalWidth === 0) {
+      setError(true);
+    }
+  }, [src]);
 
   return (
     <div
@@ -41,6 +60,7 @@ export function ImageWithLoading({
         </div>
       ) : (
         <img
+          ref={imgRef}
           src={src}
           alt={alt}
           loading="lazy"
