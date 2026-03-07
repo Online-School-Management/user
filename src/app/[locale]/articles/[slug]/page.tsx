@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { CopyLinkButton } from "@/components/articles/CopyLinkButton";
+import { ImageWithLoading } from "@/components/ImageWithLoading";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
 import { APP_BASE_URL, SITE_NAME } from "@/constants";
@@ -148,10 +149,11 @@ export default async function ArticleDetailPage({ params }: Props) {
           {article.image_url && (
             <div className="w-full max-w-full lg:max-w-[80%]">
               <div className="relative aspect-[2/1] w-full overflow-hidden rounded-2xl bg-slate-100">
-                <img
+                <ImageWithLoading
                   src={article.image_url}
                   alt={article.title}
-                  className="h-full w-full object-cover"
+                  wrapperClassName="absolute inset-0"
+                  sizes="(max-width: 1024px) 100vw, 80vw"
                 />
               </div>
             </div>

@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Course } from "@/types/course";
 import { formatScheduleSummary } from "@/utils/courseFormat";
+import { ImageWithLoading } from "@/components/ImageWithLoading";
 
 type CourseCardProps = {
   course: Course;
@@ -28,10 +29,11 @@ export function CourseCard({ course }: CourseCardProps) {
     >
       <div className="relative aspect-[2/1] w-full bg-slate-100">
         {course.image_url ? (
-          <img
+          <ImageWithLoading
             src={course.image_url}
             alt={course.title}
-            className="h-full w-full object-cover"
+            wrapperClassName="absolute inset-0"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         ) : (
           <Image

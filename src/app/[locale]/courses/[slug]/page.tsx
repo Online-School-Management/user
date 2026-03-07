@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { CourseEnrollCta } from "@/components/courses/CourseEnrollCta";
+import { ImageWithLoading } from "@/components/ImageWithLoading";
 import { formatScheduleSummary } from "@/utils/courseFormat";
 import { buildPageMetadata } from "@/lib/seo";
 import { APP_BASE_URL, SITE_NAME } from "@/constants";
@@ -96,10 +97,11 @@ export default async function CourseDetailPage({ params }: Props) {
           <div className="lg:col-span-8">
             <div className="relative mb-6 aspect-[2/1] w-full overflow-hidden rounded-2xl bg-slate-100">
               {course.image_url ? (
-                <img
+                <ImageWithLoading
                   src={course.image_url}
                   alt={course.title}
-                  className="h-full w-full object-cover"
+                  wrapperClassName="absolute inset-0"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
                 />
               ) : (
                 <Image

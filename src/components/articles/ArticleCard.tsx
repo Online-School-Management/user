@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Article } from "@/types/article";
+import { ImageWithLoading } from "@/components/ImageWithLoading";
 
 type ArticleCardProps = {
   article: Article;
@@ -18,10 +19,11 @@ export function ArticleCard({ article }: ArticleCardProps) {
     >
       <div className="relative aspect-[2/1] w-full bg-slate-100">
         {article.image_url ? (
-          <img
+          <ImageWithLoading
             src={article.image_url}
             alt={article.title}
-            className="h-full w-full object-cover"
+            wrapperClassName="absolute inset-0"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-slate-200">
