@@ -46,12 +46,12 @@ export function CourseCard({ course }: CourseCardProps) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-4 sm:p-6">
-        <span className="text-sm font-medium text-primary">
-          {course.subject?.name ?? t("subjectFallback")}
-        </span>
-        <h3 className="mt-2 text-base font-semibold text-slate-900 sm:text-lg">
+        <h3 className="text-sm font-semibold text-slate-900">
           {course.title}
         </h3>
+        <span className="mt-2 text-base font-medium text-primary sm:text-lg">
+          {course.subject?.name ?? t("subjectFallback")}
+        </span>
         <div className="mt-3 flex flex-1 flex-col gap-1.5 text-sm text-slate-600">
           {course.duration != null && (
             <p className="flex min-w-0 flex-wrap items-baseline gap-1">
