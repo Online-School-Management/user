@@ -31,11 +31,17 @@ export async function HomeHero({ locale }: Props) {
           {/* <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             {t("heroTitle")}
           </h1> */}
-          <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
-            {t("heroDescription")}
+          <p className="hero-seq-shimmer text-base leading-relaxed text-slate-600 sm:text-lg">
+            <span className="hero-seq-shimmer__text">{t("heroDescription")}</span>
+            <span className="hero-seq-shimmer__glow-layer" aria-hidden>
+              <span className="hero-seq-shimmer__bar hero-seq-shimmer__bar--1" />
+            </span>
           </p>
-          <p className="border-l-4 border-brand-orange/50 pl-4 text-base font-medium italic leading-relaxed text-slate-800 sm:text-lg">
-            {tCommon("siteTagline")}
+          <p className="hero-seq-shimmer border-l-4 border-brand-orange/50 pl-4 text-base font-medium italic leading-relaxed text-slate-800 sm:text-lg">
+            <span className="hero-seq-shimmer__text">{tCommon("siteTagline")}</span>
+            <span className="hero-seq-shimmer__glow-layer" aria-hidden>
+              <span className="hero-seq-shimmer__bar hero-seq-shimmer__bar--2" />
+            </span>
           </p>
         </div>
         <div className="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col">
