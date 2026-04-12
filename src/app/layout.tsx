@@ -52,6 +52,15 @@ export default function RootLayout({
         <GlobalAppBackdrop />
         <div className="relative z-10 flex min-h-screen min-w-0 flex-1 flex-col">
           {children}
+
+          {/* Telegram */}
+          <Script src="https://elfsightcdn.com/platform.js" async/>
+          <div
+            className="elfsight-app-971a4d5a-9d0d-4820-868c-23115d2e3e68"
+            data-elfsight-app-lazy
+          />
+
+          {/* Messanger */}
           <Script
             src="https://elfsightcdn.com/platform.js"
             strategy="lazyOnload"
