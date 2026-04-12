@@ -11,6 +11,21 @@ type CourseCardProps = {
   course: Course;
 };
 
+function courseStatusBadgeClass(status: string): string {
+  switch (status) {
+    case "upcoming":
+      return "bg-sky-100 text-sky-800 ring-1 ring-sky-200/80";
+    case "in_progress":
+      return "bg-amber-100 text-amber-900 ring-1 ring-amber-200/80";
+    case "completed":
+      return "bg-emerald-100 text-emerald-900 ring-1 ring-emerald-200/80";
+    case "cancelled":
+      return "bg-slate-100 text-slate-700 ring-1 ring-slate-200/80";
+    default:
+      return "bg-slate-100 text-slate-600 ring-1 ring-slate-200/70";
+  }
+}
+
 function formatStartDate(isoDate: string): string {
   const d = new Date(isoDate);
   const day = d.getDate();
@@ -21,6 +36,22 @@ function formatStartDate(isoDate: string): string {
 
 export function CourseCard({ course }: CourseCardProps) {
   const t = useTranslations("CourseCard");
+  const tDetail = useTranslations("CourseDetail");
+
+  const statusLabel = (() => {
+    switch (course.status) {
+      case "upcoming":
+        return tDetail("status_upcoming");
+      case "in_progress":
+        return tDetail("status_in_progress");
+      case "completed":
+        return tDetail("status_completed");
+      case "cancelled":
+        return tDetail("status_cancelled");
+      default:
+        return course.status ? course.status.replace(/_/g, " ") : tDetail("unknown");
+    }
+  })();
 
   return (
     <Link
@@ -49,9 +80,16 @@ export function CourseCard({ course }: CourseCardProps) {
         <span className="text-base font-medium text-primary sm:text-lg">
           {course.subject?.name ?? t("subjectFallback")}
         </span>
-        <h3 className="mt-2 text-sm font-semibold text-slate-900">
-          {course.title}
-        </h3>
+        <div className="mt-2 flex min-w-0 items-start justify-between gap-2">
+          <h3 className="min-w-0 flex-1 text-sm font-semibold leading-snug text-slate-900 line-clamp-2">
+            {course.title}
+          </h3>
+          <span
+            className={`shrink-0 rounded-full px-2 py-0.5 text-center text-[11px] font-semibold leading-tight sm:text-xs ${courseStatusBadgeClass(course.status)}`}
+          >
+            {statusLabel}
+          </span>
+        </div>
         <div className="mt-3 flex flex-1 flex-col gap-1.5 text-sm text-slate-600">
           {course.duration != null && (
             <p className="flex min-w-0 flex-wrap items-baseline gap-1">
