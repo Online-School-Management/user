@@ -1,32 +1,66 @@
 "use client";
 
-import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type ReactNode,
+} from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Course } from "@/types/course";
 import type { Subject } from "@/types/subject";
-import { fetchCoursesForFilter } from "@/services/courseService";
+import { fetchCoursesForFilter, fetchUpcomingAndInProgressForFilter } from "@/services/courseService";
 import { CourseCard } from "@/components/courses/CourseCard";
-import { UpcomingIcon, InProgressIcon, CompletedIcon } from "@/components/icons/SectionIcons";
+import {
+  AllClassesIcon,
+  UpcomingIcon,
+  InProgressIcon,
+  CompletedIcon,
+  type SectionStatusIconProps,
+} from "@/components/icons/SectionIcons";
 
-type TabId = "upcoming" | "in_progress" | "completed";
+type TabId = "all_classes" | "upcoming" | "in_progress" | "completed";
 
-const TAB_ORDER: TabId[] = ["upcoming", "in_progress", "completed"];
+const TAB_ORDER: TabId[] = ["all_classes", "upcoming", "in_progress", "completed"];
 
 type SubjectFilterKey = "all" | number;
 
 type TabDef = {
   id: TabId;
-  labelKey: "tabUpcoming" | "tabInProgress" | "tabCompleted";
-  emptyKey: "emptyUpcoming" | "emptyInProgress" | "emptyCompleted";
-  Icon: typeof UpcomingIcon;
+  labelKey: "tabAllClasses" | "tabUpcoming" | "tabInProgress" | "tabCompleted";
+  emptyKey: "emptyAllClasses" | "emptyUpcoming" | "emptyInProgress" | "emptyCompleted";
+  Icon: (props: SectionStatusIconProps) => ReactNode;
 };
 
 const TAB_DEFS: TabDef[] = [
+  { id: "all_classes", labelKey: "tabAllClasses", emptyKey: "emptyAllClasses", Icon: AllClassesIcon },
   { id: "upcoming", labelKey: "tabUpcoming", emptyKey: "emptyUpcoming", Icon: UpcomingIcon },
   { id: "in_progress", labelKey: "tabInProgress", emptyKey: "emptyInProgress", Icon: InProgressIcon },
   { id: "completed", labelKey: "tabCompleted", emptyKey: "emptyCompleted", Icon: CompletedIcon },
 ];
+
+function mergeUpcomingInProgressLists(upcoming: Course[], inProgress: Course[]): Course[] {
+  const seen = new Set<number>();
+  const out: Course[] = [];
+  for (const c of upcoming) {
+    if (!seen.has(c.id)) {
+      seen.add(c.id);
+      out.push(c);
+    }
+  }
+  for (const c of inProgress) {
+    if (!seen.has(c.id)) {
+      seen.add(c.id);
+      out.push(c);
+    }
+  }
+  return out;
+}
 
 type Props = {
   upcomingCourses: Course[];
@@ -83,10 +117,14 @@ export function HomeCourseTabs({
 
       setLazyLoading(true);
       try {
-        const data = await fetchCoursesForFilter({
-          status: active,
-          subjectId: subjectFilter === "all" ? undefined : subjectFilter,
-        });
+        const subjectId = subjectFilter === "all" ? undefined : subjectFilter;
+        const data =
+          active === "all_classes"
+            ? await fetchUpcomingAndInProgressForFilter({ subjectId })
+            : await fetchCoursesForFilter({
+                status: active,
+                subjectId,
+              });
         if (!cancelled) setLazyList(data);
       } finally {
         if (!cancelled) setLazyLoading(false);
@@ -99,11 +137,15 @@ export function HomeCourseTabs({
     };
   }, [active, subjectFilter, lazyMode, upcomingCourses]);
 
-  const coursesMap: Record<TabId, Course[]> = {
-    upcoming: upcomingCourses,
-    in_progress: inProgressCourses ?? [],
-    completed: completedCourses ?? [],
-  };
+  const coursesMap: Record<TabId, Course[]> = useMemo(
+    () => ({
+      all_classes: mergeUpcomingInProgressLists(upcomingCourses, inProgressCourses ?? []),
+      upcoming: upcomingCourses,
+      in_progress: inProgressCourses ?? [],
+      completed: completedCourses ?? [],
+    }),
+    [upcomingCourses, inProgressCourses, completedCourses]
+  );
 
   const activeCourses = lazyMode ? lazyList : coursesMap[active];
   const activeEmptyKey = TAB_DEFS.find((d) => d.id === active)!.emptyKey;
@@ -113,7 +155,7 @@ export function HomeCourseTabs({
     const list = coursesMap[active];
     if (subjectFilter === "all") return list;
     return list.filter((c) => c.subject?.id === subjectFilter);
-  }, [active, subjectFilter, lazyMode, lazyList, upcomingCourses, inProgressCourses, completedCourses]);
+  }, [active, subjectFilter, lazyMode, lazyList, coursesMap]);
 
   const subjectKeys = useMemo<SubjectFilterKey[]>(() => {
     if (!subjects?.length) return [];
@@ -209,22 +251,26 @@ export function HomeCourseTabs({
   const subjectFilterEmptyMessage = useMemo(() => {
     if (selectedSubjectName == null) return null;
     const key =
-      active === "upcoming"
-        ? "emptyForSubjectUpcoming"
-        : active === "in_progress"
-          ? "emptyForSubjectInProgress"
-          : "emptyForSubjectCompleted";
+      active === "all_classes"
+        ? "emptyForSubjectAllClasses"
+        : active === "upcoming"
+          ? "emptyForSubjectUpcoming"
+          : active === "in_progress"
+            ? "emptyForSubjectInProgress"
+            : "emptyForSubjectCompleted";
     return t(key, { subject: selectedSubjectName });
   }, [active, selectedSubjectName, t]);
 
   const subjectResultsHeading = useMemo(() => {
     if (selectedSubjectName == null) return null;
     const key =
-      active === "upcoming"
-        ? "resultsHeadingUpcoming"
-        : active === "in_progress"
-          ? "resultsHeadingInProgress"
-          : "resultsHeadingCompleted";
+      active === "all_classes"
+        ? "resultsHeadingAllClasses"
+        : active === "upcoming"
+          ? "resultsHeadingUpcoming"
+          : active === "in_progress"
+            ? "resultsHeadingInProgress"
+            : "resultsHeadingCompleted";
     return t(key, { subject: selectedSubjectName });
   }, [active, selectedSubjectName, t]);
 
@@ -252,7 +298,7 @@ export function HomeCourseTabs({
               onKeyDown={(e) => onTabKeyDown(e, index)}
               className={`inline-flex items-center gap-2 rounded-t-lg px-3 py-2.5 text-sm font-medium transition sm:px-4 ${
                 isActive
-                  ? "border-b-2 border-primary text-primary"
+                  ? "border-b-2 border-primary text-slate-900"
                   : "border-b-2 border-transparent text-slate-600 hover:text-slate-900"
               }`}
             >

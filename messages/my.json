@@ -2,7 +2,7 @@
   "Common": {
     "siteName": "Tip - Top Education",
     "course": "အတန်း",
-    "siteTagline": "Learn today, Brighten in decoding your dreams tomorrow."
+    "siteTagline": "Learn today coding, Brighten in decoding your dreams tomorrow."
   },
   "Nav": {
     "home": "ပင်မစာမျက်နှာ",
@@ -25,19 +25,23 @@
     "ctaContact": "ဆက်သွယ်ရန်",
     "classesHeading": "အတန်းများ",
     "tablistLabel": "အတန်းအခြေအနေအလိုက်",
+    "tabAllClasses": "အတန်းအားလုံး",
     "tabUpcoming": "အတန်းသစ်",
     "tabInProgress": "သင်ကြားဆဲ",
     "tabCompleted": "ပြီးဆုံး",
+    "emptyAllClasses": "အတန်းသစ် သို့မဟုတ် သင်ကြားဆဲ အတန်းများ စာရင်းမရှိသေးပါ။ ပြီးဆုံးသော အတန်းများကို ကြည့်ရှုနိုင်ပါသည်။",
     "emptyUpcoming": "အတန်းသစ် စာရင်းမရှိသေးပါ။ သင်ကြားဆဲ အတန်းများကို ကြည့်ရှုပါ။",
     "emptyInProgress": "ယခု သင်ကြားနေသော အတန်းမရှိသေးပါ။ အတန်းသစ်များတွင် စာရင်းသွင်းနိုင်ပါသည်။",
     "emptyCompleted": "ပြီးဆုံးသော အတန်းများ မပြသရသေးပါ။",
     "browseAllCourses": "အတန်းအားလုံး ကြည့်ရန်",
     "subjectFilterLabel": "ဘာသာရပ်အလိုက် စစ်ထုတ်ရန်",
     "allSubjects": "အားလုံး",
+    "emptyForSubjectAllClasses": "{subject} အတွက် အတန်းအသစ် သို့မဟုတ် သင်ကြားဆဲ အတန်းများ မရှိသေးပါ",
     "emptyForSubjectUpcoming": "{subject} အတွက် အတန်းအသစ်များ မရှိသေးပါ",
     "emptyForSubjectInProgress": "{subject} အတွက် သင်ကြားဆဲ အတန်းများ မရှိသေးပါ",
     "emptyForSubjectCompleted": "{subject} အတွက် ပြီးဆုံးသော အတန်းများ မရှိသေးပါ",
     "subjectUnknown": "ဤဘာသာရပ်",
+    "resultsHeadingAllClasses": "{subject} — အတန်းအသစ် နှင့် သင်ကြားဆဲ",
     "resultsHeadingUpcoming": "{subject} အတွက် အတန်းအသစ်များ",
     "resultsHeadingInProgress": "{subject} အတွက် သင်ကြားဆဲ အတန်းများ",
     "resultsHeadingCompleted": "{subject} အတွက် ပြီးဆုံးသော အတန်းများ",

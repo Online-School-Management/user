@@ -2,7 +2,7 @@
   "Common": {
     "siteName": "Tip - Top Education",
     "course": "Class",
-    "siteTagline": "Learn today, Brighten in decoding your dreams tomorrow."
+    "siteTagline": "Learn today coding, Brighten in decoding your dreams tomorrow."
   },
   "Nav": {
     "home": "Home",
@@ -25,19 +25,23 @@
     "ctaContact": "Contact us",
     "classesHeading": "Classes",
     "tablistLabel": "Classes by status",
+    "tabAllClasses": "All classes",
     "tabUpcoming": "Upcoming",
     "tabInProgress": "In progress",
     "tabCompleted": "Completed",
+    "emptyAllClasses": "No upcoming or in-progress classes are listed yet. Try the Completed tab for past classes.",
     "emptyUpcoming": "No upcoming classes are listed yet. Browse all classes to see what is available.",
     "emptyInProgress": "No classes are in session right now. Check upcoming classes to join the next intake.",
     "emptyCompleted": "No completed classes to show yet.",
     "browseAllCourses": "View all classes",
     "subjectFilterLabel": "Filter by subject",
     "allSubjects": "All",
+    "emptyForSubjectAllClasses": "No upcoming or in-progress classes for {subject} yet.",
     "emptyForSubjectUpcoming": "No upcoming classes for {subject} yet.",
     "emptyForSubjectInProgress": "No in-progress classes for {subject} yet.",
     "emptyForSubjectCompleted": "No completed classes for {subject} yet.",
     "subjectUnknown": "this subject",
+    "resultsHeadingAllClasses": "{subject} — upcoming & in-progress classes",
     "resultsHeadingUpcoming": "{subject} — upcoming classes",
     "resultsHeadingInProgress": "{subject} — in-progress classes",
     "resultsHeadingCompleted": "{subject} — completed classes",

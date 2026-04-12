@@ -60,6 +60,34 @@ export async function fetchCoursesForFilter(params: CourseFilterParams): Promise
 }
 
 /**
+ * Upcoming + in-progress (deduped by id), optional subject filter. Used for "All classes" tab.
+ */
+export async function fetchUpcomingAndInProgressForFilter(params: {
+  subjectId?: number;
+}): Promise<Course[]> {
+  const subjectId = params.subjectId;
+  const [upcoming, inProgress] = await Promise.all([
+    fetchCoursesForFilter({ status: "upcoming", subjectId }),
+    fetchCoursesForFilter({ status: "in_progress", subjectId }),
+  ]);
+  const seen = new Set<number>();
+  const merged: Course[] = [];
+  for (const c of upcoming) {
+    if (!seen.has(c.id)) {
+      seen.add(c.id);
+      merged.push(c);
+    }
+  }
+  for (const c of inProgress) {
+    if (!seen.has(c.id)) {
+      seen.add(c.id);
+      merged.push(c);
+    }
+  }
+  return merged;
+}
+
+/**
  * Fetch single course by slug (for server or client).
  */
 export async function getCourseBySlug(slug: string): Promise<Course | null> {
