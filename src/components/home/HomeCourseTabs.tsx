@@ -14,7 +14,11 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Course } from "@/types/course";
 import type { Subject } from "@/types/subject";
-import { fetchCoursesForFilter, fetchUpcomingAndInProgressForFilter } from "@/services/courseService";
+import {
+  fetchCoursesForFilter,
+  fetchUpcomingAndInProgressForFilter,
+  mergeUpcomingInProgressCourses,
+} from "@/services/courseService";
 import { CourseCard } from "@/components/courses/CourseCard";
 import {
   AllClassesIcon,
@@ -44,24 +48,6 @@ const TAB_DEFS: TabDef[] = [
   { id: "completed", labelKey: "tabCompleted", emptyKey: "emptyCompleted", Icon: CompletedIcon },
 ];
 
-function mergeUpcomingInProgressLists(upcoming: Course[], inProgress: Course[]): Course[] {
-  const seen = new Set<number>();
-  const out: Course[] = [];
-  for (const c of upcoming) {
-    if (!seen.has(c.id)) {
-      seen.add(c.id);
-      out.push(c);
-    }
-  }
-  for (const c of inProgress) {
-    if (!seen.has(c.id)) {
-      seen.add(c.id);
-      out.push(c);
-    }
-  }
-  return out;
-}
-
 type Props = {
   upcomingCourses: Course[];
   /** When omitted (classes page), status/subject changes load via API; home passes all three. */
@@ -71,6 +57,8 @@ type Props = {
   page?: "home" | "courses";
   /** When set (e.g. classes page), show subject filter tabs above the grid. */
   subjects?: Subject[];
+  /** SSR merge for default "All classes" tab (home + courses lazy mode). */
+  initialAllClassesCourses: Course[];
 };
 
 function CourseGridSkeleton() {
@@ -92,23 +80,34 @@ export function HomeCourseTabs({
   completedCourses,
   page = "home",
   subjects,
+  initialAllClassesCourses,
 }: Props) {
   const t = useTranslations("Home");
   const baseId = useId();
-  const [active, setActive] = useState<TabId>("upcoming");
+  const [active, setActive] = useState<TabId>("all_classes");
   const [subjectFilter, setSubjectFilter] = useState<SubjectFilterKey>("all");
 
   const lazyMode = inProgressCourses === undefined && completedCourses === undefined;
 
-  const [lazyList, setLazyList] = useState<Course[]>(() => upcomingCourses);
+  const [lazyList, setLazyList] = useState<Course[]>(() => initialAllClassesCourses);
   const [lazyLoading, setLazyLoading] = useState(false);
   const lazyFirstHydrate = useRef(true);
+  const skippedSsrAllClassesFetch = useRef(false);
 
   useEffect(() => {
     if (!lazyMode) return;
     let cancelled = false;
 
     const run = async () => {
+      if (
+        active === "all_classes" &&
+        subjectFilter === "all" &&
+        !skippedSsrAllClassesFetch.current
+      ) {
+        skippedSsrAllClassesFetch.current = true;
+        return;
+      }
+
       if (active === "upcoming" && subjectFilter === "all" && lazyFirstHydrate.current) {
         lazyFirstHydrate.current = false;
         if (!cancelled) setLazyList(upcomingCourses);
@@ -139,7 +138,7 @@ export function HomeCourseTabs({
 
   const coursesMap: Record<TabId, Course[]> = useMemo(
     () => ({
-      all_classes: mergeUpcomingInProgressLists(upcomingCourses, inProgressCourses ?? []),
+      all_classes: mergeUpcomingInProgressCourses(upcomingCourses, inProgressCourses ?? []),
       upcoming: upcomingCourses,
       in_progress: inProgressCourses ?? [],
       completed: completedCourses ?? [],

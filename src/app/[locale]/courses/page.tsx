@@ -1,4 +1,4 @@
-import { getCoursesByStatus } from "@/services/courseService";
+import { getCoursesByStatus, mergeUpcomingInProgressCourses } from "@/services/courseService";
 import { getSubjects } from "@/services/subjectService";
 import { HomeCourseTabs } from "@/components/home/HomeCourseTabs";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -19,10 +19,15 @@ export default async function CoursesPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const tHome = await getTranslations({ locale, namespace: "Home" });
-  const [upcomingCourses, subjects] = await Promise.all([
+  const [upcomingCourses, inProgressCourses, subjects] = await Promise.all([
     getCoursesByStatus("upcoming"),
+    getCoursesByStatus("in_progress"),
     getSubjects(),
   ]);
+  const initialAllClassesCourses = mergeUpcomingInProgressCourses(
+    upcomingCourses,
+    inProgressCourses
+  );
 
   return (
     <div className="min-w-0 px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
@@ -39,6 +44,7 @@ export default async function CoursesPage({ params }: Props) {
               upcomingCourses={upcomingCourses}
               page="courses"
               subjects={subjects}
+              initialAllClassesCourses={initialAllClassesCourses}
             />
           </div>
         </section>

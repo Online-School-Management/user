@@ -59,17 +59,8 @@ export async function fetchCoursesForFilter(params: CourseFilterParams): Promise
   }
 }
 
-/**
- * Upcoming + in-progress (deduped by id), optional subject filter. Used for "All classes" tab.
- */
-export async function fetchUpcomingAndInProgressForFilter(params: {
-  subjectId?: number;
-}): Promise<Course[]> {
-  const subjectId = params.subjectId;
-  const [upcoming, inProgress] = await Promise.all([
-    fetchCoursesForFilter({ status: "upcoming", subjectId }),
-    fetchCoursesForFilter({ status: "in_progress", subjectId }),
-  ]);
+/** Merge upcoming + in-progress lists, deduped by course id (upcoming first). */
+export function mergeUpcomingInProgressCourses(upcoming: Course[], inProgress: Course[]): Course[] {
   const seen = new Set<number>();
   const merged: Course[] = [];
   for (const c of upcoming) {
@@ -85,6 +76,20 @@ export async function fetchUpcomingAndInProgressForFilter(params: {
     }
   }
   return merged;
+}
+
+/**
+ * Upcoming + in-progress (deduped by id), optional subject filter. Used for "All classes" tab.
+ */
+export async function fetchUpcomingAndInProgressForFilter(params: {
+  subjectId?: number;
+}): Promise<Course[]> {
+  const subjectId = params.subjectId;
+  const [upcoming, inProgress] = await Promise.all([
+    fetchCoursesForFilter({ status: "upcoming", subjectId }),
+    fetchCoursesForFilter({ status: "in_progress", subjectId }),
+  ]);
+  return mergeUpcomingInProgressCourses(upcoming, inProgress);
 }
 
 /**

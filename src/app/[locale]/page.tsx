@@ -1,4 +1,4 @@
-import { getCoursesByStatus } from "@/services/courseService";
+import { getCoursesByStatus, mergeUpcomingInProgressCourses } from "@/services/courseService";
 import { getSubjects } from "@/services/subjectService";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeCourseTabs } from "@/components/home/HomeCourseTabs";
@@ -20,10 +20,15 @@ export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Home");
-  const [upcomingCourses, subjects] = await Promise.all([
+  const [upcomingCourses, inProgressCourses, subjects] = await Promise.all([
     getCoursesByStatus("upcoming"),
+    getCoursesByStatus("in_progress"),
     getSubjects(),
   ]);
+  const initialAllClassesCourses = mergeUpcomingInProgressCourses(
+    upcomingCourses,
+    inProgressCourses
+  );
 
   return (
     <div className="min-w-0 px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
@@ -38,7 +43,11 @@ export default async function HomePage({ params }: Props) {
             {t("classesHeading")}
           </h2>
           <div className="mt-6 sm:mt-8">
-            <HomeCourseTabs upcomingCourses={upcomingCourses} subjects={subjects} />
+            <HomeCourseTabs
+              upcomingCourses={upcomingCourses}
+              subjects={subjects}
+              initialAllClassesCourses={initialAllClassesCourses}
+            />
           </div>
         </section>
       </div>
