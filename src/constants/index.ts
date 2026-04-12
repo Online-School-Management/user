@@ -15,6 +15,7 @@ export const DEFAULT_OG_IMAGE_PATH = "/og";
 export const API_ENDPOINTS = {
   frontend: {
     courses: `${API_BASE_URL}/api/v1/frontend/courses`,
+    subjects: `${API_BASE_URL}/api/v1/frontend/subjects`,
     courseBySlug: (slug: string) =>
       `${API_BASE_URL}/api/v1/frontend/courses/${slug}`,
     authGoogleRedirect: `${API_BASE_URL}/api/v1/frontend/auth/google/redirect`,

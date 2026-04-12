@@ -1,11 +1,12 @@
 {
   "Common": {
     "siteName": "Tip-Top Education",
-    "course": "သင်တန်း"
+    "course": "အတန်း",
+    "siteTagline": "Learn today, Brighten in decoding, Your dreams tomorrow."
   },
   "Nav": {
     "home": "ပင်မစာမျက်နှာ",
-    "courses": "သင်တန်းများ",
+    "courses": "အတန်းများ",
     "articles": "ဆောင်းပါးများ",
     "contact": "ဆက်သွယ်ရန်",
     "login": "အကောင့်ဝင်မည်",
@@ -17,11 +18,34 @@
     "language": "ဘာသာစကား"
   },
   "Home": {
-    "ourCourses": "အတန်းများ"
+    "heroEyebrow": "<brand>Tip-Top</brand> <accent>Education</accent>",
+    "heroTitle": "ကျောင်းသားနှင့် စတင်သင်ယူသူများအတွက် ကွန်ပျူတာအတန်းများ",
+    "heroDescription": "ကလေးတွေနဲ့ အခြေခံစတင်သူတိုင်းအတွက် - Live သင်တန်းများ၊ အချိန်ဇယားအစုံအလင်နဲ့ အွန်လိုင်းကနေ အလွယ်တကူ အပ်နှံနိုင်ပါတယ်။",
+    "ctaBrowseCourses": "အတန်းများ ကြည့်ရန်",
+    "ctaContact": "ဆက်သွယ်ရန်",
+    "classesHeading": "အတန်းများ",
+    "tablistLabel": "အတန်းအခြေအနေအလိုက်",
+    "tabUpcoming": "အတန်းသစ်",
+    "tabInProgress": "သင်ကြားဆဲ",
+    "tabCompleted": "ပြီးဆုံး",
+    "emptyUpcoming": "အတန်းသစ် စာရင်းမရှိသေးပါ။ သင်ကြားဆဲ အတန်းများကို ကြည့်ရှုပါ။",
+    "emptyInProgress": "ယခု သင်ကြားနေသော အတန်းမရှိသေးပါ။ အတန်းသစ်များတွင် စာရင်းသွင်းနိုင်ပါသည်။",
+    "emptyCompleted": "ပြီးဆုံးသော အတန်းများ မပြသရသေးပါ။",
+    "browseAllCourses": "အတန်းအားလုံး ကြည့်ရန်",
+    "subjectFilterLabel": "ဘာသာရပ်အလိုက် စစ်ထုတ်ရန်",
+    "allSubjects": "အားလုံး",
+    "emptyForSubjectUpcoming": "{subject} အတွက် အတန်းအသစ်များ မရှိသေးပါ",
+    "emptyForSubjectInProgress": "{subject} အတွက် သင်ကြားဆဲ အတန်းများ မရှိသေးပါ",
+    "emptyForSubjectCompleted": "{subject} အတွက် ပြီးဆုံးသော အတန်းများ မရှိသေးပါ",
+    "subjectUnknown": "ဤဘာသာရပ်",
+    "resultsHeadingUpcoming": "{subject} အတွက် အတန်းအသစ်များ",
+    "resultsHeadingInProgress": "{subject} အတွက် သင်ကြားဆဲ အတန်းများ",
+    "resultsHeadingCompleted": "{subject} အတွက် ပြီးဆုံးသော အတန်းများ",
+    "loadingClasses": "အတန်းများ ဖတ်နေပါသည်…"
   },
   "Courses": {
     "ourCourses": "အတန်းများ",
-    "browseDescription": "သင်တန်းများ ကြည့်ရှုပါ။",
+    "browseDescription": "အတန်းများ ကြည့်ရှုပါ။",
     "upcomingClasses": "အတန်းသစ်များ",
     "inProgressClasses": "သင်ကြားဆဲ အတန်းများ",
     "completedClasses": "ပြီးဆုံးသော အတန်းများ"
@@ -35,18 +59,18 @@
     "monthlyFee": "လစဉ်ကြေး",
     "totalFee": "စုစုပေါင်းကြေး",
     "free": "အခမဲ့",
-    "contentComingSoon": "သင်တန်းအသေးစိတ် မကြာမီ ထည့်သွင်းပါမည်။",
-    "enrollCta": "ဤသင်တန်းကို စာရင်းသွင်းမည်",
+    "contentComingSoon": "အတန်းအသေးစိတ် မကြာမီ ထည့်သွင်းပါမည်။",
+    "enrollCta": "ဤအတန်းကို စာရင်းသွင်းမည်",
     "enrollCtaLoading": "ဆောင်နေသည်...",
     "alreadyEnrolled": "စာရင်းသွင်းပြီးပါပြီ",
     "backToClasses": "← အတန်းများသို့ ပြန်သွားမည်",
     "classInfoTitle": "အတန်းနှင့်သက်ဆိုင်သော အချက်အလက်များ",
-    "classType": "သင်တန်းအမျိုးအစား",
+    "classType": "အတန်းအမျိုးအစား",
     "totalHours": "စုစုပေါင်းနာရီ",
     "startDate": "စတင် နေ့",
     "endDate": "ပြီးဆုံးနေ့",
     "status": "အခြေအနေ",
-    "aboutClassTitle": "သင်တန်းအကြောင်း",
+    "aboutClassTitle": "အတန်းအကြောင်း",
     "unknown": "-",
     "status_upcoming": "အတန်းအသစ်",
     "status_in_progress": "သင်ကြားနေဆဲ",
@@ -65,10 +89,10 @@
   },
   "CourseCard": {
     "viewDetails": "အသေးစိတ်ကြည့်ရန် →",
-    "subjectFallback": "သင်တန်း",
+    "subjectFallback": "အတန်း",
     "free": "အခမဲ့",
     "duration": "ကြာချိန်",
-    "fee": "သင်တန်း ကြေး",
+    "fee": "အတန်း ကြေး",
     "startDate": "စတင်ရက်",
     "month": "လ",
     "months": "လ",
@@ -78,7 +102,7 @@
     "weeklySchedule": "အပတ်စဉ် အချိန်"
   },
   "CourseGrid": {
-    "empty": "သင်တန်းများ မရရှိနိုင်သေးပါ။"
+    "empty": "အတန်းများ မရရှိနိုင်သေးပါ။"
   },
   "ArticleCard": {
     "readMore": "ဆက်ဖတ်ရန် →"
@@ -129,18 +153,20 @@
     "placeholder": "ကိုယ်ရေးအချက်အလက် စာမျက်နှာ မကြာမီ ထည့်သွင်းပါမည်။"
   },
   "Enroll": {
-    "title": "<course>{courseName}</course> အတန်း အတွက် စာရင်းသွင်းပါ",
-    "inCourse": "ဤသင်တန်းကို စာရင်းသွင်းမည်",
+    "title": "<highlight>{courseName}</highlight> အတွက် စာရင်းသွင်းပါ",
+    "metaDescription": "Tip-Top Education တွင် {className} အတွက် စာရင်းသွင်းပါ။",
+    "ogSubtitle": "စာရင်းသွင်းရန်",
+    "inCourse": "ဤအတန်းကို စာရင်းသွင်းမည်",
     "placeholder": "စာရင်းသွင်းခြင်း ဖောင်းနှင့် ငွေပေးချေမှု မကြာမီ ထည့်သွင်းပါမည်။",
-    "backToCourse": "← သင်တန်းအသေးစိတ်သို့ ပြန်သွားမည်",
-    "enrollmentClosedMessage": "ဤသင်တန်းအတွက် စာရင်းသွင်းမှု ပိတ်ပြီးပါပြီ။",
-    "enrollmentClosedBack": "သင်တန်းသို့ ပြန်သွားမည်",
+    "backToCourse": "← အတန်းအသေးစိတ်သို့ ပြန်သွားမည်",
+    "enrollmentClosedMessage": "ဤအတန်းအတွက် စာရင်းသွင်းမှု ပိတ်ပြီးပါပြီ။",
+    "enrollmentClosedBack": "အတန်းသို့ ပြန်သွားမည်",
     "checkingAuth": "ဝင်ရောက်ထားမှု စစ်ဆေးနေသည်...",
     "needGoogleLogin": "အတန်းအပ်ရန် Google(Gmail) ဖြင့် အရင်ဝင်ရောက်ပါ။",
     "continueWithGoogle": "Google ဖြင့် ဝင်ရောက်မည်",
     "loginSuccess": "Google ဝင်ရောက်မှု အောင်မြင်ပါသည်။ ဖောင်တင်နိုင်ပါပြီ။",
     "loginFailed": "Google ဝင်ရောက်မှု မအောင်မြင်ပါ",
-    "courseName": "သင်တန်းအမည်",
+    "courseName": "အတန်းအမည်",
     "subjectName": "ဘာသာရပ်",
     "nameEn": "အမည် (English လိုဖြည့်ပါ)",
     "age": "အသက်",
@@ -161,7 +187,7 @@
     "submitFailed": "စာရင်းသွင်းတောင်းဆိုမှု မအောင်မြင်ပါ။",
     "pendingNotice": "သင်၏ စာရင်းသွင်းတောင်းဆိုမှုကို Admin စိစစ်ဆဲဖြစ်ပါသည်။",
     "pendingNoticeMm": "သင်၏ စာရင်းသွင်းတောင်းဆိုမှုကို Admin စိစစ်ဆဲဖြစ်ပါသည်။",
-    "alreadyPendingNotice": "ဤသင်တန်းအတွက် pending တောင်းဆိုမှု ရှိပြီးသားဖြစ်သည်။",
+    "alreadyPendingNotice": "ဤအတန်းအတွက် pending တောင်းဆိုမှု ရှိပြီးသားဖြစ်သည်။",
     "successForCourse": "{courseName} အတွက် အတန်းအပ်ပြီးပါပြီ။",
     "successBackCourses": "အတန်းများသို့ ပြန်သွားမည်",
     "successGoHome": "ပင်မစာမျက်နှာသို့ သွားမည်",
@@ -171,9 +197,9 @@
   "Metadata": {
     "defaultTitle": "Tip-Top Education",
     "defaultDescription": "အရည်အသွေးမြင့် ပညာရေးဖြင့် သင်ယူပါ၊ ကြီးထွားပါ၊ အောင်မြင်ပါ။",
-    "coursesTitle": "သင်တန်းများ | Tip-Top Education",
-    "coursesDescription": "သင်တန်းများ ကြည့်ရှုပါ။",
-    "courseTitle": "သင်တန်း | Tip-Top Education",
+    "coursesTitle": "အတန်းများ | Tip-Top Education",
+    "coursesDescription": "အတန်းများ ကြည့်ရှုပါ။",
+    "classTitle": "အတန်း | Tip-Top Education",
     "articlesTitle": "ဆောင်းပါးများ | Tip-Top Education",
     "articlesDescription": "ကျောင်းသားများနှင့် သင်ယူသူများအတွက် ဆောင်းပါးများနှင့် အရင်းအမြစ်များ။",
     "contactTitle": "ဆက်သွယ်ရန် | Tip-Top Education",

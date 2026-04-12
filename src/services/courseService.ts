@@ -34,6 +34,31 @@ export async function getCoursesByStatus(
   }
 }
 
+export type CourseFilterParams = {
+  status: "upcoming" | "in_progress" | "completed";
+  /** When set, server filters by subject; omit for all subjects. */
+  subjectId?: number;
+};
+
+/**
+ * Client-only fetch: always bypasses cache so tab / filter clicks see fresh API data.
+ */
+export async function fetchCoursesForFilter(params: CourseFilterParams): Promise<Course[]> {
+  try {
+    const search = new URLSearchParams({ status: params.status });
+    if (params.subjectId != null && params.subjectId > 0) {
+      search.set("subject_id", String(params.subjectId));
+    }
+    const url = `${API_ENDPOINTS.frontend.courses}?${search.toString()}`;
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) return [];
+    const json = await res.json();
+    return Array.isArray(json?.data) ? json.data : [];
+  } catch {
+    return [];
+  }
+}
+
 /**
  * Fetch single course by slug (for server or client).
  */

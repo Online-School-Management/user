@@ -11,12 +11,14 @@ type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const course = await getCourseBySlug(slug);
   const t = await getTranslations({ locale, namespace: "Metadata" });
+  const tEnroll = await getTranslations({ locale, namespace: "Enroll" });
   if (!course) return { title: t("enrollTitle") };
   const title = `${course.title} | ${SITE_NAME}`;
-  const description = `Enroll in ${course.title}.`;
-  const ogImage = `${APP_BASE_URL}/og?title=${encodeURIComponent(course.title)}&subtitle=${encodeURIComponent(`Enroll now`)}`;
+  const description = tEnroll("metaDescription", { className: course.title });
+  const ogImage = `${APP_BASE_URL}/og?title=${encodeURIComponent(course.title)}&subtitle=${encodeURIComponent(tEnroll("ogSubtitle"))}`;
   return buildPageMetadata(title, description, locale, `enroll/${slug}`, {
     image: ogImage,
     imageAlt: course.title,
@@ -55,7 +57,7 @@ export default async function EnrollPage({ params }: Props) {
         <h1 className="text-xl font-medium text-slate-900 sm:text-2xl">
           {t.rich("title", {
             courseName: course.title,
-            course: (chunks) => (
+            highlight: (chunks) => (
               <span className="font-bold text-primary">{chunks}</span>
             ),
           })}

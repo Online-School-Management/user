@@ -24,7 +24,7 @@ const navPaths = [
   { href: "/contact", key: "contact" as const },
 ] as const;
 
-const hiddenNavPaths = new Set(["/contact", "/courses"]);
+const hiddenNavPaths = new Set(["/contact"]);
 
 function ChevronDown({ open }: { open: boolean }) {
   return (
@@ -122,7 +122,7 @@ function AccountDropdown({
   return createPortal(
     <div
       ref={dropdownRef}
-      className="fixed z-[9999] min-w-[10rem] rounded-lg border border-slate-200 bg-white py-1 shadow-xl"
+      className="fixed z-[9999] min-w-[10rem] rounded-lg border border-white/40 bg-white/60 py-1 shadow-xl backdrop-blur-xl"
       style={{ top: pos.top, right: pos.right }}
       role="menu"
     >
@@ -223,7 +223,7 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-[100] w-full border-b border-slate-200/80 bg-white/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/80">
+    <header className="sticky top-0 z-[100] w-full border-b border-white/40 bg-white/60 shadow-sm backdrop-blur-xl">
       <div className="mx-auto flex h-14 min-h-14 min-w-0 max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
@@ -313,7 +313,7 @@ export function Navbar() {
         {/* Mobile menu button */}
         <button
           type="button"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 md:hidden"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-slate-600 transition-colors hover:bg-white/40 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 md:hidden"
           onClick={() => setMenuOpen((prev) => !prev)}
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
@@ -333,7 +333,7 @@ export function Navbar() {
       >
         <div className="min-h-0 max-h-[calc(100dvh-3.5rem)] overflow-y-auto overflow-x-hidden">
           <nav
-            className="border-t border-slate-200/80 bg-white px-4 py-4 shadow-sm"
+            className="border-t border-white/40 bg-white/60 px-4 py-4 shadow-sm backdrop-blur-xl"
             aria-label="Main navigation"
           >
           <ul className="flex flex-col gap-1">

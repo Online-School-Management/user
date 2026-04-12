@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { APP_BASE_URL, SITE_NAME, DEFAULT_OG_IMAGE_PATH } from "@/constants";
+import { GlobalAppBackdrop } from "@/components/layout/GlobalAppBackdrop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,17 +47,20 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} relative flex min-h-screen flex-col antialiased`}
       >
-        {children}
-        <Script
-          src="https://elfsightcdn.com/platform.js"
-          strategy="lazyOnload"
-        />
-        <div
-          className="elfsight-app-e436f6d5-42fe-42dd-8b5a-4514df24877a"
-          data-elfsight-app-lazy
-        />
+        <GlobalAppBackdrop />
+        <div className="relative z-10 flex min-h-screen min-w-0 flex-1 flex-col">
+          {children}
+          <Script
+            src="https://elfsightcdn.com/platform.js"
+            strategy="lazyOnload"
+          />
+          <div
+            className="elfsight-app-e436f6d5-42fe-42dd-8b5a-4514df24877a"
+            data-elfsight-app-lazy
+          />
+        </div>
       </body>
     </html>
   );

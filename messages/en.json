@@ -1,11 +1,12 @@
 {
   "Common": {
     "siteName": "Tip-Top Education",
-    "course": "Course"
+    "course": "Class",
+    "siteTagline": "Learn today, Brighten in decoding, Your dreams tomorrow."
   },
   "Nav": {
     "home": "Home",
-    "courses": "Courses",
+    "courses": "Classes",
     "articles": "Articles",
     "contact": "Contact",
     "login": "Login",
@@ -17,11 +18,34 @@
     "language": "Language"
   },
   "Home": {
-    "ourCourses": "Class"
+    "heroEyebrow": "<brand>Tip-Top</brand> <accent>Education</accent>",
+    "heroTitle": "Practical computer training for every learner",
+    "heroDescription": "From kids to beginners — explore live classes, clear schedules, and simple online enrollment.",
+    "ctaBrowseCourses": "Browse classes",
+    "ctaContact": "Contact us",
+    "classesHeading": "Classes",
+    "tablistLabel": "Classes by status",
+    "tabUpcoming": "Upcoming",
+    "tabInProgress": "In progress",
+    "tabCompleted": "Completed",
+    "emptyUpcoming": "No upcoming classes are listed yet. Browse all classes to see what is available.",
+    "emptyInProgress": "No classes are in session right now. Check upcoming classes to join the next intake.",
+    "emptyCompleted": "No completed classes to show yet.",
+    "browseAllCourses": "View all classes",
+    "subjectFilterLabel": "Filter by subject",
+    "allSubjects": "All",
+    "emptyForSubjectUpcoming": "No upcoming classes for {subject} yet.",
+    "emptyForSubjectInProgress": "No in-progress classes for {subject} yet.",
+    "emptyForSubjectCompleted": "No completed classes for {subject} yet.",
+    "subjectUnknown": "this subject",
+    "resultsHeadingUpcoming": "{subject} — upcoming classes",
+    "resultsHeadingInProgress": "{subject} — in-progress classes",
+    "resultsHeadingCompleted": "{subject} — completed classes",
+    "loadingClasses": "Loading classes…"
   },
   "Courses": {
-    "ourCourses": "Class",
-    "browseDescription": "Browse our courses.",
+    "ourCourses": "Classes",
+    "browseDescription": "Browse our classes.",
     "upcomingClasses": "Upcoming classes",
     "inProgressClasses": "Classes in progress",
     "completedClasses": "Completed classes"
@@ -35,8 +59,8 @@
     "monthlyFee": "Monthly fee",
     "totalFee": "Total fee",
     "free": "Free",
-    "contentComingSoon": "Course detail content coming soon.",
-    "enrollCta": "Enroll in this course",
+    "contentComingSoon": "Class details will be available soon.",
+    "enrollCta": "Enroll in this class",
     "enrollCtaLoading": "Loading...",
     "alreadyEnrolled": "Already Enrolled",
     "backToClasses": "← Back to classes",
@@ -65,7 +89,7 @@
   },
   "CourseCard": {
     "viewDetails": "View details →",
-    "subjectFallback": "Course",
+    "subjectFallback": "Class",
     "free": "Free",
     "duration": "Duration",
     "fee": "Fee",
@@ -78,7 +102,7 @@
     "weeklySchedule": "Weekly schedule"
   },
   "CourseGrid": {
-    "empty": "No courses available at the moment."
+    "empty": "No classes available at the moment."
   },
   "ArticleCard": {
     "readMore": "Read more →"
@@ -106,7 +130,7 @@
   },
   "Contact": {
     "title": "Contact",
-    "description": "Have a question or want to enroll? Reach out and we'll get back to you.",
+    "description": "Have a question or want to join a class? Reach out and we'll get back to you.",
     "placeholder": "Contact form and details will be added here."
   },
   "Login": {
@@ -129,18 +153,20 @@
     "placeholder": "Profile page coming soon."
   },
   "Enroll": {
-    "title": "Enroll for <course>{courseName}</course>",
-    "inCourse": "Enroll in this course",
+    "title": "Enroll for <highlight>{courseName}</highlight>",
+    "metaDescription": "Enroll for {className} at Tip-Top Education.",
+    "ogSubtitle": "Enroll now",
+    "inCourse": "Enroll in this class",
     "placeholder": "Enrollment form and payment flow will be added here.",
-    "backToCourse": "← Back to course details",
-    "enrollmentClosedMessage": "Enrollment has closed for this course.",
-    "enrollmentClosedBack": "Back to course",
+    "backToCourse": "← Back to class details",
+    "enrollmentClosedMessage": "Enrollment has closed for this class.",
+    "enrollmentClosedBack": "Back to class",
     "checkingAuth": "Checking login status...",
     "needGoogleLogin": "Please login with Google before submitting enrollment request.",
     "continueWithGoogle": "Login with Google",
     "loginSuccess": "Google login successful. You can submit the form now.",
     "loginFailed": "Google login failed",
-    "courseName": "Course name",
+    "courseName": "Class name",
     "subjectName": "Subject",
     "nameEn": "Name (Fill in English)",
     "age": "Age",
@@ -161,7 +187,7 @@
     "submitFailed": "Failed to submit enrollment request.",
     "pendingNotice": "Your enrollment request is pending admin approval.",
     "pendingNoticeMm": "သင်၏ စာရင်းသွင်းတောင်းဆိုမှုကို Admin စိစစ်ဆဲဖြစ်ပါသည်။",
-    "alreadyPendingNotice": "You already have a pending request for this course.",
+    "alreadyPendingNotice": "You already have a pending request for this class.",
     "successForCourse": "Enrollment submitted for {courseName}.",
     "successBackCourses": "Back to classes",
     "successGoHome": "Go to home",
@@ -171,9 +197,9 @@
   "Metadata": {
     "defaultTitle": "Tip-Top Education",
     "defaultDescription": "Computer Training School",
-    "coursesTitle": "Courses | Tip-Top Education",
-    "coursesDescription": "Browse our courses.",
-    "courseTitle": "Course | Tip-Top Education",
+    "coursesTitle": "Classes | Tip-Top Education",
+    "coursesDescription": "Browse our classes.",
+    "classTitle": "Class | Tip-Top Education",
     "articlesTitle": "Articles | Tip-Top Education",
     "articlesDescription": "Articles and resources for students and learners.",
     "contactTitle": "Contact | Tip-Top Education",

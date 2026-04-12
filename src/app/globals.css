@@ -3,16 +3,22 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  /* Education platform brand */
-  --primary: #3366FF;
-  --secondary: #FF9900;
+  /* Tip-Top logo: royal blue wordmark + orange icon — primary = blue, brand-orange = #F39C12 */
+  --primary: #2e5bff;
+  --primary-foreground: #ffffff;
+  --secondary: #f39c12;
+  --brand-orange: #f39c12;
+  --brand-navy: #0f2749;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-navy: var(--brand-navy);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -26,11 +32,98 @@
 
 html {
   overflow-x: hidden;
+  background-color: var(--backdrop-fallback);
 }
 
 body {
-  background: var(--background);
+  background: transparent;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   min-width: 0;
+}
+
+/* Fixed viewport backdrop — scrolls with browser chrome only; content uses higher z-index */
+:root {
+  --backdrop-fallback: #f1f5fb;
+}
+
+.global-app-backdrop__base {
+  background: linear-gradient(
+    155deg,
+    #eef4ff 0%,
+    #faf8f6 36%,
+    #f4f7fc 65%,
+    #fff6ed 100%
+  );
+}
+
+.global-app-backdrop__mesh {
+  background-image:
+    radial-gradient(ellipse 120% 80% at 0% -20%, rgb(46 91 255 / 0.14), transparent 55%),
+    radial-gradient(ellipse 90% 70% at 100% 0%, rgb(243 156 18 / 0.1), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgb(46 91 255 / 0.08), transparent 45%);
+}
+
+.global-app-backdrop__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+}
+
+.global-app-backdrop__blob--blue {
+  width: min(72vw, 52rem);
+  height: min(48vh, 28rem);
+  right: -12%;
+  top: -8%;
+  background: rgb(46 91 255 / 0.22);
+}
+
+.global-app-backdrop__blob--orange {
+  width: min(58vw, 40rem);
+  height: min(42vh, 22rem);
+  left: -14%;
+  bottom: -6%;
+  background: rgb(243 156 18 / 0.16);
+}
+
+.global-app-backdrop__blob--blue-soft {
+  width: min(48vw, 36rem);
+  height: min(36vh, 20rem);
+  left: 22%;
+  top: 38%;
+  background: rgb(46 91 255 / 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --backdrop-fallback: #0a0f18;
+  }
+
+  .global-app-backdrop__base {
+    background: linear-gradient(
+      155deg,
+      #0b1220 0%,
+      #101a2e 42%,
+      #121520 100%
+    );
+  }
+
+  .global-app-backdrop__mesh {
+    background-image:
+      radial-gradient(ellipse 120% 80% at 0% -20%, rgb(46 91 255 / 0.18), transparent 55%),
+      radial-gradient(ellipse 90% 70% at 100% 0%, rgb(243 156 18 / 0.12), transparent 50%),
+      radial-gradient(ellipse 70% 50% at 50% 100%, rgb(46 91 255 / 0.1), transparent 45%);
+  }
+
+  .global-app-backdrop__blob--blue {
+    background: rgb(46 91 255 / 0.2);
+  }
+
+  .global-app-backdrop__blob--orange {
+    background: rgb(243 156 18 / 0.12);
+  }
+
+  .global-app-backdrop__blob--blue-soft {
+    background: rgb(46 91 255 / 0.08);
+  }
 }

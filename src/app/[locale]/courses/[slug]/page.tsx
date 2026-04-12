@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const course = await getCourseBySlug(slug);
   const t = await getTranslations({ locale, namespace: "Metadata" });
-  if (!course) return { title: t("courseTitle") };
+  if (!course) return { title: t("classTitle") };
   const title = `${course.title} | ${SITE_NAME}`;
   const rawDescription = course.description
     ? course.description.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim()

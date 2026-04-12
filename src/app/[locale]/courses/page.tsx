@@ -1,6 +1,6 @@
 import { getCoursesByStatus } from "@/services/courseService";
-import { CourseGrid } from "@/components/courses/CourseGrid";
-import { UpcomingIcon, InProgressIcon, CompletedIcon } from "@/components/icons/SectionIcons";
+import { getSubjects } from "@/services/subjectService";
+import { HomeCourseTabs } from "@/components/home/HomeCourseTabs";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
@@ -18,44 +18,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CoursesPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("Courses");
-  const [upcomingCourses, inProgressCourses, completedCourses] = await Promise.all([
+  const tHome = await getTranslations({ locale, namespace: "Home" });
+  const [upcomingCourses, subjects] = await Promise.all([
     getCoursesByStatus("upcoming"),
-    getCoursesByStatus("in_progress"),
-    getCoursesByStatus("completed"),
+    getSubjects(),
   ]);
 
   return (
-    <section className="min-w-0 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <div className="mx-auto min-w-0 max-w-6xl space-y-16">
-        <div>
-          <h1 className="flex items-center gap-2 text-lg font-semibold text-slate-900 sm:text-xl">
-            <UpcomingIcon />
-            {t("upcomingClasses")}
+    <div className="min-w-0 px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+      <div className="mx-auto min-w-0 max-w-6xl space-y-10 sm:space-y-12">
+        <section className="min-w-0" aria-labelledby="courses-classes-heading">
+          <h1
+            id="courses-classes-heading"
+            className="text-lg font-semibold tracking-tight text-slate-900 sm:text-xl"
+          >
+            {tHome("classesHeading")}
           </h1>
-          <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <CourseGrid courses={upcomingCourses} />
+          <div className="mt-6 sm:mt-8">
+            <HomeCourseTabs
+              upcomingCourses={upcomingCourses}
+              page="courses"
+              subjects={subjects}
+            />
           </div>
-        </div>
-        <div>
-          <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-900 sm:text-xl">
-            <InProgressIcon />
-            {t("inProgressClasses")}
-          </h2>
-          <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <CourseGrid courses={inProgressCourses} />
-          </div>
-        </div>
-        <div>
-          <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-900 sm:text-xl">
-            <CompletedIcon />
-            {t("completedClasses")}
-          </h2>
-          <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <CourseGrid courses={completedCourses} />
-          </div>
-        </div>
+        </section>
       </div>
-    </section>
+    </div>
   );
 }
