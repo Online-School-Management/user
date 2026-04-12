@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogImage = `${APP_BASE_URL}/og?title=${encodeURIComponent("Articles")}&subtitle=${encodeURIComponent(ogSubtitle)}`;
   return buildPageMetadata(title, description, locale, "articles", {
     image: ogImage,
-    imageAlt: "Articles | Tip-Top Education",
+    imageAlt: "Articles | Tip - Top Education",
   });
 }
 

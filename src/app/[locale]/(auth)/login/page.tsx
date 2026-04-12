@@ -38,7 +38,7 @@ export default async function LoginPage({ params, searchParams }: Props) {
             <div className="space-y-4 text-center">
               <Image
                 src="/tiptop-logo.svg"
-                alt="Tip-Top Education"
+                alt="Tip - Top Education"
                 width={170}
                 height={44}
                 className="mx-auto h-9 w-auto"

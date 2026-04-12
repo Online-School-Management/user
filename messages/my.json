@@ -1,8 +1,8 @@
 {
   "Common": {
-    "siteName": "Tip-Top Education",
+    "siteName": "Tip - Top Education",
     "course": "အတန်း",
-    "siteTagline": "Learn today, Brighten in decoding, Your dreams tomorrow."
+    "siteTagline": "Learn today, Brighten in decoding your dreams tomorrow."
   },
   "Nav": {
     "home": "ပင်မစာမျက်နှာ",
@@ -18,7 +18,7 @@
     "language": "ဘာသာစကား"
   },
   "Home": {
-    "heroEyebrow": "<brand>Tip-Top</brand> <accent>Education</accent>",
+    "heroEyebrow": "<brand>Tip - Top</brand> <accent>Education</accent>",
     "heroTitle": "ကျောင်းသားနှင့် စတင်သင်ယူသူများအတွက် ကွန်ပျူတာအတန်းများ",
     "heroDescription": "ကလေးတွေနဲ့ အခြေခံစတင်သူတိုင်းအတွက် - Live သင်တန်းများ၊ အချိန်ဇယားအစုံအလင်နဲ့ အွန်လိုင်းကနေ အလွယ်တကူ အပ်နှံနိုင်ပါတယ်။",
     "ctaBrowseCourses": "အတန်းများ ကြည့်ရန်",
@@ -119,7 +119,7 @@
     "shareOnTelegram": "Telegram တွင် မျှဝေမည်"
   },
   "Footer": {
-    "copyright": "© {year} TipTop Education",
+    "copyright": "© {year} Tip - Top Education",
     "privacy": "ကိုယ်ရေးအချက်အလက် မူဝါဒ",
     "terms": "စည်းကမ်းနှင့် သတ်မှတ်ချက်များ"
   },
@@ -176,7 +176,7 @@
   },
   "Enroll": {
     "title": "<highlight>{courseName}</highlight> အတွက် စာရင်းသွင်းပါ",
-    "metaDescription": "Tip-Top Education တွင် {className} အတွက် စာရင်းသွင်းပါ။",
+    "metaDescription": "Tip - Top Education တွင် {className} အတွက် စာရင်းသွင်းပါ။",
     "ogSubtitle": "စာရင်းသွင်းရန်",
     "inCourse": "ဤအတန်းကို စာရင်းသွင်းမည်",
     "placeholder": "စာရင်းသွင်းခြင်း ဖောင်းနှင့် ငွေပေးချေမှု မကြာမီ ထည့်သွင်းပါမည်။",
@@ -217,21 +217,21 @@
     "loggedOut": "အကောင့်ထွက်ပြီးပါပြီ။"
   },
   "Metadata": {
-    "defaultTitle": "Tip-Top Education",
+    "defaultTitle": "Tip - Top Education",
     "defaultDescription": "အရည်အသွေးမြင့် ပညာရေးဖြင့် သင်ယူပါ၊ ကြီးထွားပါ၊ အောင်မြင်ပါ။",
-    "coursesTitle": "အတန်းများ | Tip-Top Education",
+    "coursesTitle": "အတန်းများ | Tip - Top Education",
     "coursesDescription": "အတန်းများ ကြည့်ရှုပါ။",
-    "classTitle": "အတန်း | Tip-Top Education",
-    "articlesTitle": "ဆောင်းပါးများ | Tip-Top Education",
+    "classTitle": "အတန်း | Tip - Top Education",
+    "articlesTitle": "ဆောင်းပါးများ | Tip - Top Education",
     "articlesDescription": "ကျောင်းသားများနှင့် သင်ယူသူများအတွက် ဆောင်းပါးများနှင့် အရင်းအမြစ်များ။",
-    "contactTitle": "ဆက်သွယ်ရန် | Tip-Top Education",
-    "contactDescription": "Tip-Top Education ကို အွန်လိုင်းမှ ဆက်သွယ်ပါ — Telegram၊ Viber၊ Messenger၊ ဖုန်း သို့မဟုတ် အီးမေးလ်။",
-    "loginTitle": "အကောင့်ဝင်မည် | Tip-Top Education",
+    "contactTitle": "ဆက်သွယ်ရန် | Tip - Top Education",
+    "contactDescription": "Tip - Top Education ကို အွန်လိုင်းမှ ဆက်သွယ်ပါ — Telegram၊ Viber၊ Messenger၊ ဖုန်း သို့မဟုတ် အီးမေးလ်။",
+    "loginTitle": "အကောင့်ဝင်မည် | Tip - Top Education",
     "loginDescription": "သင့်အကောင့်သို့ ဝင်ရောက်ပါ။",
-    "registerTitle": "အကောင့်ဖွင့်မည် | Tip-Top Education",
+    "registerTitle": "အကောင့်ဖွင့်မည် | Tip - Top Education",
     "registerDescription": "အကောင့်အသစ် ဖွင့်ပါ။",
-    "profileTitle": "ကိုယ်ရေးအချက်အလက် | Tip-Top Education",
+    "profileTitle": "ကိုယ်ရေးအချက်အလက် | Tip - Top Education",
     "profileDescription": "သင့်ကိုယ်ရေးအချက်အလက်။",
-    "enrollTitle": "စာရင်းသွင်းမည် | Tip-Top Education"
+    "enrollTitle": "စာရင်းသွင်းမည် | Tip - Top Education"
   }
 }

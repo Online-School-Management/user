@@ -29,7 +29,7 @@ export type PageMetadataOptions = {
  * Builds Next.js Metadata with Open Graph and Twitter Card for a page.
  * Use in generateMetadata() to keep SEO consistent and avoid duplication.
  *
- * @param title - Page title (e.g. "Courses | Tip-Top Education")
+ * @param title - Page title (e.g. "Courses | Tip - Top Education")
  * @param description - Meta description (optional)
  * @param locale - Current locale (e.g. "en", "my")
  * @param path - Path after locale, no leading slash (e.g. "", "courses", "courses/web-design", "enroll/success")

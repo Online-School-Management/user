@@ -4,8 +4,8 @@ import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
-const title = "Privacy Policy | Tip-Top Education";
-const description = "Privacy policy for Tip-Top Education.";
+const title = "Privacy Policy | Tip - Top Education";
+const description = "Privacy policy for Tip - Top Education.";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -22,7 +22,7 @@ export default async function PrivacyPage({ params }: Props) {
         <div className="mx-auto max-w-4xl space-y-8">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Privacy Policy for Tip-Top Education
+              Privacy Policy for Tip - Top Education
             </h1>
             <p className="text-sm text-slate-500">Last Updated: February 23, 2026</p>
             <p className="text-sm text-slate-600">Website: https://www.tiptopeducation.net</p>
@@ -32,7 +32,7 @@ export default async function PrivacyPage({ params }: Props) {
           </div>
 
           <p className="text-slate-700">
-            At Tip-Top Education, we provide computer literacy and digital skills training for
+            At Tip - Top Education, we provide computer literacy and digital skills training for
             students aged 5 to 20 years. We are dedicated to protecting the privacy of our
             students and ensuring a safe online learning environment.
           </p>

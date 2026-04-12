@@ -5,13 +5,13 @@ export const runtime = "edge";
 
 /**
  * Dynamic OG image for link previews.
- * - /og → default branded image ("Tip-Top Education")
+ * - /og → default branded image ("Tip - Top Education")
  * - /og?title=Web+Design&subtitle=Learn+web+design → course-specific branded image
  */
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = request.nextUrl;
-    const title = searchParams.get("title") || "Tip-Top Education";
+    const title = searchParams.get("title") || "Tip - Top Education";
     const subtitle =
       searchParams.get("subtitle") || (searchParams.get("title") ? "" : "Computer Training School");
 
@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
               </div>
             </div>
             <div style={{ fontSize: 22, fontWeight: 600, color: "#94a3b8" }}>
-              Tip-Top Education
+              Tip - Top Education
             </div>
           </div>
 

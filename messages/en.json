@@ -1,8 +1,8 @@
 {
   "Common": {
-    "siteName": "Tip-Top Education",
+    "siteName": "Tip - Top Education",
     "course": "Class",
-    "siteTagline": "Learn today, Brighten in decoding, Your dreams tomorrow."
+    "siteTagline": "Learn today, Brighten in decoding your dreams tomorrow."
   },
   "Nav": {
     "home": "Home",
@@ -18,7 +18,7 @@
     "language": "Language"
   },
   "Home": {
-    "heroEyebrow": "<brand>Tip-Top</brand> <accent>Education</accent>",
+    "heroEyebrow": "<brand>Tip - Top</brand> <accent>Education</accent>",
     "heroTitle": "Practical computer training for every learner",
     "heroDescription": "From kids to beginners — explore live classes, clear schedules, and simple online enrollment.",
     "ctaBrowseCourses": "Browse classes",
@@ -119,7 +119,7 @@
     "shareOnTelegram": "Share on Telegram"
   },
   "Footer": {
-    "copyright": "© {year} TipTop Education. All rights reserved.",
+    "copyright": "© {year} Tip - Top Education. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions"
   },
@@ -156,7 +156,7 @@
     "formErrorMessage": "Please enter a message (at least a few words)."
   },
   "Login": {
-    "title": "Student Login | Tip-Top Education",
+    "title": "Student Login | Tip - Top Education",
     "description": "Sign in to your account.",
     "placeholder": "Login form coming soon.",
     "continueWithGoogle": "Login with Google",
@@ -176,7 +176,7 @@
   },
   "Enroll": {
     "title": "Enroll for <highlight>{courseName}</highlight>",
-    "metaDescription": "Enroll for {className} at Tip-Top Education.",
+    "metaDescription": "Enroll for {className} at Tip - Top Education.",
     "ogSubtitle": "Enroll now",
     "inCourse": "Enroll in this class",
     "placeholder": "Enrollment form and payment flow will be added here.",
@@ -217,21 +217,21 @@
     "loggedOut": "You have been logged out."
   },
   "Metadata": {
-    "defaultTitle": "Tip-Top Education",
+    "defaultTitle": "Tip - Top Education",
     "defaultDescription": "Computer Training School",
-    "coursesTitle": "Classes | Tip-Top Education",
+    "coursesTitle": "Classes | Tip - Top Education",
     "coursesDescription": "Browse our classes.",
-    "classTitle": "Class | Tip-Top Education",
-    "articlesTitle": "Articles | Tip-Top Education",
+    "classTitle": "Class | Tip - Top Education",
+    "articlesTitle": "Articles | Tip - Top Education",
     "articlesDescription": "Articles and resources for students and learners.",
-    "contactTitle": "Contact | Tip-Top Education",
-    "contactDescription": "Contact Tip-Top Education online — Telegram, Viber, Messenger, phone, or email.",
-    "loginTitle": "Login | Tip-Top Education",
+    "contactTitle": "Contact | Tip - Top Education",
+    "contactDescription": "Contact Tip - Top Education online — Telegram, Viber, Messenger, phone, or email.",
+    "loginTitle": "Login | Tip - Top Education",
     "loginDescription": "Sign in to your account.",
-    "registerTitle": "Register | Tip-Top Education",
+    "registerTitle": "Register | Tip - Top Education",
     "registerDescription": "Create an account.",
-    "profileTitle": "Profile | Tip-Top Education",
+    "profileTitle": "Profile | Tip - Top Education",
     "profileDescription": "Your profile.",
-    "enrollTitle": "Enroll | Tip-Top Education"
+    "enrollTitle": "Enroll | Tip - Top Education"
   }
 }

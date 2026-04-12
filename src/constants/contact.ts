@@ -1,6 +1,6 @@
 /**
  * Public contact endpoints. Optional overrides in `.env.local` (`NEXT_PUBLIC_*`).
- * Defaults match Tip-Top Education’s public phone, Telegram, Viber, and Facebook profile.
+ * Defaults match Tip - Top Education’s public phone, Telegram, Viber, and Facebook profile.
  */
 
 const DEFAULT_PHONE_DISPLAY = "09988658887";

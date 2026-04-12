@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const defaultTitle = "Tip-Top Education";
+const defaultTitle = "Tip - Top Education";
 const defaultDescription = "Computer Training School";
 
 export const metadata: Metadata = {
