@@ -267,7 +267,7 @@ export function HomeCourseTabs({
         <div
           role="tablist"
           aria-label={t("subjectFilterLabel")}
-          className="mt-4 flex flex-wrap gap-2 border-b border-white/40 pb-3 sm:gap-2"
+          className="mt-4 grid grid-cols-2 gap-2 border-b border-white/40 pb-3 sm:gap-2 md:grid-cols-3 lg:grid-cols-5"
         >
           {subjectKeys.map((key, index) => {
             const isActive = subjectFilter === key;
@@ -288,13 +288,13 @@ export function HomeCourseTabs({
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => setSubjectFilter(key)}
                 onKeyDown={(e) => onSubjectTabKeyDown(e, index)}
-                className={`rounded-full px-3 py-1.5 text-sm font-medium transition sm:px-4 ${
+                className={`inline-flex w-full min-w-0 items-center justify-center rounded-full px-3 py-1.5 text-sm font-medium transition sm:px-4 ${
                   isActive
                     ? "bg-primary/15 text-primary ring-1 ring-primary/30"
                     : "bg-white/40 text-slate-700 ring-1 ring-white/50 backdrop-blur-sm hover:bg-white/55 hover:text-slate-900"
                 }`}
               >
-                {label}
+                <span className="truncate">{label}</span>
               </button>
             );
           })}
