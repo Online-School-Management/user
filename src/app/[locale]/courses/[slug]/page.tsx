@@ -24,9 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description =
     rawDescription || course.subject?.name || `${course.title} - Learn at ${SITE_NAME}`;
   const ogSubtitle = rawDescription.slice(0, 100) || course.subject?.name || "";
-  const ogImage = course.image_url?.trim()
-    ? course.image_url
-    : `${APP_BASE_URL}/og?title=${encodeURIComponent(course.title)}&subtitle=${encodeURIComponent(ogSubtitle)}`;
+  const ogImage = `${APP_BASE_URL}/og?title=${encodeURIComponent(course.title)}&subtitle=${encodeURIComponent(ogSubtitle)}`;
   return buildPageMetadata(title, description, locale, `courses/${slug}`, {
     image: ogImage,
     imageAlt: course.title,
