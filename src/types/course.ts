@@ -18,7 +18,13 @@ export type Course = {
   title: string;
   image_url?: string | null;
   description?: string | null;
-  subject: { id: number; name: string; slug: string } | null;
+  subject: {
+    id: number;
+    name: string;
+    slug: string;
+    image_url?: string | null;
+    description?: string | null;
+  } | null;
   duration: number | null;
   duration_unit: string;
   monthly_fee: number | null;

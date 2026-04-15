@@ -19,6 +19,7 @@ import {
 
 const navPaths = [
   { href: "/", key: "home" as const },
+  { href: "/subjects", key: "subjects" as const },
   { href: "/courses", key: "courses" as const },
   { href: "/articles", key: "articles" as const },
   { href: "/contact", key: "contact" as const },

@@ -46,16 +46,16 @@ export async function HomeHero({ locale }: Props) {
         </div>
         <div className="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col">
           <Link
-            href="/courses"
+            href="/subjects"
             className="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3.5 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
-            {t("ctaBrowseCourses")}
+            {t("ctaExploreLearningPaths")}
           </Link>
           <Link
-            href="/contact"
+            href="/courses"
             className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-center text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-300 focus:ring-offset-2"
           >
-            {t("ctaContact")}
+            {t("ctaBrowseCourses")}
           </Link>
         </div>
       </div>

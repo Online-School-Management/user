@@ -54,7 +54,7 @@ export function buildPageMetadata(
     options?.image ?? DEFAULT_OG_IMAGE_PATH
   );
   const imageAlt = options?.imageAlt ?? SITE_NAME;
-  const desc = description?.trim() || `${SITE_NAME} - Computer Training School`;
+  const desc = description?.trim() || `${SITE_NAME} - Computer & Coding School for Kids`;
   const ogLocale = locale === "my" ? "my_MM" : "en_US";
   const alternateLocaleUrls: Record<string, string> = {};
   for (const loc of ["en", "my"]) {
