@@ -44,7 +44,7 @@ export function SubjectDiscoveryRow({ subject, t }: SubjectDiscoveryRowProps) {
   return (
     <article className="py-10 sm:py-12">
       <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-8">
-        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl bg-slate-100 lg:col-span-5 lg:ml-auto lg:aspect-[20/9] lg:max-w-[92%]">
+        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl bg-slate-100 lg:col-span-5 lg:ml-auto lg:aspect-[19/9] lg:max-w-[92%]">
           {subject.image_url ? (
             <ImageWithLoading
               src={subject.image_url}
