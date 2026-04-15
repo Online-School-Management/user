@@ -163,10 +163,12 @@
     "title": "အကောင့်ဝင်မည်",
     "description": "သင့်အကောင့်သို့ ဝင်ရောက်ပါ။",
     "placeholder": "အကောင့်ဝင်ခြင်း ဖောင်း မကြာမီ ထည့်သွင်းပါမည်။",
+    "pageHeading": "ကျောင်းသား ဝင်ရောက်မည်",
+    "subtitle": "Google သို့မဟုတ် Facebook ဖြင့် ဝင်ရောက်နိုင်ပါသည်။",
     "continueWithGoogle": "Google ဖြင့် ဝင်ရောက်မည်",
     "or": "သို့မဟုတ်",
     "continueWithFacebook": "Facebook ဖြင့် ဝင်ရောက်မည်",
-    "facebookComingSoon": "Facebook login ကို မကြာမီ ထည့်သွင်းပေးပါမည်။"
+    "secureSignIn": "Google သို့မဟုတ် Facebook ဖြင့် လုံခြုံစွာ ဝင်ရောက်နိုင်ပါသည်။ လျှို့ဝှက်စကားလုံး မသိမ်းဆည်းပါ။"
   },
   "Register": {
     "title": "အကောင့်ဖွင့်မည်",

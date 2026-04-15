@@ -163,10 +163,12 @@
     "title": "Student Login | Tip - Top Education",
     "description": "Sign in to your account.",
     "placeholder": "Login form coming soon.",
+    "pageHeading": "Student Login",
+    "subtitle": "Sign in with Google or Facebook to continue.",
     "continueWithGoogle": "Login with Google",
     "or": "or",
     "continueWithFacebook": "Login with Facebook",
-    "facebookComingSoon": "Facebook login will be available soon."
+    "secureSignIn": "Secure sign-in with Google or Facebook. We never store your password."
   },
   "Register": {
     "title": "Register",

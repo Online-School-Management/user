@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "@/i18n/navigation";
 import {
+  buildFacebookLoginUrl,
   buildGoogleLoginUrl,
   clearAuthToken,
   fetchMe,
@@ -294,10 +295,9 @@ export function EnrollmentForm({ courseId, courseSlug, courseTitle, subjectName 
             <span className="h-px flex-1 bg-slate-200" />
           </div>
 
-          <button
-            type="button"
-            disabled
-            className="inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-lg border border-[#4267B2] bg-[#4267B2] px-5 py-2.5 text-sm font-medium text-white opacity-90"
+          <a
+            href={buildFacebookLoginUrl(pathname)}
+            className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#4267B2] bg-[#4267B2] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#365899]"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
               <path
@@ -306,10 +306,7 @@ export function EnrollmentForm({ courseId, courseSlug, courseTitle, subjectName 
               />
             </svg>
             {tLogin("continueWithFacebook")}
-          </button>
-          <p className="mt-2 text-center text-xs text-slate-400">
-            {tLogin("facebookComingSoon")}
-          </p>
+          </a>
         </div>
       </div>
     );

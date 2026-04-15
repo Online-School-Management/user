@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { API_ENDPOINTS } from "@/constants";
+import { buildFacebookLoginUrl, buildGoogleLoginUrl } from "@/services/authService";
 import { buildPageMetadata } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 
@@ -26,9 +26,8 @@ export default async function LoginPage({ params, searchParams }: Props) {
   const fallbackRedirectTo = `/${locale}`;
   const redirectTo =
     redirect_to && redirect_to.startsWith("/") ? redirect_to : fallbackRedirectTo;
-  const googleLoginHref = `${API_ENDPOINTS.frontend.authGoogleRedirect}?redirect_to=${encodeURIComponent(
-    redirectTo
-  )}`;
+  const googleLoginHref = buildGoogleLoginUrl(redirectTo);
+  const facebookLoginHref = buildFacebookLoginUrl(redirectTo);
 
   return (
     <div className="flex min-h-[calc(100dvh-8rem)] items-center bg-slate-50/50 px-4 py-8 sm:px-6 lg:px-8">
@@ -45,8 +44,8 @@ export default async function LoginPage({ params, searchParams }: Props) {
                 priority
               />
               <div className="space-y-1.5">
-                <h1 className="text-lg font-semibold text-slate-900">Student Login</h1>
-                <p className="text-sm text-slate-500">Use your Google account to continue.</p>
+                <h1 className="text-lg font-semibold text-slate-900">{t("pageHeading")}</h1>
+                <p className="text-sm text-slate-500">{t("subtitle")}</p>
               </div>
             </div>
 
@@ -71,10 +70,9 @@ export default async function LoginPage({ params, searchParams }: Props) {
               <span className="h-px flex-1 bg-slate-200" />
             </div>
 
-            <button
-              type="button"
-              disabled
-              className="inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-lg border border-[#4267B2] bg-[#4267B2] px-6 py-3 text-sm font-medium text-white opacity-90"
+            <a
+              href={facebookLoginHref}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#4267B2] bg-[#4267B2] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#365899]"
             >
               <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
                 <path
@@ -83,11 +81,10 @@ export default async function LoginPage({ params, searchParams }: Props) {
                 />
               </svg>
               {t("continueWithFacebook")}
-            </button>
-            <p className="text-center text-xs text-slate-400">{t("facebookComingSoon")}</p>
+            </a>
 
             <div className="space-y-1.5 border-t border-slate-100 pt-4 text-center text-xs text-slate-500">
-              <p>Secure sign-in with Google OAuth. We never store your Google password.</p>
+              <p>{t("secureSignIn")}</p>
               <p>
                 By continuing, you agree to our{" "}
                 <Link href="/terms" className="text-primary hover:underline">

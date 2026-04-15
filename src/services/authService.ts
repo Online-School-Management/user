@@ -47,6 +47,11 @@ export function buildGoogleLoginUrl(redirectTo: string): string {
   return `${API_ENDPOINTS.frontend.authGoogleRedirect}?redirect_to=${redirectParam}`;
 }
 
+export function buildFacebookLoginUrl(redirectTo: string): string {
+  const redirectParam = encodeURIComponent(redirectTo);
+  return `${API_ENDPOINTS.frontend.authFacebookRedirect}?redirect_to=${redirectParam}`;
+}
+
 export async function fetchMe(token: string): Promise<AuthUser | null> {
   try {
     const res = await fetch(API_ENDPOINTS.frontend.authMe, {

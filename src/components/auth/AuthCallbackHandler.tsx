@@ -10,6 +10,7 @@ export function AuthCallbackHandler() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    // Google and Facebook OAuth both redirect with auth=success&token=... (or auth=error&message=...).
     const auth = searchParams.get("auth");
     if (!auth) return;
 
