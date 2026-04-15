@@ -43,14 +43,14 @@ export function SubjectDiscoveryRow({ subject, t }: SubjectDiscoveryRowProps) {
 
   return (
     <article className="py-10 sm:py-12">
-      <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
-        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl bg-slate-100 lg:col-span-4">
+      <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-8">
+        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl bg-slate-100 lg:col-span-5 lg:ml-auto lg:aspect-[20/9] lg:max-w-[92%]">
           {subject.image_url ? (
             <ImageWithLoading
               src={subject.image_url}
               alt={subject.name}
               wrapperClassName="absolute inset-0"
-              sizes="(max-width: 1024px) 100vw, 42vw"
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-slate-200 text-slate-400">
@@ -59,7 +59,7 @@ export function SubjectDiscoveryRow({ subject, t }: SubjectDiscoveryRowProps) {
           )}
         </div>
 
-        <div className="min-w-0 lg:col-span-8 flex flex-col">
+        <div className="min-w-0 lg:col-span-7 flex flex-col">
           <div className="flex items-start justify-between gap-3">
             <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl lg:text-3xl">
               {subject.name}
