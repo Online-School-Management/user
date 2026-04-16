@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = request.nextUrl;
     const title = searchParams.get("title") || "Tip - Top Education";
     const subtitle =
-      searchParams.get("subtitle") || (searchParams.get("title") ? "" : "Computer Training School");
+      searchParams.get("subtitle") || (searchParams.get("title") ? "" : "Computer & Coding School for Kids");
 
     return new ImageResponse(
       (

@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 const defaultTitle = "Tip - Top Education";
-const defaultDescription = "Computer Training School";
+const defaultDescription = "Computer & Coding School for Kids";
 
 /** Elfsight widgets: set NEXT_PUBLIC_ELFSIGHT_ENABLED=false to hide (e.g. APP_VIEWS_LIMIT_REACHED or local dev). */
 const showElfsightWidgets =
