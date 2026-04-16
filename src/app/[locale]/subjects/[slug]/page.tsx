@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, toAbsoluteImageUrl } from "@/lib/seo";
 import { getSubjectBySlug } from "@/services/subjectService";
 import { getCoursesByStatus, mergeUpcomingInProgressCourses } from "@/services/courseService";
 import { CourseCard } from "@/components/courses/CourseCard";
 import { SubjectRichContent } from "@/components/subjects/SubjectRichContent";
-import { APP_BASE_URL } from "@/constants";
 
 export const revalidate = 60;
 
@@ -36,7 +35,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     subject.short_description?.trim().slice(0, 100) ||
     rawDescription.slice(0, 100) ||
     "";
-  const ogImage = `${APP_BASE_URL}/og?title=${encodeURIComponent(subject.name)}&subtitle=${encodeURIComponent(ogSubtitle)}`;
+  const photo = subject.image_url?.trim();
+  const ogImage = photo
+    ? toAbsoluteImageUrl(photo)
+    : toAbsoluteImageUrl(
+        `/og?title=${encodeURIComponent(subject.name)}&subtitle=${encodeURIComponent(ogSubtitle)}`
+      );
 
   return buildPageMetadata(title, description, locale, `subjects/${slug}`, {
     image: ogImage,

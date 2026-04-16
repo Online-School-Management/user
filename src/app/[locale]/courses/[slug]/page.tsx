@@ -7,8 +7,8 @@ import type { Metadata } from "next";
 import { CourseEnrollCta } from "@/components/courses/CourseEnrollCta";
 import { ImageWithLoading } from "@/components/ImageWithLoading";
 import { formatScheduleSummary } from "@/utils/courseFormat";
-import { buildPageMetadata } from "@/lib/seo";
-import { APP_BASE_URL, SITE_NAME } from "@/constants";
+import { buildPageMetadata, toAbsoluteImageUrl } from "@/lib/seo";
+import { SITE_NAME } from "@/constants";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -24,7 +24,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description =
     rawDescription || course.subject?.name || `${course.title} - Learn at ${SITE_NAME}`;
   const ogSubtitle = rawDescription.slice(0, 100) || course.subject?.name || "";
-  const ogImage = `${APP_BASE_URL}/og?title=${encodeURIComponent(course.title)}&subtitle=${encodeURIComponent(ogSubtitle)}`;
+  const photo = course.image_url?.trim();
+  const ogImage = photo
+    ? toAbsoluteImageUrl(photo)
+    : toAbsoluteImageUrl(
+        `/og?title=${encodeURIComponent(course.title)}&subtitle=${encodeURIComponent(ogSubtitle)}`
+      );
   return buildPageMetadata(title, description, locale, `courses/${slug}`, {
     image: ogImage,
     imageAlt: course.title,

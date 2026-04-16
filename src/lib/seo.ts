@@ -35,11 +35,37 @@ export type PageMetadataOptions = {
  * @param path - Path after locale, no leading slash (e.g. "", "courses", "courses/web-design", "enroll/success")
  * @param options - Optional image override and alt text
  */
-/** Ensure image URL is absolute for crawlers (Facebook, Telegram, etc.). */
-function toAbsoluteImageUrl(url: string): string {
-  if (url.startsWith("http://") || url.startsWith("https://")) return url;
-  const path = url.startsWith("/") ? url : `/${url}`;
+/** Upgrade http→https for public OG images (crawlers expect https; skip localhost). */
+function normalizeHttpToHttpsIfNeeded(url: string): string {
+  try {
+    const u = new URL(url);
+    if (u.protocol !== "http:") return url;
+    if (/^(localhost|127\.0\.0\.1)$/i.test(u.hostname)) return url;
+    u.protocol = "https:";
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
+/** Ensure image URL is absolute for crawlers (Facebook, Telegram, etc.). Prefer https:// for absolute URLs. */
+export function toAbsoluteImageUrl(url: string): string {
+  const trimmed = url.trim();
+  if (!trimmed) return trimmed;
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+    return normalizeHttpToHttpsIfNeeded(trimmed);
+  }
+  const path = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
   return `${APP_BASE_URL}${path}`;
+}
+
+/** Our dynamic OG route (`/og`, `/og?...`) always renders 1200×630. External uploads should not use those dimensions. */
+function isNextOgImageRoute(absoluteUrl: string): boolean {
+  try {
+    return new URL(absoluteUrl).pathname === "/og";
+  } catch {
+    return false;
+  }
 }
 
 export function buildPageMetadata(
@@ -50,8 +76,9 @@ export function buildPageMetadata(
   options?: PageMetadataOptions
 ): Metadata {
   const url = path ? `${APP_BASE_URL}/${locale}/${path}` : `${APP_BASE_URL}/${locale}`;
+  const imageRaw = options?.image?.trim();
   const imageUrl = toAbsoluteImageUrl(
-    options?.image ?? DEFAULT_OG_IMAGE_PATH
+    imageRaw && imageRaw.length > 0 ? imageRaw : DEFAULT_OG_IMAGE_PATH
   );
   const imageAlt = options?.imageAlt ?? SITE_NAME;
   const desc = description?.trim() || `${SITE_NAME} - Computer & Coding School for Kids`;
@@ -63,6 +90,10 @@ export function buildPageMetadata(
       : `${APP_BASE_URL}/${loc}`;
   }
 
+  const ogImages = isNextOgImageRoute(imageUrl)
+    ? [{ url: imageUrl, width: 1200, height: 630, alt: imageAlt }]
+    : [{ url: imageUrl, alt: imageAlt }];
+
   const isArticle = options?.article != null;
   const openGraphBase = {
     title,
@@ -71,7 +102,7 @@ export function buildPageMetadata(
     url,
     locale: ogLocale,
     siteName: SITE_NAME,
-    images: [{ url: imageUrl, width: 1200, height: 630, alt: imageAlt }],
+    images: ogImages,
   };
   const openGraph = isArticle && options.article
     ? {
