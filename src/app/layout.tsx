@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { APP_BASE_URL, SITE_NAME, DEFAULT_OG_IMAGE_PATH } from "@/constants";
+import { APP_BASE_URL, SITE_NAME } from "@/constants";
+import { DEFAULT_OG_IMAGE_PATH, toAbsoluteImageUrl } from "@/lib/seo";
 import { GlobalAppBackdrop } from "@/components/layout/GlobalAppBackdrop";
+
+const defaultOgImageUrl = toAbsoluteImageUrl(DEFAULT_OG_IMAGE_PATH);
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,13 +37,13 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: defaultTitle,
     description: defaultDescription,
-    images: [{ url: DEFAULT_OG_IMAGE_PATH, width: 1200, height: 630, alt: SITE_NAME }],
+    images: [{ url: defaultOgImageUrl, alt: SITE_NAME }],
   },
   twitter: {
     card: "summary_large_image",
     title: defaultTitle,
     description: defaultDescription,
-    images: [DEFAULT_OG_IMAGE_PATH],
+    images: [defaultOgImageUrl],
   },
 };
 

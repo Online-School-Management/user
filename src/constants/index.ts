@@ -9,8 +9,6 @@ export const APP_BASE_URL =
   process.env.NEXT_PUBLIC_APP_URL ?? "https://www.tiptopeducation.net";
 
 export const SITE_NAME = "Tip - Top Education";
-/** Default OG image: dynamic PNG route at /og (SVG not supported by Telegram/some crawlers). */
-export const DEFAULT_OG_IMAGE_PATH = "/og";
 
 export const API_ENDPOINTS = {
   frontend: {

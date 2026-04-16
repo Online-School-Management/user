@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import { APP_BASE_URL, SITE_NAME, DEFAULT_OG_IMAGE_PATH } from "@/constants";
+import { APP_BASE_URL, SITE_NAME } from "@/constants";
+
+/** Default static OG image (`public/tab1.png`) when `options.image` is missing and callers do not use `/og`. */
+export const DEFAULT_OG_IMAGE_PATH = "/tab1.png";
 
 export type ArticleMetadataOptions = {
   /** ISO 8601 date string (e.g. from article.published_at). */
@@ -77,6 +80,7 @@ export function buildPageMetadata(
 ): Metadata {
   const url = path ? `${APP_BASE_URL}/${locale}/${path}` : `${APP_BASE_URL}/${locale}`;
   const imageRaw = options?.image?.trim();
+  /** No custom image → static default (`/tab1.png`), always passed through `toAbsoluteImageUrl`. */
   const imageUrl = toAbsoluteImageUrl(
     imageRaw && imageRaw.length > 0 ? imageRaw : DEFAULT_OG_IMAGE_PATH
   );
