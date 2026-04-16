@@ -62,10 +62,11 @@ export function toAbsoluteImageUrl(url: string): string {
   return `${APP_BASE_URL}${path}`;
 }
 
-/** Our dynamic OG route (`/og`, `/og?...`) always renders 1200×630. External uploads should not use those dimensions. */
-function isNextOgImageRoute(absoluteUrl: string): boolean {
+/** Internal fallback images with guaranteed 1200x630 layout. */
+function isFixedPreviewImage(absoluteUrl: string): boolean {
   try {
-    return new URL(absoluteUrl).pathname === "/og";
+    const pathname = new URL(absoluteUrl).pathname;
+    return pathname === "/og" || pathname === DEFAULT_OG_IMAGE_PATH;
   } catch {
     return false;
   }
@@ -94,7 +95,7 @@ export function buildPageMetadata(
       : `${APP_BASE_URL}/${loc}`;
   }
 
-  const ogImages = isNextOgImageRoute(imageUrl)
+  const ogImages = isFixedPreviewImage(imageUrl)
     ? [{ url: imageUrl, width: 1200, height: 630, alt: imageAlt }]
     : [{ url: imageUrl, alt: imageAlt }];
 
