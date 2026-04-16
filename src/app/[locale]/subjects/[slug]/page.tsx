@@ -7,6 +7,7 @@ import { getSubjectBySlug } from "@/services/subjectService";
 import { getCoursesByStatus, mergeUpcomingInProgressCourses } from "@/services/courseService";
 import { CourseCard } from "@/components/courses/CourseCard";
 import { SubjectRichContent } from "@/components/subjects/SubjectRichContent";
+import { APP_BASE_URL } from "@/constants";
 
 export const revalidate = 60;
 
@@ -31,9 +32,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .trim();
   const description = rawDescription || t("subjectDetailDescriptionFallback");
   const title = `${subject.name} | ${t("subjectsTitle")}`;
+  const ogSubtitle =
+    subject.short_description?.trim().slice(0, 100) ||
+    rawDescription.slice(0, 100) ||
+    "";
+  const ogImage = `${APP_BASE_URL}/og?title=${encodeURIComponent(subject.name)}&subtitle=${encodeURIComponent(ogSubtitle)}`;
 
   return buildPageMetadata(title, description, locale, `subjects/${slug}`, {
-    image: subject.image_url ?? undefined,
+    image: ogImage,
     imageAlt: subject.name,
   });
 }

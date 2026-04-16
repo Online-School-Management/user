@@ -18,6 +18,11 @@ const geistMono = Geist_Mono({
 const defaultTitle = "Tip - Top Education";
 const defaultDescription = "Computer Training School";
 
+/** Elfsight widgets: set NEXT_PUBLIC_ELFSIGHT_ENABLED=false to hide (e.g. APP_VIEWS_LIMIT_REACHED or local dev). */
+const showElfsightWidgets =
+  process.env.NEXT_PUBLIC_ELFSIGHT_ENABLED !== "false" &&
+  process.env.NEXT_PUBLIC_ELFSIGHT_ENABLED !== "0";
+
 export const metadata: Metadata = {
   metadataBase: new URL(APP_BASE_URL),
   title: defaultTitle,
@@ -53,22 +58,23 @@ export default function RootLayout({
         <div className="relative z-10 flex min-h-screen min-w-0 flex-1 flex-col">
           {children}
 
-          {/* Telegram */}
-          <Script src="https://elfsightcdn.com/platform.js" async/>
-          <div
-            className="elfsight-app-971a4d5a-9d0d-4820-868c-23115d2e3e68"
-            data-elfsight-app-lazy
-          />
-
-          {/* Messanger */}
-          <Script
-            src="https://elfsightcdn.com/platform.js"
-            strategy="lazyOnload"
-          />
-          <div
-            className="elfsight-app-e436f6d5-42fe-42dd-8b5a-4514df24877a"
-            data-elfsight-app-lazy
-          />
+          {/* Elfsight: APP_VIEWS_LIMIT_REACHED = account quota (dashboard), not a Next.js bug. */}
+          {showElfsightWidgets ? (
+            <>
+              <Script
+                src="https://elfsightcdn.com/platform.js"
+                strategy="afterInteractive"
+              />
+              <div
+                className="elfsight-app-971a4d5a-9d0d-4820-868c-23115d2e3e68"
+                data-elfsight-app-lazy
+              />
+              <div
+                className="elfsight-app-e436f6d5-42fe-42dd-8b5a-4514df24877a"
+                data-elfsight-app-lazy
+              />
+            </>
+          ) : null}
         </div>
       </body>
     </html>
